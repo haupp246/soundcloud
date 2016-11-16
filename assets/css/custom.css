@@ -21,6 +21,9 @@ body{
 	padding: 10px 20px;
 	background-color: rgba(219,219,219,0.3);
 }
+.index h1:hover{
+	
+}
 .nav>*>*{
 	display: inline-block;
 }
