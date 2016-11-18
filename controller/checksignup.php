@@ -4,6 +4,8 @@ if(isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['pass2']))
 {
     $email = $_POST['email'];
     $email = htmlentities($email);
+    $name = $_POST['name'];
+    $name = htmlentities($name);
     $pass = $_POST['pass']; 
     $pass = htmlentities($pass);
     $pass2 = $_POST['pass2']; 
@@ -11,7 +13,7 @@ if(isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['pass2']))
     $db_connect = db_connect(); 
     $query = "INSERT INTO account (email, password) VALUES ('{$email}','{$pass}')";
     $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-    $query = "INSERT INTO user (email) VALUES ('{$email}')";
+    $query = "INSERT INTO user (email, name) VALUES ('{$email}', '{$name}')";
     $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
    
 

@@ -7,6 +7,8 @@
 	<form method="POST" action="../controller/checksignup.php">
 		<label>email</label>
 		<input type="text" name="email">
+		<label>name</label>
+		<input type="text" name="name">
 		<label>pass</label>
 		<input type="password" name="pass">
 		<label>re-pass</label>
