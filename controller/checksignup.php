@@ -1,5 +1,5 @@
 <?php
-include_once("db_connection.php");
+include_once("db_connection_template.php");
 if(isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['pass2']))
 {
     $email = $_POST['email'];

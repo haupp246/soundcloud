@@ -2,7 +2,7 @@
  session_start();
  ?>
 <?php
-include_once("db_connection.php");
+include_once("db_connection_template.php");
 if(isset($_POST['email'])&&isset($_POST['pass']))
 {
     $email = $_POST['email'];
