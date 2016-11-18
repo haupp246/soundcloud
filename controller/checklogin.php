@@ -1,10 +1,8 @@
 <?php
  session_start();
  ?>
- <?php
+<?php
 include_once("db_connection.php");
-// include("student.php");
-// include_once("manager.php");
 if(isset($_POST['email'])&&isset($_POST['pass']))
 {
     $email = $_POST['email'];

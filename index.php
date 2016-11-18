@@ -23,12 +23,11 @@
 				<a href="#">
 				<img src="assets/img/logo.png" height="70px" alt="" title="">
 				<h2>HTTV music</h2></a>
-				<a href="view/login.php"><input type="button" class="btn" value="SignIn"></a>
-				<a href=""><input type="button" class="btn" value="Join us now !"></a>
+				<a href="view/signup.php"><input type="button" class="btn" value="Join us now !"></a>
+				<a href="view/login.php"><input type="button" class="btn" value="Sign In"></a>
 			</div>
 		</nav>
 		<div class="container index">
-			
 			<a href="">
 			<h1>HTTV music - Find the music you love
 			</h1></a>

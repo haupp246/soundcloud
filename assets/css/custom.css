@@ -5,6 +5,9 @@ body{
 	background-repeat: no-repeat ;
 	background-position: 0 -100px;
 }
+a{
+	text-decoration: none;
+}
 .navbar{
 
 }
@@ -27,17 +30,7 @@ body{
 .nav>*>*{
 	display: inline-block;
 }
-.nav>button{
-	position: relative;
-	left: 60%;
-	top : 5px;
-	font-weight: bold;
-	background-color: orange;
-	color: white;
-	box-shadow: 0 0 1 black;
-}
-
-.nav>button:hover{
+.nav>.btn:hover{
 	background: black;
 	color: white;
 	transition-duration: 0.2s;
@@ -48,6 +41,10 @@ h2{
 	position: relative;
 	top: 10px;
 }
-.navbar btn{
+.navbar .btn{
 	float: right;
+	position: relative;
+	top: 20px;
+	margin-left: 20px;
+	font-weight: 600;
 }
