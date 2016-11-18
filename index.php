@@ -23,8 +23,8 @@
 				<a href="#">
 				<img src="assets/img/logo.png" height="70px" alt="" title="">
 				<h2>HTTV music</h2></a>
-				<button class="btn">Sign In</button>
-				<button class="btn">Join us now !</button>
+				<a href="view/login.php"><input type="button" class="btn" value="SignIn"></a>
+				<a href=""><input type="button" class="btn" value="Join us now !"></a>
 			</div>
 		</nav>
 		<div class="container index">

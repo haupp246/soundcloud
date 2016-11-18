@@ -48,3 +48,6 @@ h2{
 	position: relative;
 	top: 10px;
 }
+.navbar btn{
+	float: right;
+}
