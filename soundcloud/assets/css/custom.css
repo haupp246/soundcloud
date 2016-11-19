@@ -1,0 +1,50 @@
+body{
+	background-image: url(../img/background_index.jpg);
+	background-size: 100%;
+	height: 100%;
+	background-repeat: no-repeat ;
+	background-position: 0 -100px;
+}
+a{
+	text-decoration: none;
+}
+.navbar{
+
+}
+.index h1{
+	margin: auto;
+	position: absolute;
+	top: 40%;
+	left: 21%;
+	color: white;
+	display: block;
+	font-size: 3em;
+	border: 4px white solid;
+	border-radius: 4px;
+	padding: 10px 20px;
+	background-color: rgba(219,219,219,0.3);
+}
+.index h1:hover{
+	
+}
+.nav>*>*{
+	display: inline-block;
+}
+.nav>.btn:hover{
+	background: black;
+	color: white;
+	transition-duration: 0.2s;
+}
+h2{
+	color: white;
+	font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida" ;
+	position: relative;
+	top: 10px;
+}
+.navbar .btn{
+	float: right;
+	position: relative;
+	top: 20px;
+	margin-left: 20px;
+	font-weight: 600;
+}
