@@ -1,7 +1,7 @@
 <?php 
 $u = isset($_SESSION['user']) ? unserialize($_SESSION['user']) :'';
 ?>
-<link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.css"/>
+<link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.css"/>
 <style type="text/css" media="screen">
 	.container{
 		padding-top: 50px;
@@ -53,14 +53,14 @@ $u = isset($_SESSION['user']) ? unserialize($_SESSION['user']) :'';
 		right: 3px;
 		top: 5px;
 		background-color: white;
-		background-image: url('../../assets/img/Search.png');
+		background-image: url('../assets/img/Search.png');
 		background-repeat: no-repeat;
 
 	}
 
 </style>
 <ul class="navbar">
-	<li><a href="" title=""><img src="../../assets/img/logo.png" height="50px" alt=""></a></li>
+	<li><a href="" title=""><img src="../assets/img/logo.png" height="50px" alt=""></a></li>
 	<li><a href="" title="">Home</a></li>
 	<li><a href="" title="">Overview</a></li>
 	<li><div>
@@ -75,8 +75,8 @@ $u = isset($_SESSION['user']) ? unserialize($_SESSION['user']) :'';
 	<?php } else { ?>
 	<li><a href="" title="">Upload</a></li>
 	<li><a href="" title="">Profile</a></li>
-	<li><a href="" title=""><img src="../../assets/img/bell.png" height="25px" alt=""></a></li>
-	<li><a href="../../controller/logout.php" title="">Logout</a></li>
+	<li><a href="" title=""><img src="../assets/img/bell.png" height="25px" alt=""></a></li>
+	<li><a href="../controller/logout.php" title="">Logout</a></li>
 	<?php } ?>
 </ul>
 	

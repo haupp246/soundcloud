@@ -6,10 +6,9 @@
 <?php
 include_once("db_connection.php");
     $email =isset($_POST['email']) ? $_POST['email']:'';
-    $email = htmlentities($email);
+    $email = strip_tags($email);
     $pass = isset($_POST['pass']) ? $_POST['pass']:'';
-    $pass = htmlentities($pass);
-
+    $pass = strip_tags($pass);
 if(!empty($email)&&!empty($pass))
 {
   

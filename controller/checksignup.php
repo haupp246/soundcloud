@@ -3,13 +3,14 @@
 <?php
 include_once("db_connection.php");
     $email =isset($_POST['email']) ? $_POST['email']:'';
-    $email = htmlentities($email);
+    $email = strip_tags($email);
     $name = isset($_POST['name']) ? $_POST['name']:'';
-    $name = htmlentities($name);
+    $name = strip_tags($name);
     $pass = isset($_POST['pass']) ? $_POST['pass']:'';
-    $pass = htmlentities($pass);
+    $pass = strip_tags($pass);
     $pass2 = isset($_POST['pass2']) ? $_POST['pass2']:'';
-    $pass2 = htmlentities($pass2);
+    $pass2 = strip_tags($pass2);
+    $db_connect = db_connect();
 
 if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
 {
@@ -46,7 +47,7 @@ if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
             echo "  <script language=\"javascript\">
                     alert(\"Success!\");
                 </script>
-                <script> window.location = \"../index.php \"; </script>
+                <script> window.location = \"../view/login.php \"; </script>
                 ";   
 
         }

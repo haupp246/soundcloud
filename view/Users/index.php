@@ -3,7 +3,7 @@ session_start();
 if(isset($_SESSION['user']))
 {
     $u = unserialize($_SESSION['user']);
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ if(isset($_SESSION['user']))
 		?>
 		Avatar:
 		<?php 
+
 		$link= $u->avatar;
 		?>
 		<img src="../../assets/img/uploads/<?php echo $link;?>" height="200" />
@@ -34,3 +35,4 @@ if(isset($_SESSION['user']))
 	</div>
 </body>
 </html>
+<?php } ?>
