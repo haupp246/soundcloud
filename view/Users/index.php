@@ -12,23 +12,25 @@ if(isset($_SESSION['user']))
 	<title>User index</title>
 </head>
 <body>
-	<?php 
-	$name = empty($u->name) ? $u->email : $u->name;
-	echo "Hello ",$name,"</br>";
-	echo "Address: ",$u->address,"</br>";
-	echo "DOB: ",$u->dob,"</br>";
-	echo "Gender: ",$u->gender,"</br>";
-	echo "Bio: ",$u->bio,"</br>";
-	?>
-	Avatar:
-	<?php 
-	$link="../../controller/".$u->avatar;
-	echo $link;
-	?>
-	<img src=<?php echo $link;?>/>
-	<form method="POST" action="profile_edit.php">
+<?php include_once '../layout/header.php'; ?>
+	<div class="container">
+		<?php 
+		$name = empty($u->name) ? $u->email : $u->name;
+		echo "Hello ",$name,"</br>";
+		echo "Address: ",$u->address,"</br>";
+		echo "DOB: ",$u->dob,"</br>";
+		echo "Gender: ",$u->gender,"</br>";
+		echo "Bio: ",$u->bio,"</br>";
+		?>
+		Avatar:
+		<?php 
+		$link= $u->avatar;
+		?>
+		<img src="../../assets/img/uploads/<?php echo $link;?>" height="200" />
+		<form method="POST" action="profile_edit.php">
 
-		<input type="submit" value="Edit" name="edit">
-	</form>
+			<input type="submit" value="Edit" name="edit">
+		</form>
+	</div>
 </body>
 </html>

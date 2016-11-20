@@ -5,7 +5,7 @@ if(isset($_SESSION['user']))
 {
     $u = unserialize($_SESSION['user']);
 
-$target_dir = "uploads/";
+$target_dir = "../assets/img/uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -20,7 +20,6 @@ if(isset($_POST["submit"])) {
         $uploadOk = 0;
     }
 }
-
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 } else {
@@ -44,8 +43,8 @@ if ($uploadOk == 0) {
     
     $bio = $_POST['bio']; 
     $bio = htmlentities($bio);
-    $avatar =($target_file);
-    $avatar = mysql_real_escape_string($avatar);
+    $avatar = $_FILES["fileToUpload"]["name"];
+    // $avatar = mysql_real_escape_string($avatar);
     $db_connect = db_connect(); 
      
     $query = "UPDATE user SET name='$name',address='$address',gender='$gender',dob='$dob',bio='$bio',avatar='$avatar' WHERE userid = '$u->userID'";
