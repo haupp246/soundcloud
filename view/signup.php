@@ -5,7 +5,12 @@ include_once 'layout/header.php';
 <!DOCTYPE html>
 <html>
 <head>
-	<title>login</title>
+	<title>HTTV music – Music makes me</title>
+	<meta name="author" content="ThaiVH" />	
+	<meta name="description" content="soundcloud"/>
+	<meta name="keyword" content="sound, cloud, music"/>
+	<meta charset="utf-8"/>
+	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
 </head>
 
 <body>

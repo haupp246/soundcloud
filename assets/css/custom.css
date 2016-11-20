@@ -1,3 +1,6 @@
+html{
+	height: 85%;
+}
 body{
 	background-image: url(../img/background_index.jpg);
 	background-size: 100%;
@@ -6,29 +9,33 @@ body{
 	background-position: 0 -100px;
 }
 .container{
-	margin-top: 50px;
+/* 	margin-top: 50px; */
 }
 a{
 	text-decoration: none;
 }
 .navbar{
-
+	height: 10%;
+}
+.index{
+	height: 100%;
+	display:flex;
+    align-items: center; 
+    justify-content: center;
 }
 .index h1{
 	margin: auto;
-	position: absolute;
-	top: 40%;
-	left: 21%;
+	vertical-align: center;
 	color: white;
-	display: block;
 	font-size: 3em;
 	border: 4px white solid;
 	border-radius: 4px;
 	padding: 10px 20px;
 	background-color: rgba(219,219,219,0.3);
+	width: 766px;
 }
-.index h1:hover{
-	
+.index a:hover{
+	text-decoration: none;
 }
 .nav>*>*{
 	display: inline-block;

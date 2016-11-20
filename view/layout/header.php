@@ -22,7 +22,9 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		background-color: #333333;
 		border-radius: 0;
 		box-shadow: 0px 0px 10px black;
-
+		display:flex;
+	    align-items: center; 
+	    justify-content: center;
 	}
 	.navbar>li:first-child{
 		background-clip: border-box;
@@ -65,9 +67,9 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		background-repeat: no-repeat;
 	}
 	#ava{
-		position: absolute;
-		right: 10%;
-		top: 30%;
+		/* position: absolute; */
+		display: inline-flex;
+		float: right;
 		z-index: 2;
 	}
 	.col{
@@ -79,11 +81,11 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		min-height: 52px;
 	}
 	.span2{
-		width: 75%;
+		width: 40%;
 		min-height: 52px;	
 	}
 	input[type="button"]{
-		visibility: hidden;
+		color: black;
 	}
 	.container2{
 		padding-top: 100px;
@@ -119,9 +121,14 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
  		z-index: 3;
  		margin: 0px;
  	}
+ 	.navbar>li>a>img{
+		padding-left: 15px;
+		padding-right: 0px;
+		margin-right: 0px;
+	}
 </style>
 <ul class="navbar">
-	<li><a href="" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt=""></a></li>
+	<li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>
 	<li><a href="" title="">Home</a></li>
 	<li><a href="" title="">Overview</a></li>
 	<li><div>
@@ -131,8 +138,8 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		</form>
 	</div></li>
 	<?php if(!isset($_SESSION['user'])) { ?>	
-	<li><a href="view/signup.php"><input type="button" class="btn" value="Join us now !"></a></li>
-	<li><a href="view/login.php"><input type="button" class="btn" value="Sign In"></a></li>
+	<li><a href="/soundcloud/view/signup.php"><input type="button" class="btn" value="Join us now !"></a></li>
+	<li><a href="/soundcloud/view/login.php"><input type="button" class="btn" value="Sign In"></a></li>
 	<?php } else { ?>
 	<li><a href="" title="">Upload</a></li>
 	<li class="dropdown"><a href="" title="">
