@@ -1,15 +1,18 @@
+<!-- nhap thieu element nao` thi bao bang front end -->
+
 <?php
  session_start();
  ?>
 <?php
-include_once("db_connection_template.php");
-if(isset($_POST['email'])&&isset($_POST['pass']))
-{
-    $email = $_POST['email'];
+include_once("db_connection.php");
+    $email =isset($_POST['email']) ? $_POST['email']:'';
     $email = htmlentities($email);
-    $pass = $_POST['pass']; 
+    $pass = isset($_POST['pass']) ? $_POST['pass']:'';
     $pass = htmlentities($pass);
 
+if(!empty($email)&&!empty($pass))
+{
+  
     $db_connect = db_connect();
     $query = "SELECT password, email FROM account WHERE password = '{$pass}' and email = '{$email}'";
     $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
@@ -22,13 +25,21 @@ if(isset($_POST['email'])&&isset($_POST['pass']))
        }
        else
        {
-        echo "dm truong";
+        $query = "SELECT * FROM user WHERE email='$email'";
+        $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+        $object = mysql_fetch_object($result);
+        $_SESSION['user'] = serialize($object);
+        db_closeconnect($db_connect);
+        session_write_close();
+        echo "   <script language=\"javascript\"></script>
+        <script> window.location = \"../view/Users/index.php \"; </script>";
        }
     }
     else
     {   
+
         db_closeconnect($db_connect);
-       // header("Location: ../Login.php");
+      
         echo " 	<script language=\"javascript\">
             	alert(\"Sai email hoặc mật khẩu\");
             </script>
@@ -38,7 +49,7 @@ if(isset($_POST['email'])&&isset($_POST['pass']))
 }
 else
 {
-    db_closeconnect($db_connect);
+    //db_closeconnect($db_connect);
     echo "  <script language=\"javascript\">
                 alert(\"ban deo nhap cai loz j thi dang nhap cc \");
             </script>

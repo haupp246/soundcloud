@@ -1,31 +1,65 @@
-<?php
-include_once("db_connection_template.php");
-if(isset($_POST['email'])&&isset($_POST['pass'])&&isset($_POST['pass2']))
-{
-    $email = $_POST['email'];
-    $email = htmlentities($email);
-    $name = $_POST['name'];
-    $name = htmlentities($name);
-    $pass = $_POST['pass']; 
-    $pass = htmlentities($pass);
-    $pass2 = $_POST['pass2']; 
-    $pass2 = htmlentities($pass2);
-    $db_connect = db_connect(); 
-    $query = "INSERT INTO account (email, password) VALUES ('{$email}','{$pass}')";
-    $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-    $query = "INSERT INTO user (email, name) VALUES ('{$email}', '{$name}')";
-    $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-   
+<!-- nhap thieu element nao` thi bao bang front end -->
 
-     
+<?php
+include_once("db_connection.php");
+    $email =isset($_POST['email']) ? $_POST['email']:'';
+    $email = htmlentities($email);
+    $name = isset($_POST['name']) ? $_POST['name']:'';
+    $name = htmlentities($name);
+    $pass = isset($_POST['pass']) ? $_POST['pass']:'';
+    $pass = htmlentities($pass);
+    $pass2 = isset($_POST['pass2']) ? $_POST['pass2']:'';
+    $pass2 = htmlentities($pass2);
+
+if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
+{
+    $query = "SELECT email FROM account WHERE email = '{$email}'";
+    $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+    if(mysql_num_rows($result) == 1)
+    {
+            echo "  <script language=\"javascript\">
+            alert(\"Email has already taken!\");
+            </script>
+            <script> window.location = \"../view/signup.php \"; </script>
+            ";   
+    }
+    else
+    {
+        if ($pass!=$pass2)
+        {
+            echo "  <script language=\"javascript\">
+            alert(\"Your passwords do not match. Please try again!\");
+            </script>
+            <script> window.location = \"../view/signup.php \"; </script>
+            ";   
+        }
+        else
+        {
+
+        $query = "INSERT INTO account (email, password) VALUES ('{$email}','{$pass}')";
+        $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+        $query = "INSERT INTO user (email, name) VALUES ('{$email}', '{$name}')";
+        $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+           
+           db_closeconnect($db_connect);
+          
+            echo "  <script language=\"javascript\">
+                    alert(\"Success!\");
+                </script>
+                <script> window.location = \"../index.php \"; </script>
+                ";   
+
+        }
+    }
+    
 }
-// else
-// {
-//     db_closeconnect($db_connect);
-//     echo "  <script language=\"javascript\">
-//                 alert(\"ban deo nhap cai loz j thi dang nhap cc \");
-//             </script>
-//             <script> window.location = \"../view/login.php \"; </script>
-//             ";
-// }
+else
+{
+    db_closeconnect($db_connect);
+    echo "  <script language=\"javascript\">
+                alert(\"ban deo nhap cai loz j thi dang nhap cc \");
+            </script>
+            <script> window.location = \"../view/login.php \"; </script>
+            ";
+}
 ?>
