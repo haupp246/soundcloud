@@ -52,7 +52,6 @@ if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
 
         }
     }
-    
 }
 else
 {

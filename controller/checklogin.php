@@ -40,7 +40,7 @@ if(!empty($email)&&!empty($pass))
         db_closeconnect($db_connect);
       
         echo " 	<script language=\"javascript\">
-            	alert(\"Sai email hoặc mật khẩu\");
+            	alert(\"Wrong email or password!\");
             </script>
             <script> window.location = \"../view/login.php \"; </script>
             ";
@@ -50,7 +50,7 @@ else
 {
     //db_closeconnect($db_connect);
     echo "  <script language=\"javascript\">
-                alert(\"ban deo nhap cai loz j thi dang nhap cc \");
+                alert(\"Please fill in email and password!\");
             </script>
             <script> window.location = \"../view/login.php \"; </script>
             ";
