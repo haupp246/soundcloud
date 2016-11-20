@@ -77,6 +77,7 @@ $u = isset($_SESSION['user']) ? unserialize($_SESSION['user']) :'';
 	<li><a href="" title="">Profile</a></li>
 	<li><a href="" title=""><img src="../../assets/img/bell.png" height="25px" alt=""></a></li>
 	<li><a href="../../controller/logout.php" title="">Logout</a></li>
+	<li><a href="../Users/delete.php" title="">Delete</a></li>
 	<?php } ?>
 </ul>
 	
