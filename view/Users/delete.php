@@ -1,7 +1,10 @@
 <?php 
 session_start();
-include_once 'layout/header.php';
-?>
+include_once '../layout/header.php';
+if(isset($_SESSION['user']))
+{
+    $u = unserialize($_SESSION['user']);
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,18 +18,16 @@ include_once 'layout/header.php';
 
 <body>
 	<div class="container">
-		<div >
-			<h1>Signup</h1>
-
-			<form method="POST" action="../controller/checksignup.php">
+		<div class="container2">
+			<h1>Please fill in to continue</h1>
+			<br/>
+			<br/>
+			<form method="POST" action="../../controller/checkdelete.php">
 				<label><h3>Email: </h3></label>
 				<br/>
 				<input type="text" name="email" placeholder="abcd1234@zxy.abc">
-				<br/>	<br/>
-				<label><h3>Name: </h3></label>
+				<br/>	
 				<br/>
-				<input type="text" name="name" placeholder="Nguyễn Văn A">
-				<br/>	<br/>
 				<label><h3>Password</h3></label>
 				<br/>
 				<input type="password" name="pass" placeholder="******">
@@ -36,10 +37,11 @@ include_once 'layout/header.php';
 				<br/>
 				<input type="password" name="pass2" placeholder="******">
 				<br/>
-				<br/><br/><br/>
-				<input type="submit" class="btn" name="submit" value="Sign up">
+				<br/>
+				<input type="submit" class="btn" name="submit" value="Login">
 			</form>
 		</div>
 	</div>
 </body>
 </html>
+<?php } ?>

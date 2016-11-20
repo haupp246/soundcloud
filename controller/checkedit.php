@@ -4,31 +4,31 @@ session_start();
 if(isset($_SESSION['user']))
 {
     $u = unserialize($_SESSION['user']);
-    $target_dir = "../assets/img/uploads/";
-    $target_file = $target_dir .$u->userID . basename($_FILES["fileToUpload"]["name"]);
-    $uploadOk = 1;
-    $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-    // Check if image file is a actual image or fake image
-    if(isset($_POST["submit"])&&isset($_FILES["fileToUpload"]) ) {
-        $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-        if($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
+    function target_name(){
+        $u = unserialize($_SESSION['user']);
+        if(isset($_POST["submit"]) && isset($_FILES["fileToUpload"]) ) {
+            $target_dir = "../assets/img/uploads/";
+            $target_file = $target_dir .$u->userID. basename($_FILES["fileToUpload"]["name"]);
+        //     $uploadOk = 1;
+        //     $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        
+        //     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+        //     if($check !== false) {
+        //         $uploadOk = 1;
+        //     } else {
+               
+        //         $uploadOk = 0;
+        //     }
+        // }
+        // if ($uploadOk == 0) {
+        // } else {
+            if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+                return $u->userID . basename($_FILES["fileToUpload"]["name"]);
+            } else {
+                return null;
+            }
         }
     }
-    if ($uploadOk == 0) {
-        echo "Sorry, your file was not uploaded.";
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $target_name = $u->userID . basename($_FILES["fileToUpload"]["name"]);
-        } else {
-            $target_name = null;
-        }
-    }
-    //if (isset($_POST['edit']))
     {
         $name       = isset($_POST['name']) ? $_POST['name']: null;
         $name       = strip_tags($name);
@@ -39,8 +39,9 @@ if(isset($_SESSION['user']))
         $dob        = isset($_POST['dob']) ? $_POST['dob']:null; 
         $dob        = htmlentities($dob);
         $bio        = isset($_POST['bio']) ? $_POST['bio']:null; 
-        $bio      = strip_tags($bio);
-        $avatar     = isset($target_name) ? $target_name : $u->avatar ;
+        $bio        = strip_tags($bio);
+        $ava_name   = target_name();
+        $avatar     = isset($ava_name) ? $ava_name : $u->avatar ;
 
         $db_connect = db_connect(); 
          
@@ -57,7 +58,7 @@ if(isset($_SESSION['user']))
 
         
             echo "  <script language=\"javascript\">
-                    alert(\"Thanh cong\");
+                    alert(\"Success\");
                 </script>
                 <script> window.location = \"../view/Users/index.php \"; </script>
                 ";

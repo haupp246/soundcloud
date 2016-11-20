@@ -2,14 +2,17 @@
 <html>
 	<head>
 		<title>HTTV music – Music makes me</title>
-		<meta name="author" content="ThaiVH" />									
-		<meta name="description" content=""/>
-		<meta name="keyword" content=""/>
+		<meta name="author" content="ThaiVH" />	
+		<meta name="description" content="soundcloud"/>
+		<meta name="keyword" content="sound, cloud, music"/>
 		<meta charset="utf-8"/>
-		<link rel="icon"  href="assets/ico/1.ico"/>						
-		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css"/>							
+		<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>						
+		<link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/bootstrap.css"/>							
 		<style type="text/css" media="screen">
-			@import "assets/css/custom.css"
+			@import "/soundcloud/assets/css/custom.css";
+			html{
+
+			}
 		</style>						
 		<script src="assets/js/jquery-3.1.1.js" type="text/javascript"> </script>				
 		<script type="text/javascript">
@@ -21,10 +24,10 @@
 		<nav class="navbar">
 			<div class="container nav">
 				<a href="#">
-				<img src="assets/img/logo.png" height="70px" alt="" title="">
+				<img src="/soundcloud/assets/img/logo.png" height="70px" alt="" title="">
 				<h2>HTTV music</h2></a>
-				<a href="view/signup.php"><input type="button" class="btn" value="Join us now !"></a>
-				<a href="view/login.php"><input type="button" class="btn" value="Sign In"></a>
+				<a href="/soundcloud/view/signup.php"><input type="button" class="btn" value="Join us now !"></a>
+				<a href="/soundcloud/view/login.php"><input type="button" class="btn" value="Sign In"></a>
 			</div>
 		</nav>
 		<div class="container index">
