@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 if (!isset($_SESSION['user'])) {
 	header("location: ../login.php");
@@ -17,7 +17,9 @@ if(isset($_SESSION['user']))
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
+	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>
+    <link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
+    <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
 </head>
 <body>
 <?php include_once '../layout/header.php'; ?>
@@ -41,7 +43,32 @@ if(isset($_SESSION['user']))
 		<br/>
 			<input class="btn" type="submit" value="Edit your profile" name="edit">
 		</form>
+
+        <br><br>
+
+        <div id="all_tracks"></div>
 	</div>
+
+<script>
+    /* Tiny HTML5 Music Player by Themistokle Benetatos */
+    TrackList =
+        [
+            {
+                url:'/soundcloud/data/1.mp3',
+                title:'What Have We Done',
+                year:'2007'
+            },
+            {
+                url:'/soundcloud/data/2.mp3',
+                title:'Right of Stupidity',
+                year:'2004'
+            }
+        ];
+
+    //Make a player and display help
+    //player([tracklist], [show waveform?], [show help?])
+    tinyplayer(TrackList, false);
+</script>
 </body>
 </html>
 <?php } ?>
