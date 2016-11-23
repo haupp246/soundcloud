@@ -178,9 +178,8 @@ $id3_tags = mp3_get_tags($_GET['tar']);
 $tag = json_encode($id3_tags);
 print_r($id3_tags);
 
+$title = $_GET['title'];
 $name = $_GET['name'];
-
-$title = isset($id3_tags['title']) ? $id3_tags['title'] : '' ;
 $artist = isset($id3_tags['artist']) ?  $id3_tags['artist'] : '' ;
 $year = isset($id3_tags['year']) ?  $id3_tags['year'] : 0 ;
 $album = isset($id3_tags['album']) ? $id3_tags['album'] : '' ;
@@ -190,7 +189,7 @@ $db_connect = db_connect();
 $query = "UPDATE song SET artist='$artist',year=$year,genre='$genre',album='$album' WHERE name = '$name'";
 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
 db_closeconnect($db_connect);  
-header("location: /soundcloud/view/Users/upload_edit.php?tag={$tag}");
+header("location: /soundcloud/view/Users/upload_edit.php?tag={$tag}&name=$name");
 
 
 ?>

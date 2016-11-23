@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../../controller/db_connection.php");
 if (!isset($_SESSION['user'])) {
 	header("location: ../login.php");
 }
@@ -48,28 +49,42 @@ if(isset($_SESSION['user']))
 
         <div id="all_tracks"></div>
 	</div>
+<?php 
+	$db_connect = db_connect(); 
+    $query = "SELECT * FROM song WHERE userID = '$u->userID' ";
+    $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+    $num_row = mysql_num_rows($result);
+    
+    // $arr = mysql_fetch_array($result);
+    
 
+?>
 <script>
     /* Tiny HTML5 Music Player by Themistokle Benetatos */
     TrackList =
         [
         <?php 
+
       		define("PATH_MEDIA_FILES", "../../data/");
 			$file = scandir (PATH_MEDIA_FILES.$u->userID."/");
 			array_splice($file, 0, 2);
 			$count = count($file);
-			foreach ($file as $key => $value) {
-				$value2 = explode('.',$value);
+			// foreach ($file as $key => $value) {
+			// 	$value2 = explode('.',$value);
+			if ($num_row > 0) {
+	    		while ($row = mysql_fetch_array($result)) {
+		    		
 		?>
             {
-                url: '<?php echo PATH_MEDIA_FILES.$u->userID.'/'.$value ?>',
-                title:'<?php echo $value2[0]; ?>',
-                year:'2007',
+                url: '<?php echo PATH_MEDIA_FILES.$u->userID.'/'.$row['name'] ?>',
+                title:'<?php echo $row['songID']." - ".$row['title'] ; ?>',
+                year:'<?php echo $row['artist']." - ".$row['album']." - ".$row['year']; ?>',
                 
             }
-        <?php if ($count == $key)
+        <?php if ($row == $num_row)
         	{ echo "";}
         	else {echo ",";}
+          }
           } ?>
             // {
             //     url:'/soundcloud/data/2.mp3',

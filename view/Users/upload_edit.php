@@ -21,7 +21,7 @@ include_once '../layout/header.php';
 $tag = json_decode($_GET['tag']);
 $title = (isset($tag->title)) ? $tag->title : '';
 $artist = (isset($tag->artist)) ? $tag->artist : '';
-$year = (isset($tag->year)) ? $tag->year : '';
+$year = (isset($tag->year)) ? $tag->year : 0;
 $album = (isset($tag->album)) ? $tag->album : '';
 $genre = (isset($tag->genre)) ? $tag->genre : '';
 ?>
@@ -58,6 +58,7 @@ $genre = (isset($tag->genre)) ? $tag->genre : '';
 			
 
 			<input type="submit" class="btn" value="Submit" name="submit">
+			<input type="hidden" name="name" value="<?php echo $_GET['name']; ?>" >
 		</form>
 	</div>
 </body>

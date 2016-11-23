@@ -44,8 +44,6 @@ if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
         $query = "INSERT INTO user (email, name) VALUES ('{$email}', '{$name}')";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
         
-        
-
         db_closeconnect($db_connect);  
         echo "  <script language=\"javascript\">
                     alert(\"Success!\");
