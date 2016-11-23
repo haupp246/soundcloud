@@ -1,5 +1,3 @@
-<!-- nhap thieu element nao` thi bao bang front end -->
-
 <?php
  session_start();
  ?>
@@ -20,13 +18,14 @@ if(!empty($email)&&!empty($pass))
        $query = "SELECT email FROM admin WHERE email = '{$email}'"; 
        $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
        if (mysql_num_rows($result) == 1) {
-           header("location:../view/Users/");
+           header("location:../view/admin/");
        }
        else
        {
         $query = "SELECT * FROM user WHERE email='$email'";
         $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
         $object = mysql_fetch_object($result);
+
         $_SESSION['user'] = serialize($object);
         db_closeconnect($db_connect);
         session_write_close();

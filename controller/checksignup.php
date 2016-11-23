@@ -1,7 +1,10 @@
-<!-- nhap thieu element nao` thi bao bang front end -->
 
 <?php
+
 include_once("db_connection.php");
+define("PATH_MEDIA_FILES", "../data/");
+
+
     $email =isset($_POST['email']) ? $_POST['email']:'';
     $email = strip_tags($email);
     $name = isset($_POST['name']) ? $_POST['name']:'';
@@ -36,15 +39,21 @@ if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
         }
         else
         {
-
         $query = "INSERT INTO account (email, password) VALUES ('{$email}','{$pass}')";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
         $query = "INSERT INTO user (email, name) VALUES ('{$email}', '{$name}')";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-           
-           db_closeconnect($db_connect);
-          
-            echo "  <script language=\"javascript\">
+        
+        //tao thu muc user     
+        session_start();
+        $query = "SELECT * FROM user WHERE email='$email'";
+        $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+        $object = mysql_fetch_object($result);
+        mkdir("../data/".$object->userID.'/', 777);
+
+        session_write_close();
+        db_closeconnect($db_connect);  
+        echo "  <script language=\"javascript\">
                     alert(\"Success!\");
                 </script>
                 <script> window.location = \"../view/login.php \"; </script>

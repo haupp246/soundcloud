@@ -25,6 +25,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		display:flex;
 	    align-items: center; 
 	    justify-content: center;
+	    z-index: 99999;
 	}
 	.navbar>li:first-child{
 		background-clip: border-box;
@@ -138,16 +139,16 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		</form>
 	</div></li>
 	<?php if(!isset($_SESSION['user'])) { ?>	
-	<li><a href="/soundcloud/view/signup.php"><input type="button" class="btn" value="Join us now !"></a></li>
-	<li><a href="/soundcloud/view/login.php"><input type="button" class="btn" value="Sign In"></a></li>
+	<li><a href="/soundcloud/view/signup.php"><input type="button" class="btn btnn" value="Join us now !"></a></li>
+	<li><a href="/soundcloud/view/login.php"><input type="button" class="btn btnn" value="Sign In"></a></li>
 	<?php } else { ?>
-	<li><a href="" title="">Upload</a></li>
+	<li><a href="/soundcloud/view/Users/upload.php" title="">Upload</a></li>
 	<li class="dropdown"><a href="" title="">
 		<div class="ava"></div>
 		<a href="" title=""><?php echo $u->name ?></a>
 		</a>
 		<ul class="dropdown-menu">
-			<li><a href="" title="">Profile</a></li>
+			<li><a href="/soundcloud/view/Users/index.php" title="">Profile</a></li>
 			<li><a href="" title="">Suggest</a></li>
 			<li><a href="" title="">Go Pro</a></li>
 			<li><a href="/soundcloud/view/Users/delete.php" title="">Delete Account</a></li>
