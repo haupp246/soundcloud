@@ -29,9 +29,9 @@ if (!isset($_SESSION['user'])) {
 		</h3></div><br/>
 		<div class="col span1"><h3>Birthday:</h3></div>
 		<div class="col span2"><h3> 
-			<input type="date" name="dob" value="<?php if (isset($u->dob)) {
+			<input type="date" name="dob" value="<?php if(isset($u->dob)) {
 				echo $u->dob;  
-				} else echo "1970-01-01"; ?>">
+				} else echo "1970-01-01";?>">
 		</h3></div><br/>
 		<div class="col span1"><h3>Address:</h3></div>
 		<div class="col span2"><h3> 
