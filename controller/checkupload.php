@@ -27,11 +27,12 @@ if(isset($_SESSION['user']))
         else 
         {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+
                 echo "
                 <script language=\"javascript\">
                     alert(\"Success\");
                 </script>
-                <script> window.location = \"/soundcloud/view/Users/index.php \"; </script>";
+                <script> window.location = \"/soundcloud/controller/id3.php?tar=$target_file\"; </script>";
             } else {
                 echo "  <script language=\"javascript\">
                     alert(\"Sorry, there was an error uploading your file! Please try again!\");

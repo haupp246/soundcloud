@@ -25,8 +25,13 @@ if(!empty($email)&&!empty($pass))
         $query = "SELECT * FROM user WHERE email='$email'";
         $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
         $object = mysql_fetch_object($result);
-
         $_SESSION['user'] = serialize($object);
+        //tao thu muc user     
+        $query = "SELECT * FROM user WHERE email='$email'";
+        $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+        $object = mysql_fetch_object($result);
+        mkdir("../data/".$object->userID.'/', 777);
+        
         db_closeconnect($db_connect);
         session_write_close();
         echo "   <script language=\"javascript\"></script>

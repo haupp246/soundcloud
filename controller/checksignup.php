@@ -44,14 +44,8 @@ if(!empty($email)&&!empty($name)&&!empty($pass)&&!empty($pass2))
         $query = "INSERT INTO user (email, name) VALUES ('{$email}', '{$name}')";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
         
-        //tao thu muc user     
-        session_start();
-        $query = "SELECT * FROM user WHERE email='$email'";
-        $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
-        $object = mysql_fetch_object($result);
-        mkdir("../data/".$object->userID.'/', 777);
+        
 
-        session_write_close();
         db_closeconnect($db_connect);  
         echo "  <script language=\"javascript\">
                     alert(\"Success!\");
