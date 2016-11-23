@@ -5,7 +5,8 @@
 	www.seabreezecomputers.com/tips/mp3_id3_tag.htm
 	Version 2.0b - April 18, 2016	
 */
-
+session_start();
+include_once("db_connection.php");
 function mp3_get_tags($file)
 {
 	// http://www.seabreezecomputers.com/tips/mp3_id3_tag.htm
@@ -175,5 +176,21 @@ function mp3_get_genre_name($genre_id)
 
 $id3_tags = mp3_get_tags($_GET['tar']);
 $tag = json_encode($id3_tags);
+print_r($id3_tags);
+
+$name = $_GET['name'];
+
+$title = isset($id3_tags['title']) ? $id3_tags['title'] : '' ;
+$artist = isset($id3_tags['artist']) ?  $id3_tags['artist'] : '' ;
+$year = isset($id3_tags['year']) ?  $id3_tags['year'] : 0 ;
+$album = isset($id3_tags['album']) ? $id3_tags['album'] : '' ;
+$genre = isset($id3_tags['genre']) ? $id3_tags['genre'] : '' ;
+
+$db_connect = db_connect();
+$query = "UPDATE song SET artist='$artist',year=$year,genre='$genre',album='$album' WHERE name = '$name'";
+$result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+db_closeconnect($db_connect);  
 header("location: /soundcloud/view/Users/upload_edit.php?tag={$tag}");
+
+
 ?>

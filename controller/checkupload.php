@@ -1,8 +1,10 @@
 <?php
 include_once("db_connection.php");
 session_start();
+
 if(isset($_SESSION['user']))
 {
+    $name = isset($_POST['name'])? $_POST['name'] : '';
     $u = unserialize($_SESSION['user']);
     define("PATH_MEDIA_FILES", "/soundcloud/data/");
     if(isset($_POST["submit"]) && isset($_FILES["fileToUpload"]) ) {
@@ -27,12 +29,15 @@ if(isset($_SESSION['user']))
         else 
         {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-
+                $db_connect = db_connect();
+                $query = "INSERT INTO song (name, userID) VALUES ('$name','$u->userID')";
+                $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+                db_closeconnect($db_connect);  
                 echo "
                 <script language=\"javascript\">
                     alert(\"Success\");
                 </script>
-                <script> window.location = \"/soundcloud/controller/id3.php?tar=$target_file\"; </script>";
+                <script> window.location = \"/soundcloud/controller/id3.php?tar=$target_file&name=$name\"; </script>";
             } else {
                 echo "  <script language=\"javascript\">
                     alert(\"Sorry, there was an error uploading your file! Please try again!\");

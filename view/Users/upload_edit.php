@@ -16,6 +16,7 @@ include_once '../layout/header.php';
 	<meta charset="utf-8"/>
 	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
 </head>
+
 <?php 
 $tag = json_decode($_GET['tag']);
 $title = (isset($tag->title)) ? $tag->title : '';
@@ -24,10 +25,11 @@ $year = (isset($tag->year)) ? $tag->year : '';
 $album = (isset($tag->album)) ? $tag->album : '';
 $genre = (isset($tag->genre)) ? $tag->genre : '';
 ?>
+
 <body>
 	<div class="container">
 		<h1>Edit</h1>
-		<form method="POST" action="../../controller/checkupload.php" enctype="multipart/form-data">
+		<form method="POST" action="../../controller/check_edit_song.php" enctype="multipart/form-data">
 			<div class="col span1"><h3>Tittle:</h3></div>
 			<div class="col span2"><h3>
 				<input type="text" name="title" value="<?php echo $title;  ?>"> 
