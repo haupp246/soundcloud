@@ -18,6 +18,7 @@ if (!isset($_SESSION['user'])) {
 <body>
 <?php include_once '../layout/header.php'; ?>
 	<div class="container">
+	<h1>Edit your profile</h1>
 		<form method="POST" action="../../controller/checkedit.php" enctype="multipart/form-data">
 		<div class="col span1"><h3>Full name:</h3></div>
 		<div class="col span2"> <h3>
@@ -40,9 +41,9 @@ if (!isset($_SESSION['user'])) {
 		</h3></div><br/>
 		<div class="col span1"><h3>Gender:</h3></div>
 		<div class="col span2"><h3> 
-			<input type="radio" name="gender" value="Female"> Female
-	  		<input type="radio" name="gender" value="Male">  Male
-	  		<input type="radio" name="gender" value="No-tell"> Other
+			<input type="radio" name="gender" <?php if($u->gender=='Female') echo "checked"; ?> value="Female"> Female
+	  		<input type="radio" name="gender" <?php if($u->gender=='Male') echo "checked"; ?> value="Male">  Male
+	  		<input type="radio" name="gender" <?php if($u->gender=='No-tell') echo "checked"; ?> value="No-tell"> Other
   		</h3></div><br/>
 		<div class="col span1"><h3>Bio:</h3></div>
 		<div class="col span2"><h3> 
@@ -60,3 +61,4 @@ if (!isset($_SESSION['user'])) {
 	</div>
 </body>
 </html>
+<?php include_once '../layout/footer.php'; ?>

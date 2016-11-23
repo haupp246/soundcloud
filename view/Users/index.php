@@ -28,27 +28,10 @@ if(isset($_SESSION['user']))
 		<?php 
 		echo "<h1>Hello ",$name,"</h1></br>";
 		?>
-		<div class="col span1"><h3>Address</h3></div>
-		<div class="col span2"><h3><?php echo $u->address ?></h3></div><br/>
-		<span><img id="ava" src="../../assets/img/uploads/<?php echo $link;?>" height="300" /></span>
-		<div class="col span1"><h3>DOB</h3></div>
-		<div class="col span2"><h3><?php echo $u->dob ?></h3></div><br/>
-
-		<div class="col span1"><h3>Gender</h3></div>
-		<div class="col span2"><h3><?php echo $u->gender ?></h3></div><br/>
-		<div class="col span1"><h3>Bio</h3></div>
-		<div class="col span2"><h3><?php echo $u->bio ?></h3></div><br/>
-		<br/>
-		<form method="POST" action="profile_edit.php">
-		<br/>
-		<br/>
-			<input class="btn" type="submit" value="Edit your profile" name="edit">
-		</form>
-
-        <br><br>
+		
 
         <div id="all_tracks"></div>
-	</div>
+	       </div>
 <?php 
 	$db_connect = db_connect(); 
     $query = "SELECT * FROM song WHERE userID = '$u->userID' ";
@@ -103,3 +86,4 @@ if(isset($_SESSION['user']))
 </body>
 </html>
 <?php } ?>
+<?php include_once '../layout/footer.php'; ?>

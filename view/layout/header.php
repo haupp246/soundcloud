@@ -8,13 +8,16 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	body{
 		background-color: #F2F2F2;
 	}
+	body>div:first-of-type{
+		min-height: 300px;
+	}
 	.container{
 		padding-top: 50px;
 		background-color: white;
 		padding: 50px;
 		z-index: 1;
 	}
-	.navbar{
+	#navbar{
 		position: fixed;
 		background-color: red;
 		width: 100%;
@@ -82,7 +85,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		min-height: 52px;
 	}
 	.span2{
-		width: 40%;
+		
 		min-height: 52px;	
 	}
 	input[type="button"]{
@@ -127,8 +130,11 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		padding-right: 0px;
 		margin-right: 0px;
 	}
+	.social>li>a{
+margin-top: 9px;
+}
 </style>
-<ul class="navbar">
+<ul id="navbar" class="navbar">
 	<li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>
 	<li><a href="" title="">Home</a></li>
 	<li><a href="" title="">Overview</a></li>
@@ -143,12 +149,12 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	<li><a href="/soundcloud/view/login.php"><input type="button" class="btn btnn" value="Sign In"></a></li>
 	<?php } else { ?>
 	<li><a href="/soundcloud/view/Users/upload.php" title="">Upload</a></li>
-	<li class="dropdown"><a href="" title="">
+	<li class="dropdown"><a href="/soundcloud/view/Users/index.php" title="">
 		<div class="ava"></div>
-		<a href="" title=""><?php echo $u->name ?></a>
+		<a href="/soundcloud/view/Users/index.php" title=""><?php echo $u->name ?></a>
 		</a>
 		<ul class="dropdown-menu">
-			<li><a href="/soundcloud/view/Users/index.php" title="">Profile</a></li>
+			<li><a href="/soundcloud/view/Users/profile.php" title="">Profile</a></li>
 			<li><a href="/soundcloud/view/Users/users_list.php" title="">List User</a></li>
 			<li><a href="" title="">Suggest</a></li>
 			<li><a href="" title="">Go Pro</a></li>
@@ -159,4 +165,4 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	<li><a href="" title=""><img src="/soundcloud/assets/img/bell.png" height="25px" alt=""></a></li>
 	<?php } ?>
 </ul>
-	
+

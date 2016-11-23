@@ -69,7 +69,7 @@ if(isset($_SESSION['user']))
         echo "  <script language=\"javascript\">
                 alert(\"Success\");
             </script>
-            <script> window.location = \"../view/Users/index.php \"; </script>
+            <script> window.location = \"../view/Users/profile.php \"; </script>
             ";
 }
 ?>

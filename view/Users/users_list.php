@@ -30,38 +30,41 @@ if(isset($_SESSION['user']))
 <?php include_once '../layout/header.php';?>
 <div class="container">
 	<h1>User List</h1>
-	<table>
+	<br/>
+	<table  cellspacing="10px">
 	<?php
 	$db_connect = db_connect();
 	$query = "SELECT DISTINCT * FROM user ORDER BY name ASC ";
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
-
+	$count=0;
 	if ($num_row >0)
 	{	
    		while ($row = mysql_fetch_assoc($result)) {
-		//echo $row["userID"]," ",$row["name"],"<br/>";
-		
 	?>
-	<tr class="prpr">
-		<td><img class="listava" src="../../assets/img/uploads/<?php echo $link;?>" height="130" /></td>
-		<td class="listpr">
-			<a class="list" href="/soundcloud/view/Users/profile.php?id=<?php echo $row['userID'];?>" title=""><?php echo $row["name"]; ?></a>
-		</td>
-	</tr>
-	<table>
-		
-	</table>
+		<tr  <?php if($count%2==0) echo "class=\"prpr\""; ?> >
+			<td rowspan="2"><img class="listava" src="../../assets/img/uploads/<?php echo $row['avatar'];?>" height="130" /></td>
+			<td class="listpr">
+				<a class="list" href="/soundcloud/view/Users/view_profile.php?id=<?php echo $row['userID'];?>" title=""><?php echo $row["name"]; ?></a>
+			</td>
+		</tr>
+		<tr <?php if($count%2==0) echo "class=\"prpr\""; $count++ ?> >
+			<td>
+				<span class="list2"><?php echo $row['followercount']; ?> follower(s)</span>
+			</td>
+		</tr>
+	
 	<?php
-	}
-	}
-		   db_closeconnect($db_connect);
+			}
+		}
+		db_closeconnect($db_connect);
 	}
 	?>
-
+</table>
 
 
 </div>
 
 </body>
 </html>
+<?php include_once '../layout/footer.php'; ?>

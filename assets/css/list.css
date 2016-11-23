@@ -3,12 +3,26 @@
 	align-items: center;
 }
 .list{
-	display: inline-block;
+	display: block;
 	color: black;
 	text-decoration: none;
 	font-size: 40px;
 	margin-left:  50px;
+	margin-top: 40px;
+	
 }
 .listava{
 	margin: 20px;
+} 
+.prpr{
+	background-color: #F2F2F2;
+}
+td:last-child{
+	width: 100%;
+}
+.list2{
+	display: block;
+	margin: 0 50px;
+	padding-bottom: 50px;
+
 }

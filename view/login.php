@@ -13,15 +13,18 @@ if (isset($_SESSION['user'])) {
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
+	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>		
+	<style type="text/css">
+		.btnn[value='Sign In']{
+				visibility: hidden;
+			}
+	</style>	
 </head>
 
 <body>
 	<div class="container">
 		<div class="container2">
 			<h1>Login</h1>
-			<br/>
-			<br/>
 			<form method="POST" action="../controller/checklogin.php">
 				<label><h3>Email: </h3></label>
 				<br/>
@@ -38,3 +41,4 @@ if (isset($_SESSION['user'])) {
 	</div>
 </body>
 </html>
+<?php include_once 'layout/footer.php'; ?>

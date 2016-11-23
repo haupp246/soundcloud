@@ -64,3 +64,4 @@ $genre = (isset($tag->genre)) ? $tag->genre : '';
 </body>
 
 </html>
+<?php include_once '../layout/footer.php'; ?>

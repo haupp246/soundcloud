@@ -12,7 +12,7 @@ include_once 'layout/header.php';
 	<meta charset="utf-8"/>
 	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>		
 	<style type="text/css" media="screen">
-			.btnn{
+			.btnn[value='Join us now !']{
 				visibility: hidden;
 			}
 	</style>	
@@ -47,3 +47,4 @@ include_once 'layout/header.php';
 	</div>
 </body>
 </html>
+<?php include_once 'layout/footer.php'; ?>
