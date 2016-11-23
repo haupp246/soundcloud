@@ -30,7 +30,10 @@ if(!empty($email)&&!empty($pass))
         $query = "SELECT * FROM user WHERE email='$email'";
         $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
         $object = mysql_fetch_object($result);
-        mkdir("../data/".$object->userID.'/', 777);
+        if (!is_dir("../data/".$object->userID.'/')) {
+            mkdir("../data/".$object->userID.'/', 777);
+        }
+        
         
         db_closeconnect($db_connect);
         session_write_close();

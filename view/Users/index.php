@@ -76,9 +76,11 @@ if(isset($_SESSION['user']))
 		    		
 		?>
             {
-                url: '<?php echo PATH_MEDIA_FILES.$u->userID.'/'.$row['name'] ?>',
-                title:'<?php echo $row['songID']." - ".$row['title'] ; ?>',
-                year:'<?php echo $row['artist']." - ".$row['album']." - ".$row['year']; ?>',
+                url: "<?php echo PATH_MEDIA_FILES.$u->userID.'/'.$row['name'] ?>",
+                title:"<?php echo $row['songID']." - ".$row['title'] ; ?>",
+                year:"<?php echo !empty($row['artist']) 	? 	$row['artist'] 		: '';
+                			echo !empty($row['album'])	? " - ".$row['album'] 	: '';
+                			echo ($row['year'] != 0) 	? " - ".$row['year']	: ''; ?>",
                 
             }
         <?php if ($row == $num_row)

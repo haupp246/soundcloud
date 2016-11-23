@@ -5,12 +5,14 @@ session_start();
 if(isset($_SESSION['user']))
 {
     $title = isset($_POST['title'])? $_POST['title'] : '';
+    $title = mysql_real_escape_string($title);
     $u = unserialize($_SESSION['user']);
     define("PATH_MEDIA_FILES", "/soundcloud/data/");
     if(isset($_POST["submit"]) && isset($_FILES["fileToUpload"]) ) {
         $target_dir = "../data/".$u->userID."/";
         $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
         $name = basename($_FILES["fileToUpload"]["name"]);
+        $name = mysql_real_escape_string($name);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         // Allow certain file formats

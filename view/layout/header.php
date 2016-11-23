@@ -149,6 +149,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		</a>
 		<ul class="dropdown-menu">
 			<li><a href="/soundcloud/view/Users/index.php" title="">Profile</a></li>
+			<li><a href="/soundcloud/view/Users/users_list.php" title="">List User</a></li>
 			<li><a href="" title="">Suggest</a></li>
 			<li><a href="" title="">Go Pro</a></li>
 			<li><a href="/soundcloud/view/Users/delete.php" title="">Delete Account</a></li>

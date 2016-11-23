@@ -176,14 +176,18 @@ function mp3_get_genre_name($genre_id)
 
 $id3_tags = mp3_get_tags($_GET['tar']);
 $tag = json_encode($id3_tags);
-print_r($id3_tags);
 
 $title = $_GET['title'];
+$title = mysql_real_escape_string($title);
 $name = $_GET['name'];
+$name = mysql_real_escape_string($name);
 $artist = isset($id3_tags['artist']) ?  $id3_tags['artist'] : '' ;
+$artist = mysql_real_escape_string($artist);
 $year = isset($id3_tags['year']) ?  $id3_tags['year'] : 0 ;
 $album = isset($id3_tags['album']) ? $id3_tags['album'] : '' ;
+$album = mysql_real_escape_string($album);
 $genre = isset($id3_tags['genre']) ? $id3_tags['genre'] : '' ;
+$genre = mysql_real_escape_string($genre);
 
 $db_connect = db_connect();
 $query = "UPDATE song SET artist='$artist',year=$year,genre='$genre',album='$album' WHERE name = '$name'";

@@ -30,6 +30,7 @@ if(isset($_SESSION['user']))
 			$count = count($file);
 			// foreach ($file as $key => $value) {
 			// 	$value2 = explode('.',$value);
+      echo "<pre>";
 			if ($num_row > 0) {
 	    		while ($row = mysql_fetch_array($result)) {
 		    		
