@@ -14,7 +14,12 @@ include_once '../layout/header.php';
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
+	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>		
+	<style type="text/css" media="screen">
+			.social>li>a{
+			margin-top: 9px;
+		}
+		</style>	
 </head>
 <body>
 	<div class="container">

@@ -4,6 +4,10 @@ $link 	= isset($u->avatar) ? $u->avatar : '';
 $linkav = '/soundcloud/assets/img/uploads/'.$link;
 ?>
 <link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <style type="text/css" media="screen">
 	body{
 		background-color: #F2F2F2;
@@ -130,7 +134,18 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		padding-right: 0px;
 		margin-right: 0px;
 	}
-
+	  .modal-header, h4, .close {
+      background-color: #FF4800;
+      color:white !important;
+      text-align: center;
+      font-size: 30px;
+  }
+  .modal-footer {
+      background-color: #f9f9f9;
+  }
+  .modal-content{
+  	top: 80px;
+  }
 </style>
 <ul id="navbar" class="navbar">
 	<li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>

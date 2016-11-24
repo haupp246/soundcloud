@@ -1,8 +1,8 @@
 <?php 
 session_start();
-include_once 'layout/header.php';
+
 if (isset($_SESSION['user'])) {
-	header("location: Users/index.php");
+	header("location: Users/profile.php");
 }
 ?>
 <!DOCTYPE html>
@@ -25,6 +25,7 @@ if (isset($_SESSION['user'])) {
 </head>
 
 <body>
+<?php include_once 'layout/header.php'; ?>
 	<div class="container">
 		<div class="container2">
 			<h1>Login</h1>

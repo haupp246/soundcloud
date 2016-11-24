@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include_once("../../controller/db_connection.php");
 $u = isset($_SESSION['user']) ? unserialize($_SESSION['user']) :'';
 if (!isset($_SESSION['user'])) {
 	header("location: /soundcloud/view/login.php");
@@ -18,12 +19,27 @@ include_once '../layout/header.php';
 </head>
 
 <?php 
-$tag = json_decode($_GET['tag']);
-$title = (isset($tag->title)) ? $tag->title : '';
-$artist = (isset($tag->artist)) ? $tag->artist : '';
-$year = (isset($tag->year)) ? $tag->year : 0;
-$album = (isset($tag->album)) ? $tag->album : '';
-$genre = (isset($tag->genre)) ? $tag->genre : '';
+if (isset($_GET['tag'])) {
+	$tag = json_decode($_GET['tag']);
+	$title = (isset($tag->title)) ? $tag->title : '';
+	$artist = (isset($tag->artist)) ? $tag->artist : '';
+	$year = (isset($tag->year)) ? $tag->year : 0;
+	$album = (isset($tag->album)) ? $tag->album : '';
+	$genre = (isset($tag->genre)) ? $tag->genre : '';
+}
+if (isset($_GET['id'])) {
+	$id = $_GET['id'];
+	$db_connect = db_connect();
+    $query = "SELECT * FROM song WHERE songID ='$id' ";
+    $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+    $row = mysql_fetch_object($result);
+    $title = (isset($row->title)) ? $row->title : '';
+	$artist = (isset($row->artist)) ? $row->artist : '';
+	$year = (isset($row->year)) ? $row->year : 0;
+	$album = (isset($row->album)) ? $row->album : '';
+	$genre = (isset($row->genre)) ? $row->genre : '';
+	$name = (isset($row->name)) ? $row->name : '';
+}
 ?>
 
 <body>
@@ -32,7 +48,7 @@ $genre = (isset($tag->genre)) ? $tag->genre : '';
 		<form method="POST" action="../../controller/check_edit_song.php" enctype="multipart/form-data">
 			<div class="col span1"><h3>Tittle:</h3></div>
 			<div class="col span2"><h3>
-				<input type="text" name="title" value="<?php echo $title;  ?>"> 
+				<input type="text" required="required" name="title" value="<?php echo $title;  ?>"> 
 			</h3></div>
 			<br/>
 			<div class="col span1"><h3>Artist:</h3></div>
@@ -58,7 +74,7 @@ $genre = (isset($tag->genre)) ? $tag->genre : '';
 			
 
 			<input type="submit" class="btn" value="Submit" name="submit">
-			<input type="hidden" name="name" value="<?php echo $_GET['name']; ?>" >
+			<input type="hidden" name="name" value="<?php echo isset($_GET['name']) ? $_GET['name'] : $row->name ; ?>" >
 		</form>
 	</div>
 </body>

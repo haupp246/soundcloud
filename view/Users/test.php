@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title></title>
-</head>
-<body>
-<input type="date" value="2013-01-08">
-</body>
-</html>
+<?php 
+
+		unlink("../../data/1/Radar-Britney-Spears_2.mp3");
+	
+?>
