@@ -25,17 +25,17 @@ if(isset($_SESSION['user']))
 			<form method="POST" action="../../controller/checkdelete.php">
 				<label><h3>Email: </h3></label>
 				<br/>
-				<input type="text" name="email" placeholder="abcd1234@zxy.abc">
+				<input type="text" name="email" required="required" placeholder="abcd1234@zxy.abc">
 				<br/>	
 				<br/>
 				<label><h3>Password</h3></label>
 				<br/>
-				<input type="password" name="pass" placeholder="******">
+				<input type="password" name="pass" required="required" placeholder="******">
 				<br/>
 				<br/>
 				<label><h3>Re-type Password</h3></label>
 				<br/>
-				<input type="password" name="pass2" placeholder="******">
+				<input type="password" name="pass2" required="required" placeholder="******">
 				<br/>
 				<br/>
 				<input type="submit" class="btn" name="submit" value="Login">

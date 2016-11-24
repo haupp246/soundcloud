@@ -130,9 +130,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		padding-right: 0px;
 		margin-right: 0px;
 	}
-	.social>li>a{
-margin-top: 9px;
-}
+
 </style>
 <ul id="navbar" class="navbar">
 	<li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>

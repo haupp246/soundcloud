@@ -18,6 +18,9 @@ if (isset($_SESSION['user'])) {
 		.btnn[value='Sign In']{
 				visibility: hidden;
 			}
+		.social>li>a{
+			margin-top: 9px;
+		}
 	</style>	
 </head>
 
@@ -28,14 +31,14 @@ if (isset($_SESSION['user'])) {
 			<form method="POST" action="../controller/checklogin.php">
 				<label><h3>Email: </h3></label>
 				<br/>
-				<input type="text" name="email" placeholder="abcd1234@zxy.abc">
+				<input type="text" name="email" required="required" placeholder="abcd1234@zxy.abc">
 				<br/>	<br/>
 				<label><h3>Password</h3></label>
 				<br/>
-				<input type="password" name="pass" placeholder="******">
+				<input type="password" name="pass" required="required" placeholder="******">
 				<br/>
 				<br/>
-				<input type="submit" class="btn" name="submit" value="Login">
+				<input type="submit" class="btn" required="required" name="submit" value="Login">
 			</form>
 		</div>
 	</div>

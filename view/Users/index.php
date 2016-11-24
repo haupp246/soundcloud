@@ -19,28 +19,61 @@ if(isset($_SESSION['user']))
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
 	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>
+    <link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/custom2.css">
     <link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
+
     <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
 </head>
 <body>
 <?php include_once '../layout/header.php'; ?>
-	<div class="container">
+	<div class="container container3">
 		<?php 
-		echo "<h1>Hello ",$name,"</h1></br>";
-		?>
-		
+		echo "<h1>Hello ",$name,"</h1></br>"; 
+        ?>
 
-        <div id="all_tracks"></div>
-	       </div>
+        <div id="all_tracks"><div id="del">
+            <?php
+                $db_connect = db_connect();
+                $query = "SELECT * FROM song WHERE userID = '$u->userID' ";
+                $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+                $num_row = mysql_num_rows($result);
+                
+                // $arr = mysql_fetch_array($result);
+                if ($num_row > 0) {
+                    while ($row = mysql_fetch_array($result)) {
+                    ?> 
+                    <button type="button" class="del audiobtnplaybgrd">x</button>
+                    <?php
+                }}
+                
+                ?>
+        </div>
+        <div id="edit_track">
+            <?php
+                $query = "SELECT * FROM song WHERE userID = '$u->userID' ";
+                $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+                $num_row = mysql_num_rows($result);
+                
+                // $arr = mysql_fetch_array($result);
+                if ($num_row > 0) {
+                    while ($row = mysql_fetch_array($result)) {
+                    ?> 
+                    <button type="button" class="audiobtnplaybgrd edit_track">Edit</button>
+                    <?php
+                }}
+                
+                ?>
+        </div>
+
+        </div>
+        
+    </div>
 <?php 
-	$db_connect = db_connect(); 
+	 
     $query = "SELECT * FROM song WHERE userID = '$u->userID' ";
     $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
     $num_row = mysql_num_rows($result);
     
-    // $arr = mysql_fetch_array($result);
-    
-
 ?>
 <script>
     /* Tiny HTML5 Music Player by Themistokle Benetatos */
@@ -52,8 +85,6 @@ if(isset($_SESSION['user']))
 			$file = scandir (PATH_MEDIA_FILES.$u->userID."/");
 			array_splice($file, 0, 2);
 			$count = count($file);
-			// foreach ($file as $key => $value) {
-			// 	$value2 = explode('.',$value);
 			if ($num_row > 0) {
 	    		while ($row = mysql_fetch_array($result)) {
 		    		
@@ -71,16 +102,11 @@ if(isset($_SESSION['user']))
         	else {echo ",";}
           }
           } ?>
-            // {
-            //     url:'/soundcloud/data/2.mp3',
-            //     title:'Right of Stupidity',
-            //     year:'2004'
-            // }
         ];
 
     //Make a player and display help
     //player([tracklist], [show waveform?], [show help?])
-    tinyplayer(TrackList, false);
+    tinyplayer(TrackList, false,true);
 </script>
 
 </body>

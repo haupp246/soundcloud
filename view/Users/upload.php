@@ -20,9 +20,9 @@ include_once '../layout/header.php';
 	<div class="container">
 		<h1>Upload</h1>
 		<form method="POST" action="../../controller/checkupload.php" enctype="multipart/form-data">
-			<div class="col span1"><h3>title:</h3></div>
+			<div class="col span1"><h3>Title:</h3></div>
 			<div class="col span2"><h3>
-				<input type="text" name="title"> 
+				<input type="text" name="title" required="required"> 
 			</h3></div>
 			<br/>
 			<div class="col span1"><h3>File:</h3></div>

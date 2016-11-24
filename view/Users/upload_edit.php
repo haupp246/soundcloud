@@ -35,22 +35,22 @@ $genre = (isset($tag->genre)) ? $tag->genre : '';
 				<input type="text" name="title" value="<?php echo $title;  ?>"> 
 			</h3></div>
 			<br/>
-			<div class="col span1"><h3>artist:</h3></div>
+			<div class="col span1"><h3>Artist:</h3></div>
 			<div class="col span2"><h3>
 				<input type="text" name="artist" value="<?php echo $artist;  ?>"> 
 			</h3></div>
 			<br/>
-			<div class="col span1"><h3>year:</h3></div>
+			<div class="col span1"><h3>Year:</h3></div>
 			<div class="col span2"><h3>
 				<input type="text" name="year" value="<?php echo $year;  ?>"> 
 			</h3></div>
 			<br/>
-			<div class="col span1"><h3>album:</h3></div>
+			<div class="col span1"><h3>Album:</h3></div>
 			<div class="col span2"><h3>
 				<input type="text" name="album" value="<?php echo $album;  ?>"> 
 			</h3></div>
 			<br/>
-			<div class="col span1"><h3>genre:</h3></div>
+			<div class="col span1"><h3>Genre:</h3></div>
 			<div class="col span2"><h3>
 				<input type="text" name="genre" value="<?php echo $genre;  ?>"> 
 			</h3></div>
