@@ -29,6 +29,7 @@ if(isset($_SESSION['user']))
 		<?php 
 		echo "<h1>Hello ",$name,"</h1></br>"; 
         ?>
+
         <div id="all_tracks"><div id="del">
             <?php
                 $db_connect = db_connect();
@@ -46,7 +47,7 @@ if(isset($_SESSION['user']))
                             $("#myModal").modal();
                             $(".modal-body").html("Delete \"<?php echo $row['title']; ?>\" ?");
                             $("#del_track").click(function() {
-                                
+                                $('#loading').show();
                                 $.ajax({
                                     url: '../../controller/del_track.php', 
                                     data: {id: <?php echo $row['songID']; ?>,},
@@ -124,12 +125,14 @@ if(isset($_SESSION['user']))
     <div class="modal-dialog">
     
       <!-- Modal content-->
-      <div class="modal-content">
+      <div class="modal-content" id="modal-content">
+      <img src="/soundcloud/assets/img/loading.gif" id="loading" alt="" width="600">
         <div class="modal-header" style="padding:35px 50px;">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4><span class="glyphicon glyphicon-remove"></span> Delete ?</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
+
         </div>
           <div class="modal-footer">
               <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>

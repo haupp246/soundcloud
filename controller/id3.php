@@ -194,6 +194,4 @@ $query = "UPDATE song SET artist='$artist',year=$year,genre='$genre',album='$alb
 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
 db_closeconnect($db_connect);  
 header("location: /soundcloud/view/Users/upload_edit.php?tag={$tag}&name=$name");
-
-
 ?>
