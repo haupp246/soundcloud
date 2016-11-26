@@ -23,6 +23,7 @@ if(isset($_SESSION['user']))
     <link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
     <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
 </head>
+
 <body>
 <?php include_once '../layout/header.php'; ?>
 	<div class="container container3">
@@ -144,6 +145,27 @@ if(isset($_SESSION['user']))
     </div>
   </div>
 
+<form method="post" action="/soundcloud/controller/songlist.php">
+    <input type="text" name="pname" placeholder="Playlist Name">
+    <input type="submit" name="add" value="Create Playlist"  >
+</form>
+<?php
+$db_connect = db_connect();
+//$query = "INSERT INTO playlist (name, userID) VALUES ('$pname','$u->userID')";
+//$result = mysql_query($query,$db_connect)or die("Error in query $query");
+$query = "SELECT * FROM playlist WHERE userID = '$u->userID'";
+$result = mysql_query($query,$db_connect)or die("Error in query $query");
+$num_row = mysql_num_rows($result);
+//echo "<form method='get' action=\"/soundcloud/controller/editplaylist.php\">";
+for ($i=1; $i<=$num_row; $i++ ){
+    $row = mysql_fetch_assoc($result);
+    $id  = $row['playlistID'];
+    echo $row['playlistID'].$row['name']."    ";
+    echo"<a href=\"/soundcloud/controller/editplaylist.php?id=".$id."\">"."edit</a>";
+    echo "</br>";
+}
+    echo "</form>";
+?>
 </body>
 
 </html>
