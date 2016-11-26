@@ -5,11 +5,12 @@ if (!isset($_SESSION['user'])) {
 	header("location: ../view/login.php");
 } else {
 	$u = unserialize($_SESSION['user']);
-	$content = $_POST['content'];
-	$user_id = $u->userID;
-	$song_id = $_POST['songID'];
+	$data = $_POST['data'];
+    $user_id = $data['userID'];
+    $song_id = $data['songID'];
+    $content = $data['content'];
 	$db_connect = db_connect();
-	$query = "INSERT INTO account (time, content, userID, songID) VALUES (now(), '{$content}', '{$user_id}', '{$song_id}')";
+	$query = "INSERT INTO comment (time, content, userID, songID) VALUES (now(), '{$content}', '{$user_id}', '{$song_id}')";
     $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
     db_closeconnect($db_connect);
 

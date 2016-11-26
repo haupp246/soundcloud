@@ -1,0 +1,112 @@
+.write-comment {
+	margin-top: -35px;
+	margin-bottom: 30px;
+}
+
+.total-comments{
+	height: 30px;
+	margin-bottom: 5px;
+	border-bottom: 1px solid #f2f2f2;
+}
+
+.total-comments > i {
+	float: left;
+	font-size: 18px;
+	color: #999;
+	margin-right: 5px;
+}
+
+.total-comments > .content {
+	font-size: 14px;
+	color: #999;
+}
+
+.uploader {
+	width: 120px;
+	position: absolute;
+	color: #333;
+}
+
+.uploader .avatar-wrapper .avatar {
+	height: 120px;
+	width: 120px;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	float: right;
+	background-size: 120px 120px;
+}
+
+.uploader-info .uploader-stat .followed {
+	float: left;
+	width: 60px;
+}
+
+.uploader-info .uploader-stat .total-songs {
+	float: left;
+	width: 60px;
+}
+
+.uploader-info .uploader-name {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.uploader-stat i {
+	float: left;
+	margin-right: 5px;
+	color: #999;
+	font-size: 12px;
+}
+
+.uploader-stat .uploader-followed, .uploader-stat .uploader-total-songs {
+	color: #999;
+	font-size: 12px;
+}
+
+.comment-wrapper {
+	padding-left: 150px;
+	min-height: 250px;
+}
+
+.comment-wrapper .avatar-wrapper .avatar {
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+	float: left;
+	background-size: 40px 40px;
+	background-repeat: no-repeat;
+}
+
+.comment-wrapper .comment {
+	height: 60px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.comment-content-wrapper .content-time {
+	float: right;
+}
+
+.content-username-wrapper {
+	text-decoration: none !important;
+}
+
+.comment-content-wrapper .content-username {
+	font-size: 12px;
+	color: #999;
+}
+
+.comment-content-wrapper .content-username:hover {
+    color: #333;
+}
+
+.comment-content-wrapper .content-time {
+	font-size: 11px;
+	color: #999;
+}
+
+.comment-content-wrapper .content-body {
+	color: #333;
+	font-size: 12px;
+}

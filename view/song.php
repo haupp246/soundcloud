@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include_once 'layout/header.php';
 if(isset($_SESSION['user']))
@@ -10,14 +10,14 @@ if(isset($_SESSION['user']))
 <html>
 <head>
 	<title>HTTV music – Music makes me</title>
-	<meta name="author" content="ThaiVH" />	
+	<meta name="author" content="ThaiVH" />
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
 	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>
 	<link rel="stylesheet" type="text/css" href="/soundcloud/lib/font-awesome-4.3.0/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
-	<link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/song.css">
+	<link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/playsong.css">
 
 	<script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
 </head>
@@ -68,7 +68,7 @@ userID:"5" -->
 </div>
 
 <script type="text/javascript">
-	TrackList = 
+	TrackList =
 	[
 	{
 		url:'/soundcloud/data/5/A Cup Of Coffee.mp3',
@@ -81,7 +81,7 @@ userID:"5" -->
 	$(document).ready(function(){
 		var songID = <?php echo $_GET['id']?>;
 		$.ajax({
-			url: '../controller/song_get_comment_on_song_id.php', 
+			url: '../controller/song_get_comment_on_song_id.php',
 			data: {songID:songID},
 			dataType: 'json',
 			type: 'POST' ,
