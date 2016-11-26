@@ -1,6 +1,15 @@
 <?php
 session_start();
 include_once("../controller/db_connection.php");
+$db_connect = db_connect();
+$id = $_GET['id'];
+$query = "SELECT * FROM song WHERE songID='$id'";
+$result = mysql_query($query, $db_connect) or die ("Error in $query");
+$num_row = mysql_num_rows($result);
+if($num_row == 0){
+    echo "Sorry this song not exist in our system!";
+    die();
+}
 ?>
     <!DOCTYPE html>
     <html>
@@ -39,13 +48,6 @@ include_once("../controller/db_connection.php");
             </div>
         </div>
     </div>
-    <?php
-    $db_connect = db_connect();
-    $id = $_GET['id'];
-    $query = "SELECT * FROM song WHERE songID='$id'";
-    $result = mysql_query($query, $db_connect) or die ("Error in $query");
-    $num_row = mysql_num_rows($result);
-    ?>
     <script>
         TrackList =
             [
@@ -129,11 +131,9 @@ include_once("../controller/db_connection.php");
                             getCommentsOnSongID();
                         }
                     });
-
                     return false;
                 }
             });
-
         });
     </script>
     <!-- Modal -->

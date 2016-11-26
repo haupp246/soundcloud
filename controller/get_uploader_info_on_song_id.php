@@ -1,7 +1,13 @@
 <?php
 session_start();
 include_once("db_connection.php");
-$song_id = json_decode($_POST['songID']); /// should be post
+$user_id = -1;
+if(isset($_SESSION['user'])){
+    $u = unserialize($_SESSION['user']);
+    $user_id = $u->userID;
+}
+
+$song_id = json_decode($_POST['songID']);
 $db_connect = db_connect();
 mysql_query("SET NAMES 'utf8'");
 mysql_query("SET CHARACTER SET utf8");
@@ -28,6 +34,11 @@ $info['avatar']        = $row['avatar'];
 $info['followercount'] = $row['followercount'];
 $info['totalsongs']    = $row['totalsongs'];
 
+if($user_id == $info['userID']){
+    $action_btn_text = "Profile";
+} else
+    $action_btn_text = "Follow";
+
 $gen_html = '
     <div style="height:120px;">
         <a class="avatar-wrapper" href="/soundcloud/view/Users/view_profile.php?id=' .$info['userID']. '">
@@ -48,7 +59,11 @@ $gen_html = '
             </div>
 
         </div>
-        <div class="uploader-action" data-uploader-id="'.$info['userID'].'">Follow button</div>
+        <div class="uploader-action" data-uploader-id="'.$info['userID'].'">
+            <a href="/soundcloud/view/Users/view_profile.php?id=' .$info['userID']. '">
+                <button>'.$action_btn_text.'</button>
+            </a>
+        </div>
     </div>
 ';
 echo $gen_html;

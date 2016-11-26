@@ -63,6 +63,20 @@
 	font-size: 12px;
 }
 
+.uploader-action button{
+	margin-top: 20px;
+	background-color: #f50;
+	/*border-color: #f50;*/
+	color: #fff;
+	font-size: 11px;
+	padding: 2px 9px 2px 8px;
+	height: 22px;
+	line-height: 16px;
+	border: 1px solid #f50;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
 .comment-wrapper {
 	padding-left: 150px;
 	min-height: 250px;
