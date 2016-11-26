@@ -1,0 +1,57 @@
+.uploader {
+	width: 120px;
+	position: absolute;
+	color: #333;
+}
+
+.uploader .avatar-wrapper .avatar {
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
+	float: right;
+}
+
+.uploader-info .uploader-name {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.comment-wrapper {
+	padding-left: 150px;
+	min-height: 250px;
+}
+
+.comment-wrapper .avatar-wrapper .avatar {
+	height: 40px;
+	width: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+	float: left;	
+}
+
+.comment-content-wrapper .content-time {
+	float: right;
+}
+
+.content-username-wrapper {
+	text-decoration: none !important;
+}
+
+.comment-content-wrapper .content-username {
+	font-size: 12px;
+	color: #999;
+}
+
+.comment-content-wrapper .content-username:hover {
+    color: #333;
+}
+
+.comment-content-wrapper .content-time {
+	font-size: 11px;
+	color: #999;
+}
+
+.comment-content-wrapper .content-body {
+	color: #333;
+	font-size: 12px;
+}
