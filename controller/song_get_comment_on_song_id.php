@@ -4,9 +4,9 @@ include_once("db_connection.php");
 
 $song_id = json_decode($_POST['songID']);
 $db_connect = db_connect();
-mysql_query("SET NAMES 'utf8'");
-mysql_query("SET CHARACTER SET utf8");
-mysql_query("SET SESSION collation_connection = 'utf8_unicode_ci'");
+//mysql_query("SET NAMES 'utf8'");
+//mysql_query("SET CHARACTER SET utf8");
+//mysql_query("SET SESSION collation_connection = 'utf8_unicode_ci'");
 
 $query = "SELECT cmtID, time, content, c.userID AS commentUserID, songID,
 				u.userID, name, avatar

@@ -9,9 +9,9 @@ if(isset($_SESSION['user'])){
 
 $song_id = json_decode($_POST['songID']);
 $db_connect = db_connect();
-mysql_query("SET NAMES 'utf8'");
-mysql_query("SET CHARACTER SET utf8");
-mysql_query("SET SESSION collation_connection = 'utf8_unicode_ci'");
+//mysql_query("SET NAMES 'utf8'");
+//mysql_query("SET CHARACTER SET utf8");
+//mysql_query("SET SESSION collation_connection = 'utf8_unicode_ci'");
 
 $query = "select *
 from user as u,
