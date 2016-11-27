@@ -1,17 +1,15 @@
 <?php
 include_once("../controller/db_connection.php");
 session_start();
-if (!isset($_SESSION['user'])) {
-	header("location: ../login.php");
-}
+
 if(isset($_SESSION['user']))
 {
     $u = unserialize($_SESSION['user']);
     
     $name = empty($u->name) ? $u->email : $u->name;
-    $search= isset($_GET['songname']) ? $_GET['songname'] :''; 
-    $search = strip_tags($search);
+    //$search= isset($_POST['searchBar']) ? $_POST['searchBar'] :''; 
  ?>
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,13 +29,29 @@ if(isset($_SESSION['user']))
 <body>
 <?php include_once 'layout/header.php';?>
 <div class="container">
-	<p>Your keyword: <?php echo $search;?></p>
 	<br/>
+	<br/>
+	Result:
 	<table  cellspacing="10px">
 	<?php
 	$db_connect = db_connect();
 	//$search= isset($_POST['searchBar']) ? $_POST['searchBar'] :''; 
-	$query = "SELECT DISTINCT * FROM song WHERE name LIKE '%$search%' ORDER BY name ASC";
+	$name=isset($_GET['name']) ? $_GET['name'] :'';
+	$name = strip_tags($name);
+	$artist=isset($_GET['artist']) ? $_GET['artist'] :'';
+	$artist = strip_tags($artist);
+	$year=isset($_GET['year']) ? $_GET['year'] :'';
+	$year = strip_tags($year);
+	$album=isset($_GET['album']) ? $_GET['album'] :'';
+	$album = strip_tags($album);
+	
+	$query = "SELECT DISTINCT * 
+				FROM song 	
+				WHERE name LIKE '%$name%' 
+				and artist LIKE '%$artist%'
+				and year = '$year'
+				and album LIKE '%$album%'
+				ORDER BY name ASC";
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
 	$count=0;
@@ -71,11 +85,10 @@ if(isset($_SESSION['user']))
 		}
 	else 
 		{
-			echo "<br/><br/><br/>Sorry no result found";
+			echo "<br/>Sorry no result found<br/>";
 		}
 	?>
-	<br/><br/><br/>
-	<p>Try searching in <a href="/soundcloud/view/advanced_search.php"> Advanced search</a></p>
+	
 
 	<?php
 		db_closeconnect($db_connect);
