@@ -1,14 +1,13 @@
 <?php
 include_once("../controller/db_connection.php");
 session_start();
-if (!isset($_SESSION['user'])) {
-	header("location: ../login.php");
-}
+
 if(isset($_SESSION['user']))
 {
     $u = unserialize($_SESSION['user']);
     
     $name = empty($u->name) ? $u->email : $u->name;
+}
     $search= isset($_GET['songname']) ? $_GET['songname'] :''; 
     $search = strip_tags($search);
  ?>
@@ -79,7 +78,7 @@ if(isset($_SESSION['user']))
 
 	<?php
 		db_closeconnect($db_connect);
-	}
+	
 	?>
 </table>
 

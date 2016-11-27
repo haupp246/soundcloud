@@ -8,8 +8,8 @@ if(isset($_SESSION['user']))
     
     $name = empty($u->name) ? $u->email : $u->name;
     //$search= isset($_POST['searchBar']) ? $_POST['searchBar'] :''; 
- ?>
 }
+ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +31,7 @@ if(isset($_SESSION['user']))
 <div class="container">
 	<br/>
 	<br/>
-	Result:
+	Result:<br/>
 	<table  cellspacing="10px">
 	<?php
 	$db_connect = db_connect();
@@ -56,7 +56,7 @@ if(isset($_SESSION['user']))
 	$num_row = mysql_num_rows($result);
 	$count=0;
 	if ($num_row >0)
-	{	echo $num_row." found:<br/>";
+	{	echo $num_row." found:<br/><br/>";
    		while ($row = mysql_fetch_assoc($result)) {
 	?>
 		<!-- <tr  <?php if($count%2==0) echo "class=\"prpr\""; ?> > -->
@@ -92,7 +92,7 @@ if(isset($_SESSION['user']))
 
 	<?php
 		db_closeconnect($db_connect);
-	}
+
 	?>
 </table>
 
