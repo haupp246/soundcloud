@@ -36,8 +36,8 @@ if(isset($_SESSION['user']))
 	<?php
 	$db_connect = db_connect();
 	//$search= isset($_POST['searchBar']) ? $_POST['searchBar'] :''; 
-	$name=isset($_GET['name']) ? $_GET['name'] :'';
-	$name = strip_tags($name);
+	$songname=isset($_GET['name']) ? $_GET['name'] :'';
+	$songname = strip_tags($songname);
 	$artist=isset($_GET['artist']) ? $_GET['artist'] :'';
 	$artist = strip_tags($artist);
 	$year=isset($_GET['year']) ? $_GET['year'] :'';
@@ -47,7 +47,7 @@ if(isset($_SESSION['user']))
 	
 	$query = "SELECT DISTINCT * 
 				FROM song 	
-				WHERE name LIKE '%$name%' 
+				WHERE name LIKE '%$songname%' 
 				and artist LIKE '%$artist%'
 				and year = '$year'
 				and album LIKE '%$album%'

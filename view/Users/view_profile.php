@@ -198,7 +198,7 @@ a.unfollow:hover,a.unfollow:active {
 	}   
 	?>
         <br><br>
-
+        <a href="/soundcloud/view/Users/follower_list.php?id=<?php echo $p->userID;?>" title="">View followers list</a>
         <div id="all_tracks"></div>
 	</div>
 </body>

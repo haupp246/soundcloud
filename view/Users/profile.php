@@ -45,8 +45,8 @@ if(isset($_SESSION['user']))
 			<input class="btn" type="submit" value="Edit your profile" name="edit">
 		</form>
 
-        <br><br>
-
+        <br/><br/>
+        <a href="/soundcloud/view/Users/follower_list.php?id=<?php echo $u->userID;?>" title="">View followers list</a>
         <div id="all_tracks"></div>
 	</div>
 
