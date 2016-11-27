@@ -8,7 +8,7 @@ if(isset($_SESSION['user']))
     
     $name = empty($u->name) ? $u->email : $u->name;
 }
-    $search= isset($_GET['songname']) ? $_GET['songname'] :''; 
+    $search= isset($_GET['search']) ? $_GET['search'] :''; 
     $search = strip_tags($search);
  ?>
 <!DOCTYPE html>
@@ -40,8 +40,9 @@ if(isset($_SESSION['user']))
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
 	$count=0;
+	echo "Song:";
 	if ($num_row >0)
-	{	echo $num_row." found:<br/>";
+	{	echo $num_row." found.<br/>";
    		while ($row = mysql_fetch_assoc($result)) {
 	?>
 		<!-- <tr  <?php if($count%2==0) echo "class=\"prpr\""; ?> > -->
@@ -73,8 +74,72 @@ if(isset($_SESSION['user']))
 			echo "<br/><br/><br/>Sorry no result found";
 		}
 	?>
-	<br/><br/><br/>
 	<p>Try searching in <a href="/soundcloud/view/advanced_search.php"> Advanced search</a></p>
+	<?php
+		$query = "SELECT DISTINCT * FROM playlist WHERE name LIKE '%$search%' ORDER BY name ASC";
+	$result = mysql_query($query,$db_connect)or die("Error in query $query");
+	$num_row = mysql_num_rows($result);
+	$count=0;
+	echo "Playlist:";
+	if ($num_row >0)
+	{	echo $num_row." found.<br/>";
+   		while ($row = mysql_fetch_assoc($result)) {
+	?>
+		<!-- <tr  <?php if($count%2==0) echo "class=\"prpr\""; ?> > -->
+			<!-- <td rowspan="2"><img class="listava" src="../../assets/img/uploads/<?php echo $row['avatar'];?>" height="130" /></td> -->
+			
+				
+				<a href="" title=""><?php echo $row["name"]; ?></a> 
+				<br/>
+			
+			
+		<!-- </tr> -->
+<!-- 		<tr <?php if($count%2==0) echo "class=\"prpr\""; $count++ ?> >
+			<td>
+				<span class="list2"><?php echo $row['followercount']; ?> follower(s)</span>
+			</td>
+		</tr> -->
+	
+	<?php
+			}
+		}
+	else 
+		{
+			echo "<br/><br/><br/>Sorry no result found";
+		}
+	?>
+	<br/><br/><br/>
+	User:
+	<?php
+		
+		$query ="SELECT * FROM user WHERE name LIKE '%$search%'";
+		$result = mysql_query($query,$db_connect)or die("Error in query $query");
+		$num_row= mysql_num_rows($result);
+		
+		if ($num_row >0)
+		{	echo $num_row." found.<br/>";
+	   		while ($row = mysql_fetch_assoc($result)) 
+	   		{
+		?>
+			<tr  <?php if($count%2==0) echo "class=\"prpr\""; ?> >
+				<td rowspan="2"><img class="listava" src="../assets/img/uploads/<?php echo $row['avatar'];?>" height="130" /></td>
+				<td class="listpr">
+					<a class="list" href="/soundcloud/view/Users/view_profile.php?id=<?php echo $row['userID'];?>" title=""><?php echo $row["name"]; ?></a>
+				</td>
+			</tr>
+			<tr <?php if($count%2==0) echo "class=\"prpr\""; $count++ ?> >
+				<td>
+					<span class="list2"><?php echo $row['followercount']; ?> follower(s)</span>
+				</td>
+			</tr>
+		
+		<?php
+			}
+		}
+		else echo "No user :sadface:";
+	
+	?>
+	
 
 	<?php
 		db_closeconnect($db_connect);

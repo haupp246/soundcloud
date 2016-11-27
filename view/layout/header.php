@@ -151,8 +151,8 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	<li><a href="" title="">Home</a></li>
 	<li><a href="" title="">Overview</a></li>
 	<li><div>
-		<form action="/soundcloud/view/search_song.php" method="GET" accept-charset="utf-8">
-			<input type="text" name="songname" placeholder="Search">
+		<form action="/soundcloud/view/search.php" method="GET" accept-charset="utf-8">
+			<input type="text" name="search" placeholder="Search">
 			<input type="submit" class="btn" name="searchSubmit" value="">
 		</form>
 	</div></li>
