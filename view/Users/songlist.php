@@ -34,7 +34,7 @@ $pname = isset($_POST['pname']) ? $_POST['pname'] : '';
 
 $db_connect = db_connect();
 if (isset($_POST['pname'])) {
-    $query = "INSERT INTO playlist (name, userID) VALUES ('$pname','$u->userID')";
+    $query = "INSERT INTO playlist (name, userID, createTime) VALUES ('$pname','$u->userID', now())";
     $result = mysql_query($query, $db_connect) or die("Error in query $query");
     $query = "SELECT * FROM song";
     $result = mysql_query($query, $db_connect) or die("Error in query $query");

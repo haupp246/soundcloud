@@ -33,7 +33,7 @@ if(isset($_SESSION['user']))
         {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 $db_connect = db_connect();
-                $query = "INSERT INTO song (title, name, userID) VALUES ('$name','$name','$u->userID')";
+                $query = "INSERT INTO song (title, name, uploadTime, userID) VALUES ('$name','$name', NOW(), '$u->userID')";
                 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
                 db_closeconnect($db_connect);  
                 echo "
