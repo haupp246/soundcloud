@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	if (isset($_SESSION['user'])) header("location: view/Users/index.php ");
+?>
 <!DOCTYPE html>
 <html>
 	<head>
