@@ -75,7 +75,7 @@ if(isset($_SESSION['user']))
                 if ($num_row > 0) {
                     while ($row = mysql_fetch_array($result)) {
                     ?> 
-                    <a href="upload_edit.php?id=<?php echo $row['songID']; ?>" title=""><button type="button" class="audiobtnplaybgrd edit_track">Edit</button></a>
+                    <a style="text-decoration: none;" href="upload_edit.php?id=<?php echo $row['songID']; ?>" title=""><button type="button" class="audiobtnplaybgrd edit_track">Edit</button></a>
                     <?php
                 }}
                 ?>

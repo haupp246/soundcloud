@@ -13,7 +13,6 @@ if(isset($_SESSION['user']))
         $album = isset($_POST['album']) ? $_POST['album'] : '' ;
         $album = mysql_real_escape_string($album);
         $genre = isset($_POST['genre']) ? $_POST['genre'] : '' ;
-        $genre = mysql_real_escape_string($genre);
         $name = $_POST['name'];
         $name = mysql_real_escape_string($name);
         $db_connect = db_connect();

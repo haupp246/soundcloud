@@ -247,11 +247,11 @@ if($num_row == 0){
             border-color: #0055a7;
         }
 
-        a img {
+/*        a img {
             width: 14px;
             margin-right: 3px;
         }
-
+*/
         a.unfollow {
             color: #FFFFFF;
             background: #3eef1f;
