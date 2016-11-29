@@ -57,7 +57,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 		position: relative;
 		top: 10px;
 	}
-	input[name='searchBar']{
+	input[name='search']{
 		width: 600px;
 		height: 30px;
 		padding-left: 10px;

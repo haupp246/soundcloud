@@ -3,10 +3,11 @@ session_start();
 include_once("../controller/db_connection.php");
 $db_connect = db_connect();
 $id = $_GET['id'];
-$query = "SELECT * FROM song WHERE songID='$id'";
-$result_song = mysql_query($query, $db_connect) or die ("Error in $query");
-$num_row_song = mysql_num_rows($result_song);
-if ($num_row_song == 0) {
+$query = "SELECT * FROM song NATURAL JOIN songinplaylist WHERE playlistID=$id";
+//$query = "SELECT * FROM song WHERE songID='$id'";
+$result = mysql_query($query, $db_connect) or die ("Error in $query");
+$num_row = mysql_num_rows($result);
+if($num_row == 0){
     echo "Sorry this song not exist in our system!";
     die();
 }
@@ -35,34 +36,11 @@ if ($num_row_song == 0) {
             $u = unserialize($_SESSION['user']);
             $name = empty($u->name) ? $u->email : $u->name;
             echo '
-                <div class="write-comment form-group" data-user-id="' . $u->userID . '" data-song-id="' . $_GET['id'] . '">
+                <div class="write-comment form-group" data-user-id="' . $u->userID . '" data-playlist-id="' . $_GET['id'] . '">
                     <input id="write-comment-body" type="text" class="form-control" placeholder="Write a comment">
                 </div>
             ';
         }
-
-        $query = "SELECT * FROM likesong WHERE userID='$u->userID' and songID='$id'";
-        $result = mysql_query($query, $db_connect) or die ("Error in query: $query");
-        $num_row = mysql_num_rows($result);
-        if ($num_row == 0) {
-            echo '
-                <div class="action-bar-wrapper">
-                    <a class="button follow">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                        <span>Like</span>
-                    </a>
-                </div>
-            ';
-        } else {
-            echo '
-                <div class="action-bar-wrapper">
-                    <a class="button unfollow">
-                        <i class="fa fa-heart" aria-hidden="true"></i>
-                        <span>Liked</span>
-                    </a>
-                </div>';
-        }
-
         ?>
         <div id="comments">
             <div class="uploader">
@@ -72,24 +50,26 @@ if ($num_row_song == 0) {
         </div>
     </div>
     <script>
+
         TrackList =
             [
                 <?php
-                if ($num_row_song > 0) {
+                if ($num_row > 0) {
                 // should be only 1 song, if more then we have bug
-                while ($row_song = mysql_fetch_array($result_song)) {
-                define("PATH_MEDIA_FILES", "../data/");
-                $file = scandir(PATH_MEDIA_FILES . $row_song['userID'] . "/");
+                     define("PATH_MEDIA_FILES", "../data/");
+                while ($row = mysql_fetch_array($result)) {
+                //define("PATH_MEDIA_FILES", "../data/");
+                $file = scandir(PATH_MEDIA_FILES . $row['userID'] . "/");
                 array_splice($file, 0, 2);
                 ?>
                 {
-                    url: "<?php echo PATH_MEDIA_FILES . $row_song['userID'] . '/' . $row_song['name'] ?>",
-                    title: "<?php echo $row_song['songID'] . " - " . $row_song['title']; ?>",
-                    year: "<?php echo !empty($row_song['artist']) ? $row_song['artist'] : '';
-                        echo !empty($row_song['album']) ? " - " . $row_song['album'] : '';
-                        echo ($row_song['year'] != 0) ? " - " . $row_song['year'] : ''; ?>",
+                    url: "<?php echo PATH_MEDIA_FILES . $row['userID'] . '/' . $row['name'] ?>",
+                    title: "<?php echo $row['songID'] . " - " . $row['title']; ?>",
+                    year: "<?php echo !empty($row['artist']) ? $row['artist'] : '';
+                        echo !empty($row['album']) ? " - " . $row['album'] : '';
+                        echo ($row['year'] != 0) ? " - " . $row['year'] : ''; ?>",
                 }
-                <?php if ($row_song == $num_row_song) {
+                <?php if ($row == $num_row) {
                 echo "";
             } else {
                 echo ",";
@@ -100,14 +80,14 @@ if ($num_row_song == 0) {
         tinyplayer(TrackList, false, true);
 
         $(document).ready(function () {
-            getUploaderInfoOnSongID();
-            getCommentsOnSongID();
+            getUploaderInfoOnPlaylistID();
+            getCommentsOnPlaylistID();
 
-            function getUploaderInfoOnSongID() {
-                var songID = <?php echo $_GET['id']?>;
+            function getUploaderInfoOnPlaylistID() {
+                var playlistID = <?php echo $_GET['id']?>;
                 $.ajax({
-                    url: '../controller/get_uploader_info_on_song_id.php',
-                    data: {songID: songID},
+                    url: '../controller/get_uploader_info_on_playlist_id.php',
+                    data: {playlistID: playlistID},
                     dataType: 'text',
                     type: 'POST',
                     success: function (data) {
@@ -117,11 +97,11 @@ if ($num_row_song == 0) {
                 });
             }
 
-            function getCommentsOnSongID() {
-                var songID = <?php echo $_GET['id']?>;
+            function getCommentsOnPlaylistID() {
+                var playlistID = <?php echo $_GET['id']?>;
                 $.ajax({
-                    url: '../controller/song_get_comment_on_song_id.php',
-                    data: {songID: songID},
+                    url: '../controller/playlist_get_comment_on_playlist_id.php',
+                    data: {playlistID: playlistID},
                     dataType: 'text',
                     type: 'POST',
                     success: function (data) {
@@ -134,24 +114,25 @@ if ($num_row_song == 0) {
             $('#write-comment-body').keypress(function (e) {
                 if (e.which == 13) {
                     var userID = $(".write-comment").data("user-id");
-                    var songID = $(".write-comment").data("song-id");
+                    var playlistID = $(".write-comment").data("playlist-id");
                     var content = $(this).val();
+                    console.log(userID + " " + playlistID + " " + content);
                     if (content == "")
                         return false;
                     var data = {
                         userID: userID,
-                        songID: songID,
+                        playlistID: playlistID,
                         content: content
                     };
                     $.ajax({
-                        url: '../controller/add_comment_on_song_id.php',
+                        url: '../controller/add_comment_on_playlist_id.php',
                         data: {data: data},
                         dataType: 'text',
                         type: 'POST',
                         success: function (data) {
                             $('#write-comment-body').val("");
                             console.log(data);
-                            getCommentsOnSongID();
+                            getCommentsOnPlaylistID();
                         }
                     });
                     return false;
@@ -161,34 +142,33 @@ if ($num_row_song == 0) {
     </script>
     <!-- Modal -->
     <script type="text/javascript">
-        $(function () {
+        $(function(){
             initiateFollow();
         });
 
         function initiateFollow() {
-            $("a.unfollow").bind("mouseover", function () {
+            $("a.unfollow").bind("mouseover",function(){
                 //$(this).children("img").attr("src","/soundcloud/assets/img/follow.png");
                 $(this).children("span").text("Unlike");
             });
 
-            $("a.unfollow").bind("mouseout", function () {
+            $("a.unfollow").bind("mouseout",function(){
                 //$(this).children("img").attr("src","/soundcloud/assets/img/following.png");
                 $(this).children("span").text("Liked");
             });
 
-            $("a.unfollow").bind("click", function () {
+            $("a.unfollow").bind("click",function(){
                 $.ajax({
                     url: '../controller/like.php',
                     data: {id: <?php echo $_GET['id'];?>},
-                    error: function () {
+                    error: function() {
                         $('#info').html('<p>An error has occurred</p>');
                     },
 
-                    type: 'POST',
-                    success: function (id) {
+                    type: 'POST' ,
+                    success: function(id){
                         //location.reload();
-                    }
-                });
+                    }});
                 $(this).children("a.unfollow span").text("Like");
                 $(this).removeClass("unfollow");
                 $(this).addClass("follow");
@@ -196,19 +176,18 @@ if ($num_row_song == 0) {
                 initiateFollow();
             });
 
-            $("a.follow").bind("click", function () {
+            $("a.follow").bind("click",function(){
                 //$(this).children("img").attr("src","/soundcloud/assets/img/follow.png");
                 $.ajax({
                     url: '../controller/like.php',
                     data: {id: <?php echo $_GET['id'];?>},
-                    error: function () {
+                    error: function() {
                         $('#info').html('<p>An error has occurred</p>');
                     },
-                    type: 'POST',
-                    success: function (id) {
+                    type: 'POST' ,
+                    success: function(id){
                         //location.reload();
-                    }
-                });
+                    }});
                 $(this).children("span").text("Unlike");
                 $(this).removeClass("follow");
                 $(this).addClass("unfollow");
@@ -217,6 +196,82 @@ if ($num_row_song == 0) {
             });
         }
     </script>
+    <style type="text/css" media="screen">
+        a.button {
+            text-align: center;
+            background-origin: padding-box;
+            background-size: auto;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-left-style: solid;
+            border-left-width: 1px;
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top-left-radius: 3px;
+            border-top-right-radius: 3px;
+            border-top-style: solid;
+            border-top-width: 1px;
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 20px;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: bold;
+            line-height: 23px;
+            outline-color: rgb(255, 255, 255);
+            outline-style: none;
+            outline-width: 0px;
+            text-decoration: none;
+            text-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 0px;
+            vertical-align: middle;
+            padding: 15px 30px 15px 30px;
+            zoom: 1;
+            width: 180px;
+        }
+
+        a.follow {
+            background-image: linear-gradient(rgb(0, 150, 255), rgb(0, 93, 255));
+            color: rgb(255, 255, 255);
+            border-bottom-color: rgb(0, 113, 224);
+            border-left-color: rgb(0, 113, 224);
+            border-right-color: rgb(0, 113, 224);
+            border-top-color: rgb(0, 113, 224);
+        }
+
+        a.follow:hover,a.follow:active {
+            background: linear-gradient(#008aea, #024dcf);
+            border-color: #0055a7;
+        }
+
+/*        a img {
+            width: 14px;
+            margin-right: 3px;
+        }
+*/
+        a.unfollow {
+            color: #FFFFFF;
+            background: #3eef1f;
+            background: -webkit-gradient(linear, 0% 40%, 0% 70%, from(#3eef1f),
+            to(#35cc1a));
+            background: -moz-linear-gradient(linear, 0% 40%, 0% 70%, from(#3eef1f),
+            to(#35cc1a));
+            border-bottom-color: #dcdcdc;
+            border-left-color: #dcdcdc;
+            border-right-color: #dcdcdc;
+            border-top-color: #dcdcdc;
+        }
+
+        a.unfollow:hover,a.unfollow:active {
+            background: linear-gradient(#eb3845, #d9030a);
+            border-color: #e7473c;
+            color: #fff;
+        }
+    </style>
+
 
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -242,9 +297,23 @@ if ($num_row_song == 0) {
             </div>
         </div>
     </div>
+<!--     <?php
+    $query="SELECT * FROM likesong WHERE userID='$u->userID' and songID='$id'";
+    $result=mysql_query($query,$db_connect) or die ("Error in query: $query");
+    $num_row = mysql_num_rows($result);
+    if ($num_row==0)    {
+        ?>
+        <a  class="button follow"><img width="10px" /> <span>Like</span></a>
+        <?php
+    }   else{
+        ?>
+        <a  class="button unfollow"><img width="10px" /> <span>Liked</span></a>
+        <?php
+    }
+    ?> -->
     <br><br>
-    <!--    <a  class="button follow"><img width="10px" /> <span>Like</span></a>-->
-    <!--    <a  class="button unfollow"><img width="10px" /> <span>Following</span></a>-->
+<!--    <a  class="button follow"><img width="10px" /> <span>Like</span></a>-->
+<!--    <a  class="button unfollow"><img width="10px" /> <span>Following</span></a>-->
     </body>
     </html>
 <?php db_closeconnect($db_connect); ?>

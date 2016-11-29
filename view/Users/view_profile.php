@@ -129,10 +129,10 @@ a.follow:hover,a.follow:active {
     border-color: #0055a7;
 }
 
-a img {
+/*a img {
     width: 14px;
     margin-right: 3px;
-}
+}*/
 
 a.unfollow {
     color: #FFFFFF;
@@ -189,16 +189,16 @@ a.unfollow:hover,a.unfollow:active {
 		$num_row = mysql_num_rows($result);
 		if ($num_row==0)	{
 		?>
-		<a  class="button follow"><img width="10px" /> <span>Follow</span></a>
+		<a  class="button follow" style="text-decoration: none;"><img width="10px" /> <span>Follow</span></a>
 	<?php 
 	} 	else{
 	?>		
-		<a  class="button unfollow"><img width="10px" /> <span>Following</span></a>
+		<a  class="button unfollow" style="text-decoration: none;"><img width="10px" /> <span>Following</span></a>
     <?php
 	}   
 	?>
         <br><br>
-        <a href="/soundcloud/view/Users/follower_list.php?id=<?php echo $p->userID;?>" title="">View followers list</a>
+        <a href="/soundcloud/view/Users/follower_list.php?id=<?php echo $p->userID;?>"  title="">View followers list</a>
         <div id="all_tracks"></div>
 	</div>
 </body>
