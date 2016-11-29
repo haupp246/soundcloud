@@ -173,7 +173,7 @@ function mp3_get_genre_name($genre_id)
 	}
 	return($genre_string);
 } // end function mp3_get_genre_name()
-
+$db_connect = db_connect();
 $id3_tags = mp3_get_tags($_GET['tar']);
 $tag = json_encode($id3_tags);
 
@@ -189,8 +189,15 @@ $album = mysql_real_escape_string($album);
 $genre = isset($id3_tags['genre']) ? $id3_tags['genre'] : '' ;
 $genre = mysql_real_escape_string($genre);
 
-$db_connect = db_connect();
-$query = "UPDATE song SET artist='$artist',year=$year,genre='$genre',album='$album' WHERE name = '$name'";
+// $db_connect = db_connect();
+$query = "UPDATE song AS s 
+	JOIN
+      ( SELECT MAX(songid) AS max_id 
+        FROM song
+      ) AS t 
+	 ON t.max_id = s.songid
+SET 
+artist='$artist',year=$year,genre='$genre',album='$album'";
 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
 db_closeconnect($db_connect);  
 header("location: /soundcloud/view/Users/upload_edit.php?tag={$tag}&name=$name");

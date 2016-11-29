@@ -37,10 +37,11 @@ if ($num_row_song == 0) {
             echo '
                 <div class="write-comment form-group" data-user-id="' . $u->userID . '" data-song-id="' . $_GET['id'] . '">
                     <input id="write-comment-body" type="text" class="form-control" placeholder="Write a comment">
+                <br/>
                 </div>
             ';
         }
-
+        else echo "<br/>You have to log in to comment<br/>";
         $query = "SELECT * FROM likesong WHERE userID='$u->userID' and songID='$id'";
         $result = mysql_query($query, $db_connect) or die ("Error in query: $query");
         $num_row = mysql_num_rows($result);

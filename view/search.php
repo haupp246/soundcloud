@@ -89,7 +89,7 @@ if(isset($_SESSION['user']))
 			<!-- <td rowspan="2"><img class="listava" src="../../assets/img/uploads/<?php echo $row['avatar'];?>" height="130" /></td> -->
 			
 				
-				<a href="" title=""><?php echo $row["name"]; ?></a> 
+				<a href="/soundcloud/view/playlist.php?id=<?php echo $row['playlistID']; ?>" title=""><?php echo $row["name"]; ?></a> 
 				<br/>
 			
 			
