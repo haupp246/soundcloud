@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("../controller/db_connection.php");
+include_once 'layout/header.php';
 $db_connect = db_connect();
 $id = $_GET['id'];
 $query = "SELECT * FROM song NATURAL JOIN songinplaylist WHERE playlistID=$id";
@@ -28,7 +29,7 @@ if($num_row == 0){
         <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
     </head>
     <body>
-    <?php include_once 'layout/header.php'; ?>
+   
     <div class="container">
         <div id="all_tracks"></div>
         <?php
