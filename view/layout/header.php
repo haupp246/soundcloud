@@ -5,8 +5,9 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 ?>
   <link rel="stylesheet" type="text/css" href="/soundcloud/lib/bootstrap/css/bootstrap.min.css"/>
   <script src="/soundcloud/lib/jquery/jquery-3.1.1.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="/soundcloud/lib/bootstrap/js/bootstrap.min.js"></script>
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style type="text/css" media="screen">
 	body{
 		background-color: #F2F2F2;
@@ -145,6 +146,25 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
   .modal-content{
   	top: 80px;
   }
+  #result {
+  display: none;
+}
+.input_container ul {
+  width: 206px;
+  border: 1px solid #eaeaea;
+  position: absolute;
+  z-index: 9;
+  background: #f3f3f3;
+  list-style: none;
+}
+.input_container ul li {
+  padding: 2px;
+}
+.input_container ul li:hover {
+  background: #eaeaea;
+}
+
+}
 </style>
 <ul id="navbar" class="navbar">
 	<li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>
@@ -152,7 +172,10 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	<li><a href="" title="">Overview</a></li>
 	<li><div>
 		<form action="/soundcloud/view/search.php" method="GET" accept-charset="utf-8">
-			<input id="search-box" type="text" name="search" placeholder="Search">
+			<input id="search-box" type="text" name="search" placeholder="Search" onkeyup="autocomplet()">
+			<div class="input_container">
+			<ul id="result"></ul>
+			 </div>
 			<input type="submit" class="btn" name="searchSubmit" value="">
 		</form>
 	</div></li>
@@ -178,4 +201,31 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	<li><a href="" title=""><img src="/soundcloud/assets/img/bell.png" height="25px" alt=""></a></li>
 	<?php } ?>
 </ul>
-
+<script>
+function autocomplet() {
+  var min_length = 0; // min caracters to display the autocomplete
+  var keyword = $('#search-box').val();
+  console.log(keyword);
+  if (keyword.length >= min_length) {
+    $.ajax({
+      url: '/soundcloud/controller/test_search.php',
+      type: 'POST',
+      data: {keyword:keyword},
+      success:function(data){
+        $('#result').show();
+        $('#result').html(data);
+      }
+    });
+  } else {
+    $('#result').hide();
+  }
+}
+ 
+// set_item : this function will be executed when we select an item
+function set_item(item) {
+  // change input value
+  $('#result').val(item);
+  // hide proposition list
+  $('#result').hide();
+}
+</script>

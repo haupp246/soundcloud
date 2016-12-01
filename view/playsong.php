@@ -243,7 +243,13 @@ if ($num_row_song == 0) {
                     initiateFollow();
                 });
             }
+            $("#Add_to_playlist").click(function(ev){
+                            //ev.preventDefault;
+                            //$("#myModal").load(location.href + " #myModal");
+                            $("#myModal").modal();
 
+            });
+  
             $("#select-playlist").on("change", function(){
                 var optionSelected = $("option:selected", this);
                 var valueSelected = this.value;
@@ -272,8 +278,13 @@ if ($num_row_song == 0) {
                         data: {pl_id: valueSelected, song_id:<?php echo $id;?>},
                         success: function (ok) {
                             //   alert("Success");
-                            if ($(this).text()=="Add")
-                                $(this).text("Remove");
+                            if ($(this).text()=="Add"){
+                                // $(this).text("Remove");
+                                // $(this).attr("id", "btn2");
+                                $(this).children("span").text("Remove");
+                            }
+                            //$("#myModal").modal('toggle');
+                            //$("#myModal").hide;
                         }
                     });
 
@@ -285,6 +296,12 @@ if ($num_row_song == 0) {
                         data: {pl_id: valueSelected, song_id:<?php echo $id;?>},
                         success: function (ok) {
                             // alert("Success");
+                                if ($(this).text()=="Remove"){
+                               $(this).children("span").text("Add");
+                                //$(this).attr("id", "btn1");
+                            }
+                             //$("#myModal").modal('toggle');
+                              //$("#myModal").hide;
                         }
                     });
                 });
@@ -320,7 +337,7 @@ if ($num_row_song == 0) {
 
     </script>
 
-    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Add to playlist</button>
+    <button type="button" class="btn btn-info btn-lg" id="Add_to_playlist">Add to playlist</button>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
