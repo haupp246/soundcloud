@@ -103,6 +103,7 @@ if(isset($_SESSION['user']))
 		?>
             {
                 url: "<?php echo PATH_MEDIA_FILES.$u->userID.'/'.$row['name'] ?>",
+                songID: "<?php echo $row['songID'] ?>",
                 title:"<?php echo $row['songID']." - ".$row['title'] ; ?>",
                 year:"<?php echo !empty($row['artist']) 	? 	$row['artist'] 		: '';
                 			echo !empty($row['album'])	? " - ".$row['album'] 	: '';
