@@ -3,16 +3,16 @@ include_once("db_connection.php");
 session_start();
 
 if(isset($_SESSION['user']))
-{
+{    $db_connect = db_connect();
     $title = isset($_POST['title'])? $_POST['title'] : '';
-    // $title = mysql_real_escape_string($title);
+     $title = mysql_real_escape_string($title);
     $u = unserialize($_SESSION['user']);
     define("PATH_MEDIA_FILES", "/soundcloud/data/");
     if(isset($_POST["submit"]) && isset($_FILES["fileToUpload"]) ) {
         $target_dir = "../data/".$u->userID."/";
         $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
         $name = basename($_FILES["fileToUpload"]["name"]);
-        // $name = mysql_real_escape_string($name);
+         $name = mysql_real_escape_string($name);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
         // Allow certain file formats
@@ -32,8 +32,15 @@ if(isset($_SESSION['user']))
         else 
         {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-                $db_connect = db_connect();
+                //$db_connect = db_connect();
                 $query = "INSERT INTO song (title, name, uploadTime, userID) VALUES ('$name','$name', NOW(), '$u->userID')";
+                $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+                $query = "SELECT songID, uploadTime FROM song WHERE songID= (SELECT max(songID) FROM song)";
+                $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+                $row=mysql_fetch_array($result);
+                $sid=$row['songID'];
+                $time=$row['uploadTime'];
+                $query = "INSERT INTO action (userID, songID, time) VALUES ('$u->userID','$sid','$time')";
                 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
                 db_closeconnect($db_connect);  
                 echo "

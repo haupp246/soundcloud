@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once("../controller/db_connection.php");
+include_once 'layout/header.php';
 $db_connect = db_connect();
 $id = $_GET['id'];
 $query = "SELECT * FROM song NATURAL JOIN songinplaylist WHERE playlistID=$id";
@@ -28,7 +29,7 @@ if($num_row == 0){
         <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
     </head>
     <body>
-    <?php include_once 'layout/header.php'; ?>
+   
     <div class="container">
         <div id="all_tracks"></div>
         <?php
@@ -38,9 +39,11 @@ if($num_row == 0){
             echo '
                 <div class="write-comment form-group" data-user-id="' . $u->userID . '" data-playlist-id="' . $_GET['id'] . '">
                     <input id="write-comment-body" type="text" class="form-control" placeholder="Write a comment">
+                <br/>
                 </div>
             ';
         }
+        else echo "<br/>You have to log in to comment<br/>";
         ?>
         <div id="comments">
             <div class="uploader">
@@ -297,23 +300,6 @@ if($num_row == 0){
             </div>
         </div>
     </div>
-<!--     <?php
-    $query="SELECT * FROM likesong WHERE userID='$u->userID' and songID='$id'";
-    $result=mysql_query($query,$db_connect) or die ("Error in query: $query");
-    $num_row = mysql_num_rows($result);
-    if ($num_row==0)    {
-        ?>
-        <a  class="button follow"><img width="10px" /> <span>Like</span></a>
-        <?php
-    }   else{
-        ?>
-        <a  class="button unfollow"><img width="10px" /> <span>Liked</span></a>
-        <?php
-    }
-    ?> -->
-    <br><br>
-<!--    <a  class="button follow"><img width="10px" /> <span>Like</span></a>-->
-<!--    <a  class="button unfollow"><img width="10px" /> <span>Following</span></a>-->
     </body>
     </html>
 <?php db_closeconnect($db_connect); ?>

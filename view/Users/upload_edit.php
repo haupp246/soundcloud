@@ -75,6 +75,7 @@ if (isset($_GET['id'])) {
 
 			<input type="submit" class="btn" value="Submit" name="submit">
 			<input type="hidden" name="name" value="<?php echo isset($_GET['name']) ? $_GET['name'] : $row->name ; ?>" >
+			<input type="hidden" name="id" value="<?php echo $_GET['id'];?>">
 		</form>
 	</div>
 </body>

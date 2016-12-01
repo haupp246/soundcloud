@@ -40,7 +40,9 @@ $num_row = mysql_num_rows($result);
 for ($i=1; $i<=$num_row; $i++ ){
     $row = mysql_fetch_assoc($result);
     $id  = $row['playlistID'];
-    echo $row['playlistID'].")    ".$row['name']."    ";
+?>
+        <a href="/soundcloud/view/playlist.php?id=<?php echo $row['playlistID']; ?>" title=""><?php echo $row["name"]; ?></a> 
+<?php
     echo"<a href=\"/soundcloud/controller/edit_playlist.php?id=".$id."\">"."edit</a>";
     echo "</br>";
 }

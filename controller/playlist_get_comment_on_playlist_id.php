@@ -17,7 +17,7 @@ $query = "SELECT cmtID, time, content, c.userID AS commentUserID, songID,
 $result = mysql_query($query, $db_connect) or die ("Error in query: $query");
 $num_row = mysql_num_rows($result);
 if ($num_row == 0) {
-    echo "Seems a little quiet over here<br>Be the first to comment on this track ";
+    echo "Seems a little quiet over here<br>Be the first to comment on this playlist ";
     return;
 }
 $i = 0;
