@@ -210,8 +210,9 @@ if ($num_row_song == 0) {
                     },
 
                     type: 'POST',
-                    success: function (id) {
-                        //location.reload();
+                    success: function (likeCount) {
+//                        console.log(likeCount);
+                        $(".like-count").text(likeCount);
                     }
                 });
                 $(this).children("a.unfollow span").text("Like");
@@ -230,8 +231,9 @@ if ($num_row_song == 0) {
                         $('#info').html('<p>An error has occurred</p>');
                     },
                     type: 'POST',
-                    success: function (id) {
-                        //location.reload();
+                    success: function (likeCount) {
+//                        console.log(likeCount);
+                        $(".like-count").text(likeCount);
                     }
                 });
                 $(this).children("span").text("Unlike");

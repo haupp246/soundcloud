@@ -26,8 +26,12 @@ else {
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
     }
 
-
+    $query = "SELECT * FROM song WHERE songID = {$songID}";
+    $result = mysql_query($query,$db_connect)or die ("Error in query: $query");
+    $row = mysql_fetch_array($result);
+    $like_count = $row['likeCount'];
     db_closeconnect($db_connect);
 
+    echo $like_count;
 }
 ?>
