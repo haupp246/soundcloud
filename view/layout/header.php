@@ -3,9 +3,9 @@ $u 		= isset($_SESSION['user']) ? unserialize($_SESSION['user']) :'';
 $link 	= isset($u->avatar) ? $u->avatar : '';
 $linkav = '/soundcloud/assets/img/uploads/'.$link;
 ?>
-  <link rel="stylesheet" type="text/css" href="/soundcloud/lib/bootstrap/bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="/soundcloud/lib/bootstrap/css/bootstrap.min.css"/>
   <script src="/soundcloud/lib/jquery/jquery-3.1.1.js"></script>
-  <script src="/soundcloud/lib/bootstrap/bootstrap.min.js"></script>
+  <script src="/soundcloud/lib/bootstrap/js/bootstrap.min.js"></script>
 
 <style type="text/css" media="screen">
 	body{

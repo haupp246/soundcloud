@@ -104,6 +104,8 @@ if(isset($_SESSION['user']))
             {
                 url: "<?php echo PATH_MEDIA_FILES.$u->userID.'/'.$row['name'] ?>",
                 songID: "<?php echo $row['songID'] ?>",
+                viewCount: "<?php echo $row['viewCount'] ?>",
+                likeCount: "<?php echo $row['likeCount'] ?>",
                 title:"<?php echo $row['songID']." - ".$row['title'] ; ?>",
                 year:"<?php echo !empty($row['artist']) 	? 	$row['artist'] 		: '';
                 			echo !empty($row['album'])	? " - ".$row['album'] 	: '';
@@ -146,7 +148,33 @@ if(isset($_SESSION['user']))
   </div>
 
 </body>
+<script>
+    $(document).ready(function(){
+        $(".audio-link").each(function(){
+            this.addEventListener("loadeddata", function(e){
+                var viewCount = $(this).data("view-count");
+                var songID = $(this).data("song-id");
+                var result = updateSongPlayed(this, viewCount, songID);
+            },true);
+        });
 
+        function updateSongPlayed(selector, viewCount, songID){
+            var data = {
+                viewCount: viewCount,
+                songID: songID
+            };
+            $.ajax({
+                url: '../../controller/update_song_played_time_on_song_id.php',
+                data: {data: data},
+                dataType: 'json',
+                type: 'POST',
+                success: function (data) {
+                    $(selector).siblings(".stat-wrapper").find(".view-count").text(data['result']);
+                }
+            });
+        }
+    });
+</script>
 </html>
 <?php } db_closeconnect($db_connect); ?>
 <?php include_once '../layout/footer.php'; ?>

@@ -84,6 +84,9 @@ if ($num_row_song == 0) {
                 ?>
                 {
                     url: "<?php echo PATH_MEDIA_FILES . $row_song['userID'] . '/' . $row_song['name'] ?>",
+                    songID: "<?php echo $row_song['songID'] ?>",
+                    viewCount: "<?php echo $row_song['viewCount'] ?>",
+                    likeCount: "<?php echo $row_song['likeCount'] ?>",
                     title: "<?php echo $row_song['songID'] . " - " . $row_song['title']; ?>",
                     year: "<?php echo !empty($row_song['artist']) ? $row_song['artist'] : '';
                         echo !empty($row_song['album']) ? " - " . $row_song['album'] : '';
@@ -157,6 +160,28 @@ if ($num_row_song == 0) {
                     return false;
                 }
             });
+
+            $(".audio-link").bind("loadeddata", function () {
+                var viewCount = $(this).data("view-count");
+                var songID = $(this).data("song-id");
+                updateSongPlayed(this, viewCount, songID);
+            });
+
+            function updateSongPlayed(selector, viewCount, songID) {
+                var data = {
+                    viewCount: viewCount,
+                    songID: songID
+                };
+                $.ajax({
+                    url: '../controller/update_song_played_time_on_song_id.php',
+                    data: {data: data},
+                    dataType: 'json',
+                    type: 'POST',
+                    success: function (data) {
+                        $(selector).siblings(".stat-wrapper").find(".view-count").text(data['result']);
+                    }
+                });
+            }
         });
     </script>
     <!-- Modal -->

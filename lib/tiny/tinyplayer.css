@@ -132,3 +132,20 @@
 .link-wrapper:hover {
 	text-decoration: none !important;
 }
+.audiocontrollers {
+	float: left;
+}
+.stat-wrapper {
+	float: right;
+	margin-right: 90px;
+	margin-top: 15px;
+	color: #999;
+	/*font-size: 10px;*/
+}
+.stat-wrapper span {
+	margin-right: 10px;
+}
+.stat-wrapper .view-count, .stat-wrapper .like-count  {
+	display: inline;
+	margin-left: 4px;
+}
