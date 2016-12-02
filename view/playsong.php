@@ -103,7 +103,7 @@ if ($num_row_song == 0) {
                 }
                 } ?>
             ];
-        tinyplayer(TrackList, false, true);
+        tinyplayer(TrackList, false);
 
         $(document).ready(function () {
             getUploaderInfoOnSongID();

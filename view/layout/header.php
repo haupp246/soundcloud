@@ -172,7 +172,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 	<li><a href="" title="">Overview</a></li>
 	<li><div>
 		<form action="/soundcloud/view/search.php" method="GET" accept-charset="utf-8">
-			<input id="search-box" type="text" name="search" placeholder="Search" onkeyup="autocomplet()">
+			<input id="search-box" type="text" name="search" placeholder="Search" onkeyup="autocomplet() " autocomplete="off">
 			<div class="input_container">
 			<ul id="result"></ul>
 			 </div>
