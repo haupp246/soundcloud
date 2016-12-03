@@ -148,8 +148,8 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 </style>
 <ul id="navbar" class="navbar">
 	<li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>
-	<li><a href="" title="">Home</a></li>
-	<li><a href="" title="">Overview</a></li>
+	<li><a href="/soundcloud/" title="">Home</a></li>
+	<li><a href="#" title="">Overview</a></li>
 	<li><div>
 		<form action="/soundcloud/view/search.php" method="GET" accept-charset="utf-8">
 			<input id="search-box" type="text" name="search" placeholder="Search">
