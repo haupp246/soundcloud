@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if (isset($_SESSION['user'])) header("location: view/Users/index.php ");
+	if (isset($_SESSION['user'])) header("location: view/Users/new_feed.php ");
 ?>
 <!DOCTYPE html>
 <html>
