@@ -8,10 +8,7 @@ $query = "SELECT * FROM song NATURAL JOIN songinplaylist WHERE playlistID=$id";
 //$query = "SELECT * FROM song WHERE songID='$id'";
 $result = mysql_query($query, $db_connect) or die ("Error in $query");
 $num_row = mysql_num_rows($result);
-if($num_row == 0){
-    echo "Sorry this song not exist in our system!";
-    die();
-}
+
 ?>
     <!DOCTYPE html>
     <html>
@@ -33,6 +30,12 @@ if($num_row == 0){
     <div class="container">
         <div id="all_tracks"></div>
         <?php
+        if($num_row == 0){
+        echo "Sorry this playlist does not contain any song!";
+        //die();
+        }
+        else
+        {
         if (isset($_SESSION['user'])) {
             $u = unserialize($_SESSION['user']);
             $name = empty($u->name) ? $u->email : $u->name;
@@ -67,6 +70,9 @@ if($num_row == 0){
                 ?>
                 {
                     url: "<?php echo PATH_MEDIA_FILES . $row['userID'] . '/' . $row['name'] ?>",
+                    songID: "<?php echo $row['songID'] ?>",
+                    viewCount: "<?php echo $row['viewCount'] ?>",
+                    likeCount: "<?php echo $row['likeCount'] ?>",
                     title: "<?php echo $row['songID'] . " - " . $row['title']; ?>",
                     year: "<?php echo !empty($row['artist']) ? $row['artist'] : '';
                         echo !empty($row['album']) ? " - " . $row['album'] : '';
@@ -80,7 +86,7 @@ if($num_row == 0){
                 }
                 } ?>
             ];
-        tinyplayer(TrackList, false, true);
+        tinyplayer(TrackList, false);
 
         $(document).ready(function () {
             getUploaderInfoOnPlaylistID();
@@ -302,5 +308,5 @@ if($num_row == 0){
     </div>
     </body>
     </html>
-<?php db_closeconnect($db_connect); ?>
+<?php }db_closeconnect($db_connect); ?>
 <?php include_once 'layout/footer.php'; ?>
