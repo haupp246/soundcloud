@@ -7,7 +7,7 @@ if (isset($_SESSION['user'])) {
     $isLogged = TRUE;
 }
 if ($another_user_id == -1 && !$isLogged) {
-    echo "404 - Page not found";
+    header("location: /soundcloud/");
     die();
 }
 
@@ -211,13 +211,12 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                 </div>
             </div>
             <div id="playlists" class="tab-pane fade">
-                <h3>Menu 2</h3>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium,
-                    totam rem aperiam.</p>
+                <?php include("myplaylist.php");?>
             </div>
         </div>
     </div>
     <?php
+    $db_connect = db_connect();
     $query = "SELECT * FROM song WHERE userID = '$this_profile->userID' ORDER BY songID DESC ";
     $result = mysql_query($query, $db_connect) or die ("Error in query: $query");
     $num_row = mysql_num_rows($result);
@@ -257,9 +256,7 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                 <?php
 
                 define("PATH_MEDIA_FILES", "../../data/");
-                $file = scandir(PATH_MEDIA_FILES . $this_profile->userID . "/");
-                array_splice($file, 0, 2);
-                $count = count($file);
+
                 if ($num_row > 0) {
                 while ($row = mysql_fetch_array($result)) {
 
@@ -324,9 +321,11 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                     success: function (result) {
                         if(result === "followed"){
 //                            console.log("should be followed: " + result);
+                            $thisButton.text("Following");
                             $thisButton.toggleClass("unfollow following");
                         }else if(result === "unfollowed"){
 //                            console.log("should be unfollowed: " + result);
+                            $thisButton.text("Follow");
                             $thisButton.toggleClass("following unfollow");
                         } else console.log(result);
                     },

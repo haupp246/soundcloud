@@ -8,6 +8,8 @@ else {
 	$u = unserialize($_SESSION['user']);
 	$id = $_POST['id'];
 	$db_connect = db_connect();
+	$query = "UPDATE user SET uploaded=uploaded -1 where userID='$u->userID' ";
+    $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
 	$query = "SELECT * FROM song WHERE songID = $id ";
 	$result = mysql_query($query,$db_connect)or die ("Error in query: $query");
 	$row = mysql_fetch_array($result);

@@ -4,7 +4,7 @@ include_once("../controller/db_connection.php");
 include_once 'layout/header.php';
 $db_connect = db_connect();
 $id = $_GET['id'];
-$query = "SELECT * FROM song NATURAL JOIN songinplaylist WHERE playlistID=$id";
+$query = "SELECT * FROM song INNER JOIN songinplaylist ON song.songID = songinplaylist.songID WHERE playlistID={$id}";
 //$query = "SELECT * FROM song WHERE songID='$id'";
 $result = mysql_query($query, $db_connect) or die ("Error in $query");
 $num_row = mysql_num_rows($result);
@@ -64,9 +64,7 @@ $num_row = mysql_num_rows($result);
                 // should be only 1 song, if more then we have bug
                      define("PATH_MEDIA_FILES", "../data/");
                 while ($row = mysql_fetch_array($result)) {
-                //define("PATH_MEDIA_FILES", "../data/");
-                $file = scandir(PATH_MEDIA_FILES . $row['userID'] . "/");
-                array_splice($file, 0, 2);
+
                 ?>
                 {
                     url: "<?php echo PATH_MEDIA_FILES . $row['userID'] . '/' . $row['name'] ?>",
@@ -86,7 +84,7 @@ $num_row = mysql_num_rows($result);
                 }
                 } ?>
             ];
-        tinyplayer(TrackList, false);
+        tinyplayer(TrackList, false,true);
 
         $(document).ready(function () {
             getUploaderInfoOnPlaylistID();

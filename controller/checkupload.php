@@ -9,6 +9,19 @@ if(isset($_SESSION['user']))
     $u = unserialize($_SESSION['user']);
     define("PATH_MEDIA_FILES", "/soundcloud/data/");
     if(isset($_POST["submit"]) && isset($_FILES["fileToUpload"]) ) {
+        $query="SELECT * FROM user WHERE userID='$u->userID'";
+        $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+        $row=mysql_fetch_array($result);
+        if ($row['ispro'] ==0 && $row['uploaded']>3)
+        {
+            echo "  <script>
+                        alert(\"You have reach your upload limit! Please go pro to upload more.\");
+                        window.location = \"/soundcloud/view/Users/upload.php \";
+                    </script>
+            ";
+        }
+        else
+        {
         $target_dir = "../data/".$u->userID."/";
         $target_file = $target_dir.basename($_FILES["fileToUpload"]["name"]);
         $name = basename($_FILES["fileToUpload"]["name"]);
@@ -33,6 +46,8 @@ if(isset($_SESSION['user']))
         {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 //$db_connect = db_connect();
+                $query = "UPDATE user SET uploaded=uploaded +1 where userID='$u->userID' ";
+                $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
                 $query = "INSERT INTO song (title, name, uploadTime, userID) VALUES ('$name','$name', NOW(), '$u->userID')";
                 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
                 $query = "SELECT songID, uploadTime FROM song WHERE songID= (SELECT max(songID) FROM song)";
@@ -55,6 +70,7 @@ if(isset($_SESSION['user']))
                     <script> window.location = \"/soundcloud/view/Users/upload.php \"; </script>";
             }
         }
+}
 }
 }
 ?>

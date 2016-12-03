@@ -84,8 +84,8 @@ if ($num_row_song == 0) {
                 <?php
                 if ($num_row_song > 0) {
                 // should be only 1 song, if more then we have bug
-                while ($row_song = mysql_fetch_array($result_song)) {
                 define("PATH_MEDIA_FILES", "../data/");
+                while ($row_song = mysql_fetch_array($result_song)) {
                 $file = scandir(PATH_MEDIA_FILES . $row_song['userID'] . "/");
                 array_splice($file, 0, 2);
                 ?>
@@ -253,7 +253,7 @@ if ($num_row_song == 0) {
                             $("#myModal").modal();
 
             });
-  
+
             $("#select-playlist").on("change", function(){
                 var optionSelected = $("option:selected", this);
                 var valueSelected = this.value;
@@ -321,7 +321,7 @@ if ($num_row_song == 0) {
                 // });
                 $("#createModal").modal();
             });
-            $("#crt").on("click",function (){
+            $("#crt").on("click",function (event){
                 var inputtedPlaylistName = $( "#pl_name" ).val();
                 console.log (inputtedPlaylistName );
                 event.preventDefault();

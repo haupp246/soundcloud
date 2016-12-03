@@ -17,7 +17,7 @@ else {
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
         $query = "UPDATE user SET followercount=followercount+1 WHERE userID={$id}";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-        echo "followed";
+		echo "followed";
 	}
 	else 
 	{
@@ -25,7 +25,7 @@ else {
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
         $query = "UPDATE user SET followercount=followercount-1 WHERE userID={$id}";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-        echo "unfollowed";
+		echo "unfollowed";
 	}
 	
 	
