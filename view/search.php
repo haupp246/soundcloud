@@ -124,7 +124,7 @@ if(isset($_SESSION['user']))
 			<tr  <?php if($count%2==0) echo "class=\"prpr\""; ?> >
 				<td rowspan="2"><img class="listava" src="../assets/img/uploads/<?php echo $row['avatar'];?>" height="130" /></td>
 				<td class="listpr">
-					<a class="list" href="/soundcloud/view/Users/view_profile.php?id=<?php echo $row['userID'];?>" title=""><?php echo $row["name"]; ?></a>
+					<a class="list" href="/soundcloud/view/Users/index.php?id=<?php echo $row['userID'];?>" title=""><?php echo $row["name"]; ?></a>
 				</td>
 			</tr>
 			<tr <?php if($count%2==0) echo "class=\"prpr\""; $count++ ?> >

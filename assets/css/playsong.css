@@ -31,9 +31,10 @@
 	height: 120px;
 	width: 120px;
 	background-repeat: no-repeat;
+	background-position: 50% 50%;
 	border-radius: 50%;
 	float: right;
-	background-size: 120px 120px;
+	background-size: cover;
 }
 
 .uploader-info .uploader-stat .followed {

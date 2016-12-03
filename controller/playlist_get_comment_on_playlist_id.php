@@ -39,13 +39,13 @@ while ($row = mysql_fetch_array($result)) {
 //		$i++;
     $gen_html .= '
         <div class="comment" data-comment-id="' . $row['cmtID'] . '">
-            <a class="avatar-wrapper" href="/soundcloud/view/Users/view_profile.php?id=' . $row['commentUserID'] . '">
+            <a class="avatar-wrapper" href="/soundcloud/view/Users/index.php?id=' . $row['commentUserID'] . '">
                 <div class="avatar"
                      style="background-image:url(\'/soundcloud/assets/img/uploads/' . $row['avatar'] . '\');"></div>
             </a>
             <div class="comment-content-wrapper">
                 <div class="content-time">' . $row['time'] . '</div>
-                <a class="content-username-wrapper" href="/soundcloud/view/Users/view_profile.php?id=' . $row['commentUserID'] . '">
+                <a class="content-username-wrapper" href="/soundcloud/view/Users/index.php?id=' . $row['commentUserID'] . '">
                     <div class="content-username">' . $row['name'] . '</div>
                 </a>
                 <div class="content-body">' . $row['content'] . '</div>
