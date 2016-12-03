@@ -10,7 +10,7 @@ if(isset($_SESSION['user']))
             $target_dir = "../assets/img/uploads/";
             $target_file = $target_dir .$u->userID. basename($_FILES["fileToUpload"]["name"]);
             $uploadOk = 1;
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         
         //     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         //     if($check !== false) {

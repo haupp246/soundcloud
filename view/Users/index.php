@@ -211,7 +211,14 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                 </div>
             </div>
             <div id="playlists" class="tab-pane fade">
-                <?php include("myplaylist.php");?>
+                <?php
+//                include("myplaylist2.php");
+                if (!empty($_GET['id'])) {
+                    include("myplaylist2.php");
+                }
+                else include ("myplaylist.php");
+
+                ?>
             </div>
         </div>
     </div>

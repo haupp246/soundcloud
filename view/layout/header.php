@@ -179,6 +179,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
     <li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>
     <li><a href="/soundcloud/" title="">Home</a></li>
     <li><a href="" title="">Overview</a></li>
+    <li><a href="/soundcloud/view/chart.php" title="">Chart</a></li>
     <li><div>
             <form action="/soundcloud/view/search.php" method="GET" accept-charset="utf-8">
                 <input id="search-box" type="text" name="search" placeholder="Search" onkeypress="autocomplet() " autocomplete="off">
@@ -201,7 +202,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
                 <li><a href="/soundcloud/view/Users/profile.php" title="">Profile</a></li>
                 <li><a href="/soundcloud/view/Users/users_list.php" title="">List User</a></li>
                 <li><a href="/soundcloud/view/Users/suggest.php" title="">Suggest</a></li>
-                <li><a href="" title="">Go Pro</a></li>
+                <li><a href="/soundcloud/view/Users/gopro.php" title="">Go Pro</a></li>
                 <li><a href="/soundcloud/view/Users/myplaylist.php" title="">My Playlists</a></li>
                 <li><a href="/soundcloud/view/Users/delete.php" title="">Delete Account</a></li>
                 <li><a href="/soundcloud/controller/logout.php" title="">Log Out</a></li>
