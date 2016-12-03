@@ -36,9 +36,9 @@ if ($num_row_song == 0) {
             $name = empty($u->name) ? $u->email : $u->name;
             echo '
             <div class="write-comment form-group" data-user-id="' . $u->userID . '" data-song-id="' . $_GET['id'] . '">
-            <input id="write-comment-body" type="text" class="form-control" placeholder="Write a comment">
-            <br/>
+                <input id="write-comment-body" type="text" class="form-control" placeholder="Write a comment">
             </div>
+            <div class="action-bar-wrapper">
             ';
 
             $query = "SELECT * FROM likesong WHERE userID='$u->userID' and songID='$id'";
@@ -46,22 +46,26 @@ if ($num_row_song == 0) {
             $num_row = mysql_num_rows($result);
             if ($num_row == 0) {
                 echo '
-                    <div class="action-bar-wrapper">
-                        <a class="button follow">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            <span>Like</span>
-                        </a>
-                    </div>
+                    <a class="button follow">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <span>Like</span>
+                    </a>
                 ';
             } else {
                 echo '
-                    <div class="action-bar-wrapper">
-                        <a class="button unfollow">
-                            <i class="fa fa-heart" aria-hidden="true"></i>
-                            <span>Liked</span>
-                        </a>
-                    </div>';
+                    <a class="button unfollow">
+                        <i class="fa fa-heart" aria-hidden="true"></i>
+                        <span>Liked</span>
+                    </a>
+                ';
             }
+            ?>
+                <button type="button" class="btn button" id="Add_to_playlist">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add to playlist
+                </button>
+            </div>
+
+        <?php
 
         }
         else
@@ -336,8 +340,6 @@ if ($num_row_song == 0) {
         });
 
     </script>
-
-    <button type="button" class="btn btn-info btn-lg" id="Add_to_playlist">Add to playlist</button>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
 
@@ -374,7 +376,7 @@ if ($num_row_song == 0) {
 
                     <button style="display:none;" type="button" class="btn" id='btn1'  > Add to playlist </button>
                     <button style="display:none;" type="button" class="btn" id='btn2'  > Remove from playlist </button>
-                    <button  type="button" class="btn" id='addpl'  > Creat a playlist </button>
+                    <button  type="button" class="btn btn-primary" id='addpl'  > Create a playlist </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
                 </div>
