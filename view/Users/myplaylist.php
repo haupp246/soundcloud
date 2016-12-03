@@ -1,16 +1,12 @@
 <?php
 //session_start();
-include_once("../../controller/db_connection.php");
-include_once ("../layout/header.php");
+
 echo "<br/><br/><br/><br/><br/>";
 if (!isset($_SESSION['user'])) {
     header("location: ../login.php");
 }
 if(isset($_SESSION['user']))
 {
-$u = unserialize($_SESSION['user']);
-
-$name = empty($u->name) ? $u->email : $u->name;
 ?>
 <!DOCTYPE html>
 <html>

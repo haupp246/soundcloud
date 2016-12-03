@@ -146,9 +146,6 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
     .modal-content{
         top: 80px;
     }
-    #result {
-        display: none;
-    }
     .input_container ul {
         width: 206px;
         border: 1px solid #eaeaea;
@@ -174,6 +171,26 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
     .newNoti{
         background-color: rgb(255, 72, 0);
     }
+    #result {
+        display: none;
+        width: 600px;
+        background-color: white;
+        padding-left: 0px;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
+    }
+    #result>li:last-of-type{
+        /*margin-left: 30px;*/
+        /*margin: 5px;*/
+        padding: 0px;
+    }
+    #result>li>a{
+        padding: 3px 30px;
+        line-height: 1.42857143;
+        color: #333;
+        font-size: 1.1em;
+        margin: 0px;
+    }
 </style>
 <ul id="navbar" class="navbar">
     <li><a href="/soundcloud/" title=""><img src="/soundcloud/assets/img/logo.png" height="50px" alt="" ></a></li>
@@ -181,7 +198,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
     <li><a href="" title="">Overview</a></li>
     <li><div>
             <form action="/soundcloud/view/search.php" method="GET" accept-charset="utf-8">
-                <input id="search-box" type="text" name="search" placeholder="Search" onkeypress="autocomplet() " autocomplete="off">
+                <input id="search-box" type="text" name="search" placeholder="Search" onkeyup="autocomplet() " autocomplete="off">
                 <div class="input_container">
                     <ul id="result"></ul>
                 </div>
