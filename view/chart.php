@@ -51,9 +51,6 @@ $num_row = mysql_num_rows($result);
                 // should be only 1 song, if more then we have bug
                      define("PATH_MEDIA_FILES", "../data/");
                 while ($row = mysql_fetch_array($result)) {
-                //define("PATH_MEDIA_FILES", "../data/");
-                $file = scandir(PATH_MEDIA_FILES . $row['userID'] . "/");
-                array_splice($file, 0, 2);
                 ?>
                 {
                     url: "<?php echo PATH_MEDIA_FILES . $row['userID'] . '/' . $row['name'] ?>",

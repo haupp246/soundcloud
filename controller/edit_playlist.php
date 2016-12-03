@@ -1,6 +1,8 @@
 <?php
-include_once("db_connection.php");
 session_start();
+include_once("db_connection.php");
+include_once ("../view/layout/header.php");
+echo "</br></br></br></br>";
 if (!isset($_SESSION['user'])) {
     header("location: ../login.php");
 }
@@ -13,6 +15,8 @@ $result = mysql_query($query,$db_connect)or die("Error in query $query");
 $row = mysql_fetch_array($result);
 if ($row['userID'] != $u->userID) echo "You don't have permission to do that";
 else{
+    echo $row['name'];
+    echo "</br></br>";
     $query = "SELECT B.`name`, B.`songID` 
               FROM `songinplaylist` AS A
               INNER JOIN `song` AS B ON A.`songID` = B.`songID`
@@ -34,8 +38,14 @@ else{
 //    echo "<form method='get' action=\"addsong.php\">";
     echo "<input type=\"submit\" name='addsong' value=\"Add more songs\">";
     echo "</form>";
+    echo "<form method='get' action='edit_name_playlist.php'>";
+    echo "<input type=\"submit\" value=\"Rename This Playlist\">";
+    echo "</form>";
     echo "<form method='get' action='delete_playlist.php'>";
     echo "<input type=\"submit\" value=\"Delete This Playlist\">";
     echo "</form>";
 }
+echo "</br></br></br></br>";
+include_once ("../view/layout/footer.php");
+
 ?>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 include_once("../../controller/db_connection.php");
 include_once ("../layout/header.php");
 echo "<br/><br/><br/><br/><br/>";
@@ -37,21 +37,42 @@ $query = "SELECT * FROM playlist WHERE userID = '$u->userID'";
 $result = mysql_query($query,$db_connect)or die("Error in query $query");
 $num_row = mysql_num_rows($result);
 //echo "<form method='get' action=\"/soundcloud/controller/editplaylist.php\">";
-for ($i=1; $i<=$num_row; $i++ ){
-    $row = mysql_fetch_assoc($result);
+while($row = mysql_fetch_array($result)){
+//    $row = mysql_fetch_array($result);
     $id  = $row['playlistID'];
 ?>
-        <a href="/soundcloud/view/playlist.php?id=<?php echo $row['playlistID']; ?>" title=""><?php echo $row["name"]; ?></a> 
+        <a href="/soundcloud/view/playlist.php?id=<?php echo $row['playlistID']; ?>" title=""><?php echo $row['playlistID'].$row["name"]; ?></a>
+
 <?php
-    echo"<a href=\"/soundcloud/controller/edit_playlist.php?id=".$id."\">"."edit</a>";
+    echo"<a href=\"/soundcloud/controller/edit_playlist.php?id=".$id."\">"."Edit Playlist</a>";
     echo "</br>";
+
+    $query2 = "SELECT song.name, song.songID FROM song 
+              INNER JOIN songinplaylist ON song.songID = songinplaylist.songID 
+              WHERE playlistID = '$id'";
+    $result2 = mysql_query($query2,$db_connect)or die("Error in query $query2");
+    while ($row2 = mysql_fetch_assoc($result2)) {
+        ?>
+        <a style="color: #ff7430" href="/soundcloud/view/playsong.php?id=<?php echo $row2['songID'];?>" title=""><?php echo $row2["name"]; ?></a>
+        <?php
+        echo "</br>";
+    }
+    echo "</br></br>";
+//    $query = "SELECT B.`name`, B.`songID`
+//              FROM `songinplaylist` AS A
+//              INNER JOIN `song` AS B ON A.`playlistID` = '$row[playlistID]'
+//              WHERE A.`playlistID`= '$id";
+
 }
 echo "</form>";
 ?>
 <form method="post" action="/soundcloud/view/Users/songlist.php">
-    <input type="text" name="pname" placeholder="Playlist Name">
+    <input type="text" required name="pname" placeholder="Playlist Name">
     <input type="submit" name="add" value="Create Playlist"  >
 </form>
 </body>
 </html>
-<?php } db_closeconnect($db_connect); ?>
+<?php
+    echo "</br></br></br></br>";
+    include_once ("../layout/footer.php");
+} db_closeconnect($db_connect); ?>

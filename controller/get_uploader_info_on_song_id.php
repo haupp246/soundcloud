@@ -41,7 +41,7 @@ if($user_id == $info['userID']){
 
 $gen_html = '
     <div style="height:120px;">
-        <a class="avatar-wrapper" href="/soundcloud/view/Users/view_profile.php?id=' .$info['userID']. '">
+        <a class="avatar-wrapper" href="/soundcloud/view/Users/index.php?id=' .$info['userID']. '">
             <div class="avatar"
                  style=background-image:url("/soundcloud/assets/img/uploads/' .$info['avatar']. '");></div>
         </a>
@@ -60,7 +60,7 @@ $gen_html = '
 
         </div>
         <div class="uploader-action" data-uploader-id="'.$info['userID'].'">
-            <a href="/soundcloud/view/Users/view_profile.php?id=' .$info['userID']. '">
+            <a href="/soundcloud/view/Users/index.php?id=' .$info['userID']. '">
                 <button>'.$action_btn_text.'</button>
             </a>
         </div>

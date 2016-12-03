@@ -1,6 +1,7 @@
 <?php
-include_once("db_connection.php");
 session_start();
+include_once("db_connection.php");
+
 if (!isset($_SESSION['user'])) {
     header("location: ../login.php");
 }

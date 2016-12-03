@@ -7,6 +7,9 @@ $id = $_GET['id'];
 $query = "SELECT * FROM song WHERE songID='$id'";
 $result_song = mysql_query($query, $db_connect) or die ("Error in $query");
 $num_row_song = mysql_num_rows($result_song);
+define("PATH_MEDIA_FILES", "../data/");
+$file = scandir(PATH_MEDIA_FILES . $row_song['userID'] . "/");
+array_splice($file, 0, 2);
 if ($num_row_song == 0) {
     echo "Sorry this song not exist in our system!";
     die();
@@ -81,9 +84,7 @@ if ($num_row_song == 0) {
                 if ($num_row_song > 0) {
                 // should be only 1 song, if more then we have bug
                 while ($row_song = mysql_fetch_array($result_song)) {
-                define("PATH_MEDIA_FILES", "../data/");
-                $file = scandir(PATH_MEDIA_FILES . $row_song['userID'] . "/");
-                array_splice($file, 0, 2);
+
                 ?>
                 {
                     url: "<?php echo PATH_MEDIA_FILES . $row_song['userID'] . '/' . $row_song['name'] ?>",
@@ -317,7 +318,7 @@ if ($num_row_song == 0) {
                 // });
                 $("#createModal").modal();
             });
-            $("#crt").on("click",function (){
+            $("#crt").on("click",function (event){
                 var inputtedPlaylistName = $( "#pl_name" ).val();
                 console.log (inputtedPlaylistName );
                 event.preventDefault();
