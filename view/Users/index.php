@@ -103,7 +103,7 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                     echo '
                         <div>
                             <a href="/soundcloud/view/login.php">
-                                <button class="user-action follow" >Follow</button>
+                                <button class="user-action unfollow" >Follow</button>
                             </a>
                         </div>
                         
@@ -119,7 +119,7 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                         echo '
                             <div class="">
                                 <button class="user-action unfollow" data-user-id="' . $this_profile->userID . '">Follow</button>
-                                <a href="/soundcloud/view/Users/index.php?id=' . $this_profile->userID . '" class="btn btn-default">
+                                <a href="/soundcloud/view/Users/view_profile.php?id=' . $this_profile->userID . '" class="btn btn-default">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile detail
                                 </a>
                             </div>
@@ -128,7 +128,7 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                         echo '
                             <div class="">
                                 <button class="user-action following" data-user-id="' . $this_profile->userID . '">Following</button>
-                                <a href="/soundcloud/view/Users/index.php?id=' . $this_profile->userID . '" class="btn btn-default">
+                                <a href="/soundcloud/view/Users/view_profile.php?id=' . $this_profile->userID . '" class="btn btn-default">
                                     <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Profile detail
                                 </a>
                             </div>
