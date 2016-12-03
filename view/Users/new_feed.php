@@ -46,7 +46,7 @@ if(isset($_SESSION['user']))
                     $result2 = mysql_query($query2,$db_connect)or die ("Error in query: $query2");
                     $row2 = mysql_fetch_array($result2);
 ?>
-                     <a style="text-decoration: none;" href="view_profile.php?id=<?php echo $fl_id;?>" title="">
+                     <a style="text-decoration: none;" href="index.php?id=<?php echo $fl_id;?>" title="">
                         <?php
                             echo $row2['name']."</a> has uploaded a song:<br/>";
                         ?>
@@ -63,7 +63,7 @@ if(isset($_SESSION['user']))
                     $result2 = mysql_query($query2,$db_connect)or die ("Error in query: $query2");
                     $row2 = mysql_fetch_array($result2);
                 ?>  
-                    <a style="text-decoration: none;" href="view_profile.php?id=<?php echo $fl_id;?>" title="">
+                    <a style="text-decoration: none;" href="index.php?id=<?php echo $fl_id;?>" title="">
                         <?php
                             echo $row2['name']."</a> has create a playlist:<br/>";
                         ?>

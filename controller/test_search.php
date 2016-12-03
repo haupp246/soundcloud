@@ -28,6 +28,6 @@
 	echo "<li>User:</li>";
 	while ($row=mysql_fetch_array($result))
 	{
-		echo "<li><a style='color:blue;' href='/soundcloud/view/Users/view_profile.php?id=".$row['userID']."' title=''>".$row['name']."</a></li>";
+		echo "<li><a style='color:blue;' href='/soundcloud/view/Users/index.php?id=".$row['userID']."' title=''>".$row['name']."</a></li>";
 	}
 ?>
