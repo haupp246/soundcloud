@@ -3,7 +3,7 @@
 	$db_connect = db_connect();
 	//$search= isset($_POST['searchBar']) ? $_POST['searchBar'] :''; 
 	$search=isset($_POST['keyword']) ? $_POST['keyword'] : '';
-	$query = "SELECT DISTINCT * FROM song WHERE name LIKE '%$search%' ORDER BY name ASC LIMIT 5";
+	$query = "SELECT DISTINCT * FROM song WHERE title LIKE '%$search%' ORDER BY title ASC LIMIT 5";
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
 	if ($num_row>0)

@@ -177,7 +177,7 @@ $db_connect = db_connect();
 $id3_tags = mp3_get_tags($_GET['tar']);
 $tag = json_encode($id3_tags);
 
-$title = $_GET['title'];
+$title = isset($id3_tags['title']) ?  $id3_tags['title'] : '' ;
 $title = mysql_real_escape_string($title);
 $name = $_GET['name'];
 $name = mysql_real_escape_string($name);
@@ -197,7 +197,7 @@ $query = "UPDATE song AS s
       ) AS t 
 	 ON t.max_id = s.songid
 SET 
-artist='$artist',year=$year,genre='$genre',album='$album'";
+title='$title',artist='$artist',year=$year,genre='$genre',album='$album'";
 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
 db_closeconnect($db_connect);  
 header("location: /soundcloud/view/Users/upload_edit.php?tag={$tag}&name=$name");

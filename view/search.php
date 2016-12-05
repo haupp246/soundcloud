@@ -36,7 +36,7 @@ if(isset($_SESSION['user']))
 	<?php
 	$db_connect = db_connect();
 	//$search= isset($_POST['searchBar']) ? $_POST['searchBar'] :''; 
-	$query = "SELECT DISTINCT * FROM song WHERE name LIKE '%$search%' ORDER BY name ASC";
+	$query = "SELECT DISTINCT * FROM song WHERE title LIKE '%$search%' ORDER BY title ASC";
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
 	$count=0;

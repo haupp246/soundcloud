@@ -21,9 +21,11 @@ $this_profile = array();
 if ($another_user_id != -1) {
     if ($isLogged) {
         if ($another_user_id == unserialize($_SESSION['user'])->userID) {
+            header("location: index.php");
             $this_profile = unserialize($_SESSION['user']);
             $this_profile->type = "me";
             $this_profile->follow = 0;
+           
         } else {
             $this_profile = get_user_info_from_get_id($another_user_id, $db_connect);
             $this_profile->type = "not-me";
@@ -213,7 +215,7 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
             <div id="playlists" class="tab-pane fade">
                 <?php
 //                include("myplaylist2.php");
-                if (!empty($_GET['id'])) {
+                if (!(empty($_GET['id'])) && ($this_profile->type != "me")) {
                     include("myplaylist2.php");
                 }
                 else include ("myplaylist.php");

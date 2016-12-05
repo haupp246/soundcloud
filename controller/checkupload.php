@@ -12,7 +12,7 @@ if(isset($_SESSION['user']))
         $query="SELECT * FROM user WHERE userID='$u->userID'";
         $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
         $row=mysql_fetch_array($result);
-        if ($row['ispro'] ==0 && $row['uploaded']>3)
+        if ($row['ispro'] ==0 && $row['uploaded']>50)
         {
             echo "  <script>
                         alert(\"You have reach your upload limit! Please go pro to upload more.\");
@@ -48,7 +48,8 @@ if(isset($_SESSION['user']))
                 //$db_connect = db_connect();
                 $query = "UPDATE user SET uploaded=uploaded +1 where userID='$u->userID' ";
                 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
-                $query = "INSERT INTO song (title, name, uploadTime, userID) VALUES ('$name','$name', NOW(), '$u->userID')";
+                $name2 = substr($name,0,strlen($name)-4);
+                $query = "INSERT INTO song (title, name, uploadTime, userID) VALUES ('$name2','$name', NOW(), '$u->userID')";
                 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
                 $query = "SELECT songID, uploadTime FROM song WHERE songID= (SELECT max(songID) FROM song)";
                 $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
