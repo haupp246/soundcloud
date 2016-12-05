@@ -18,7 +18,7 @@ if(!empty($email)&&!empty($pass))
        $query = "SELECT email FROM admin WHERE email = '{$email}'"; 
        $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
        if (mysql_num_rows($result) == 1) {
-           header("location:../view/admin/");
+           header("location:../view/Admin/index.php");
        }
        else
        {

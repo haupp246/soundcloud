@@ -27,12 +27,12 @@ if(isset($_SESSION['user']))
         $name = basename($_FILES["fileToUpload"]["name"]);
          $name = mysql_real_escape_string($name);
         $uploadOk = 1;
-        $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
         // Allow certain file formats
-        if($imageFileType != "mp3" && $imageFileType != "wav") {
+        if($imageFileType != "mp3"  && $imageFileType != "wav" ) {
             echo "
             <script language=\"javascript\">
-                alert(\"Sorry, only MP3, WAV files are allowed! Please try again! \");
+                alert(\"Sorry, only MP3, WAV files are allowed! Please try again! <?php echo $imageFileType ?> \");
             </script>
             <script> window.location = \"/soundcloud/view/Users/upload.php \"; </script>";
             $uploadOk = 0;
