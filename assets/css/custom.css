@@ -1,27 +1,106 @@
 html{
-	height: 85%;
+
 }
 body{
+	margin: 0;
+}
+
+.container > a:nth-child(1) > h2:nth-child(2), .cover-wrapper .index h2 {
+	color: white;
+	font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida" ;
+	position: relative;
+	top: 10px;
+}
+.cover-wrapper{
 	background-image: url(../img/background_index.jpg);
-	background-size: 100%;
-	height: 100%;
-	background-repeat: no-repeat ;
-	background-position: 0 -100px;
+	height: 100vh;
+	position: relative;
+	/*opacity: 0.65;*/
+	background-attachment: fixed;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
-.container{
-/* 	margin-top: 50px; */
+.cover-wrapper .heroIntro {
+	font-size: 32px;
+	margin: 0 0 40px 0;
+	color: #fff;
+	text-align: center;
+	font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida Sans",Garuda,Verdana,Tahoma,sans-serif;
 }
+.headerSearch{
+	width: 450px;
+	margin: 0 auto;
+}
+.headerSearch input {
+	width: 100% !important;
+	padding-left: 12px;
+	height: 40px;
+	color: #666;
+	outline: 0;
+	border: 0;
+	background: #e5e5e5;
+	font-size: 14px;
+	line-height: 20px;
+	border-radius: 4px;
+}
+.headerSearch > span {
+	padding: 2px 0;
+}
+
+.chart .track-wrapper {
+	margin-bottom: 20px;
+}
+.chart > h2 {
+	font-size: 24px;
+	text-align: center;
+	padding-top: 22px;
+	margin-bottom: 30px;
+}
+.chart .trackCover {
+	height: 160px;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+}
+.chart .trackInfo {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.chart .trackTitle {
+	color: #333;
+	font-size: 14px;
+}
+.chart .trackUploader {
+	color: #999;
+	font-size: 12px;
+}
+.chart .action-chart {
+	background-color: #f50;
+	border-color: #f50;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 3px;
+	padding: 10px 15px;
+	height: 40px;
+}
+
 a{
 	text-decoration: none;
 }
-.navbar{
-	height: 10%;
+a:hover {
+	text-decoration: none;
 }
+
 .index{
-	height: 100%;
-	display:flex;
-    align-items: center; 
-    justify-content: center;
+	position: absolute;
+	left: 0;
+	top: 40%;
+	width: 100%;
+	text-align: center;
+	color: #000;
 }
 .index h1{
 	margin: auto;
@@ -45,16 +124,44 @@ a{
 	color: white;
 	transition-duration: 0.2s;
 }
-h2{
-	color: white;
-	font-family: "Interstate","Lucida Grande","Lucida Sans Unicode","Lucida" ;
-	position: relative;
-	top: 10px;
-}
 .navbar .btn{
 	float: right;
 	position: relative;
 	top: 20px;
 	margin-left: 20px;
 	font-weight: 600;
+}
+
+.pro {
+	background-image: url('/soundcloud/assets/img/go-pro.jpg');
+	height: 350px;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+	/*position: relative;*/
+	/*background-attachment: fixed;*/
+	background-position: 20% 20%;
+}
+.pro .intro {
+	padding-top: 72px;
+	color: white;
+}
+.pro .container > p {
+	font-size: 24px;
+	margin: 24px 0 48px;
+	color: white;
+}
+.pro .container .gold {
+	color: #f50;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.pro .container a {
+	background-color: #f50;
+	border-color: #f50;
+	color: #fff;
+	font-size: 16px;
+	border-radius: 3px;
+	padding: 10px 15px;
+	height: 40px;
 }
