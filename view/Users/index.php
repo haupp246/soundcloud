@@ -321,9 +321,11 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
                     success: function (result) {
                         if(result === "followed"){
 //                            console.log("should be followed: " + result);
+                            $thisButton.text("Following");
                             $thisButton.toggleClass("unfollow following");
                         }else if(result === "unfollowed"){
 //                            console.log("should be unfollowed: " + result);
+                            $thisButton.text("Follow");
                             $thisButton.toggleClass("following unfollow");
                         } else console.log(result);
                     },
