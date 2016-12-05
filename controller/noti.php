@@ -46,7 +46,7 @@ if ($num_row >0)
 	}
 }
 //like
-$query2 =    "SELECT * FROM  song INNER JOIN  likesong  ON likesong.songID = song.songID INNER JOIN user ON  likesong.userID = user.userID  WHERE song.userID = {$u->userID} ";
+$query2 =    "SELECT * FROM  song INNER JOIN  likesong  ON likesong.songID = song.songID INNER JOIN user ON  likesong.userID = user.userID  WHERE song.userID = {$u->userID} AND likesong.userID <> {$u->userID} ";
 $result2 = mysql_query($query2,$db_connect)or die("Error in query $query2");
 $num_row2 = mysql_num_rows($result2);
 if ($num_row2 >0)
@@ -59,7 +59,7 @@ if ($num_row2 >0)
 	}
 }
 //comment song
-$query = "SELECT * FROM  song INNER JOIN  comment  ON comment.songID = song.songID INNER JOIN user ON  comment.userID = user.userID  WHERE song.userID = {$u->userID} ";
+$query = "SELECT * FROM  song INNER JOIN  comment  ON comment.songID = song.songID INNER JOIN user ON  comment.userID = user.userID  WHERE song.userID = {$u->userID} AND comment.userID <> {$u->userID} ";
 $result = mysql_query($query,$db_connect)or die("Error in query $query");
 $num_row = mysql_num_rows($result);
 if ($num_row >0)
@@ -72,7 +72,7 @@ if ($num_row >0)
 	}
 }
 //comment playlist
-$query = "SELECT * FROM playlist INNER JOIN  comment  ON comment.playlistID = playlist.playlistID INNER JOIN user ON  comment.userID = user.userID  WHERE playlist.userID = {$u->userID} ";
+$query = "SELECT * FROM playlist INNER JOIN  comment  ON comment.playlistID = playlist.playlistID INNER JOIN user ON  comment.userID = user.userID  WHERE playlist.userID = {$u->userID} AND comment.userID <> {$u->userID}  ";
 $result = mysql_query($query,$db_connect)or die("Error in query $query");
 $num_row = mysql_num_rows($result);
 $count=0;

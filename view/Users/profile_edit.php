@@ -13,7 +13,7 @@ if (!isset($_SESSION['user'])) {
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
+	<link rel="icon"  href="/soundcloud/assets/ico/1.png"/>
 </head>
 <body>
 <?php include_once '../layout/header.php'; ?>
@@ -22,7 +22,7 @@ if (!isset($_SESSION['user'])) {
 		<form method="POST" action="../../controller/checkedit.php" enctype="multipart/form-data">
 		<div class="col span1"><h3>Full name:</h3></div>
 		<div class="col span2"> <h3>
-			<input type="text" name="name" value="<?php if (isset($u->name)) {
+			<input style="width: 600px;" type="text" name="name" value="<?php if (isset($u->name)) {
 				echo $u->name;  
 				} ?>"> 
 
@@ -35,7 +35,7 @@ if (!isset($_SESSION['user'])) {
 		</h3></div><br/>
 		<div class="col span1"><h3>Address:</h3></div>
 		<div class="col span2"><h3> 
-			<input type="text" name="address" value="<?php if (isset($u->address)) {
+			<input style="width: 600px;" type="text" name="address" value="<?php if (isset($u->address)) {
 				echo $u->address;  
 			} ?>">
 		</h3></div><br/>
@@ -47,14 +47,14 @@ if (!isset($_SESSION['user'])) {
   		</h3></div><br/>
 		<div class="col span1"><h3>Bio:</h3></div>
 		<div class="col span2"><h3> 
-			<input type="textfield" name="bio" value="<?php if (isset($u->name)) {
+			<textarea cols="50" rows="3" name="bio" ><?php if (isset($u->name)) {
 				echo $u->name;  
-				} ?>">
-			</h3></div><br/>
+                } ?></textarea>
+            </h3></div><br/>
 		<div class="col span1"><h3>Avatar:</h3></div>
 		<div class="col span2"><h3>
 			<input type="file"  name="fileToUpload" id="fileToUpload">
-		</h3></div><br/>
+		</h3></div><br/><br/><br/><br/>
 		<input type="submit" class="btn" value="Submit" name="submit">
 
 	</form>

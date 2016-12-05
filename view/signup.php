@@ -10,7 +10,7 @@ include_once 'layout/header.php';
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>		
+	<link rel="icon"  href="/soundcloud/assets/ico/1.png"/>
 	<style type="text/css" media="screen">
 			.btnn[value='Join us now !']{
 				visibility: hidden;

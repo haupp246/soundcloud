@@ -13,7 +13,7 @@ if(isset($_SESSION['user']))
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>			
+	<link rel="icon"  href="/soundcloud/assets/ico/1.png"/>
 </head>
 
 <body>

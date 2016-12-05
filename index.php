@@ -10,7 +10,7 @@
 		<meta name="description" content="soundcloud"/>
 		<meta name="keyword" content="sound, cloud, music"/>
 		<meta charset="utf-8"/>
-		<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>						
+		<link rel="icon"  href="/soundcloud/assets/ico/1.png"/>
 		<link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/bootstrap.css"/>							
 		<style type="text/css" media="screen">
 			@import "/soundcloud/assets/css/custom.css";

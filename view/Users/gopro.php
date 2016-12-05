@@ -21,26 +21,20 @@ $name = empty($u->name) ? $u->email : $u->name;
     <meta name="description" content="soundcloud"/>
     <meta name="keyword" content="sound, cloud, music"/>
     <meta charset="utf-8"/>
-    <link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>
+    <link rel="icon"  href="/soundcloud/assets/ico/1.png"/>
     <link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/custom2.css">
     <link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
     <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
 </head>
-
 <body>
-
-
 <?php
-
-
 $query = "SELECT ispro FROM user WHERE userID = '$u->userID'";
 $result = mysql_query($query,$db_connect)or die("Error in query $query");
 //$num_row = mysql_num_rows($result);
 $row = mysql_fetch_array($result);
 if ($row['ispro']==0)
 {
-?>   
-    
+?>
     <button class="btn" id="goPro" >Go pro</button>
     <div class="modal fade" id="myModal" role="dialog">
         <div class="modal-dialog">
@@ -52,16 +46,10 @@ if ($row['ispro']==0)
                 </div>
                 <div class="modal-body">
                     <h1>Price 60$</h1>
-
-                   
-
-
                 </div>
                 <div class="modal-footer">
-
                     <button  type="button" class="btn" id='go'  > Go pro </button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
                 </div>
             </div>
 

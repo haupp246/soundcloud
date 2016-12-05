@@ -19,7 +19,7 @@ if(isset($_SESSION['user']))
 	<meta name="description" content="soundcloud"/>
 	<meta name="keyword" content="sound, cloud, music"/>
 	<meta charset="utf-8"/>
-	<link rel="icon"  href="/soundcloud/assets/ico/1.ico"/>
+	<link rel="icon"  href="/soundcloud/assets/ico/1.png"/>
     <link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/custom2.css">
     <link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
     <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
@@ -73,7 +73,7 @@ if(isset($_SESSION['user']))
                 }
             }
     }
-    else echo "Deo co gi hay ca";
+    else echo "404 not found!";
 ?>
 </div>
 </body>

@@ -28,7 +28,7 @@
 	echo "<li>User:</li>";
 	while ($row=mysql_fetch_array($result))
 	{
-		echo "<li><a style='color:blue;' href='/soundcloud/view/Users/view_profile.php?id=".$row['userID']."' title=''>".$row['name']."</a></li>";
+		echo "<li><a style='color:blue;' href='/soundcloud/view/Users/index.php?id=".$row['userID']."' title=''>".$row['name']."</a></li>";
 	}
 echo "<li><a style='background-color: #EAEAEA;padding-left: 0px;margin-left: 0px;border: 0px;' href='/soundcloud/view/search.php?search=".$search."' title=''><span style='margin:auto;'>See all the result</span></span></a></li>";
 ?>

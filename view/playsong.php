@@ -86,8 +86,7 @@ if ($num_row_song == 0) {
                 // should be only 1 song, if more then we have bug
                 define("PATH_MEDIA_FILES", "../data/");
                 while ($row_song = mysql_fetch_array($result_song)) {
-                $file = scandir(PATH_MEDIA_FILES . $row_song['userID'] . "/");
-                array_splice($file, 0, 2);
+
                 ?>
                 {
                     url: "<?php echo PATH_MEDIA_FILES . $row_song['userID'] . '/' . $row_song['name'] ?>",
