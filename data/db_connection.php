@@ -3,7 +3,7 @@
 function db_connect() {
 	
     //$db_connect = mysql_connect("52.221.242.111", "root", "123456")
-    $db_connect = mysql_connect("localhost","root","123")
+    $db_connect = mysql_connect("localhost","root","123456")
     or die('Could not connect:');
     mysql_select_db('soundcloud', $db_connect) or die('Could not select database.');
     return $db_connect;
