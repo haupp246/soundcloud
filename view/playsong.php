@@ -11,6 +11,9 @@ if ($num_row_song == 0) {
     echo "Sorry this song not exist in our system!";
     die();
 }
+if (isset($_SESSION['user'])) {
+    $u = unserialize($_SESSION['user']);
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -29,6 +32,11 @@ if ($num_row_song == 0) {
 <body>
 
     <div class="container">
+        <div class="cover-wrapper">
+        </div>
+
+        <div class="clearfix"></div>
+
         <div id="all_tracks"></div>
         <?php
         if (isset($_SESSION['user'])) {
@@ -69,7 +77,7 @@ if ($num_row_song == 0) {
 
         }
         else
-            echo "<br/>You have to log in to comment<br/>";
+            echo "<div class='guest-try-comment'>You have to log in to comment</div>";
         ?>
         <div id="comments">
             <div class="uploader">
@@ -117,11 +125,12 @@ if ($num_row_song == 0) {
                 $.ajax({
                     url: '../controller/get_uploader_info_on_song_id.php',
                     data: {songID: songID},
-                    dataType: 'text',
+                    dataType: 'json',
                     type: 'POST',
                     success: function (data) {
-//                        console.log("done get uploader info");
-                        $(".uploader").html(data);
+//                        console.log(data);
+                        $(".uploader").html(data.bottom);
+                        $(".cover-wrapper").html(data.cover);
                     }
                 });
             }
