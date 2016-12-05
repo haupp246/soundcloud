@@ -1,6 +1,55 @@
+.cover-wrapper{
+	height: 300px;
+	margin-bottom: 20px;
+}
+.profile {
+	padding: 20px;
+	height: 300px;
+}
+.profile-avatar {
+	height: 260px;
+	width: 260px;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border-radius: 130px;
+	float: left;
+}
+.profile-info-wrapper {
+	float: left;
+	width: 100%;
+}
+.profile-song-title {
+	margin-left: 60px;
+	float: left;
+	background-color: #333;
+	color: white;
+	font-size: 24px;
+	padding: 5px 10px;
+}
+.profile-song-uploaded-for {
+	float: right;
+	color: #fff;
+	font-size: 16px;
+	margin-right: 60px;
+}
+.profile-uploader-name {
+	margin-top: 10px;
+	margin-left: 60px;
+	float: left;
+	background-color: #333;
+	color: #ccc;
+	font-size: 16px;
+	padding: 5px 10px;
+}
+
 .write-comment {
 	margin-top: -35px;
 	/*margin-bottom: 30px;*/
+}
+.guest-try-comment {
+	margin-top: -35px;
+	margin-bottom: 10px;
 }
 
 .total-comments{
