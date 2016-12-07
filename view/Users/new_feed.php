@@ -130,16 +130,17 @@ if(isset($_SESSION['user']))
 ?>
      <a style="text-decoration: none;" href="suggest.php" title="">Try following someone</a>
 </div>
-</body>
-
-</html>
-<?php 
+<?php
 }
-db_closeconnect($db_connect); 
- 
-
-
+db_closeconnect($db_connect);
 }
-include_once '../layout/footer.php'; 
-//db_closeconnect($db_connect); 
+
 ?>
+
+</body>
+<body>
+<div>
+	<?php include_once '../layout/footer.php'; ?>
+</div>
+</body>
+</html>

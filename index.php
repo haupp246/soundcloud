@@ -7,13 +7,13 @@ function getTopTenTrack() {
     $db_connect = db_connect();
     $query = "SELECT songID, image, title, user.name as username FROM song 
               JOIN user on user.userID = song.userID
-              ORDER BY viewCount DESC,likeCount DESC LIMIT 12";
+              ORDER BY viewCount DESC,likeCount DESC LIMIT 10";
     $result = mysql_query($query, $db_connect) or die ("Error in $query");
     $num_row = mysql_num_rows($result);
     while ($row = mysql_fetch_array($result)) {
         $image = isset($row['image'])? $row['image']: 'default.png';
         $gen_html .= '
-            <div class="col-md-2 track-wrapper">
+            <div class="col-md-2 track-wrapper" style="z-index: 1;">
                 <a href="/soundcloud/view/playsong.php?id=' . $row['songID'] . '">
                     <div class="trackCover" style="background-image:url(/soundcloud/assets/img/song/' . $image . ');"></div>
                     <div class="trackTitle trackInfo">' . $row['title'] . '</div>
@@ -81,7 +81,9 @@ function getTopTenTrack() {
 </div>
 
 <div class="container chart">
-    <h2>Here is what trending in our chart</h2>
+    <br/>
+    <h1>Here is what trending in our chart</h1>
+    <br/><br/>
     <?php echo getTopTenTrack() ?>
 
     <div class="clearfix"></div>
@@ -97,7 +99,6 @@ function getTopTenTrack() {
         <a>Go pro</a>
     </div>
 </div>
-<?php include_once 'view/layout/footer.php'; ?>
 <script>
    //(document).ready(function () {
         function autocomplet() {

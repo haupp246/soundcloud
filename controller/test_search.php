@@ -7,7 +7,7 @@
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
 	if ($num_row>0)
-	echo "<li>Song:</li>"; 
+	echo "<li><hr/>&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"fa fa-music\" aria-hidden=\"true\"></i>&nbsp;  Song:</li>";
 	while ($row_s=mysql_fetch_array($result))
 	{	$image_s = isset($row_s['image'])? $row_s['image'] :"default.png";
 		echo '<li>
@@ -15,17 +15,17 @@
 
 		
 		<div>
-			<a style="color:blue;" href ="playsong.php?id='.$row_s['songID'].'">
-				<div class = "row">
-					<div class = "col-md-4">
-						<img width="60px" height="60px" src="/soundcloud/assets/img/song/'.$image_s.'">
+			<a style="color:blue;" href ="/soundcloud/view/playsong.php?id='.$row_s['songID'].'">
+				<div class = "row" style="width:100%">
+					<div class = "col4">
+						<img style=margin-top:10px;margin-left:30px;" width="40px" height="40px" src="/soundcloud/assets/img/song/'.$image_s.'">
 					</div>
-					<div class = "col-md-8">
-						<div>	'.$row_s['title'].'</div>
+					<div class = "col8">
+						'.$row_s['title'].'
 					</div>
 				</div>
 			</a>
-		<br/>
+		
 		</div>
 		
 		</li>';
@@ -34,7 +34,7 @@
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row = mysql_num_rows($result);
 	if ($num_row>0)
-	echo "<li>Playlist:</li>";
+	echo "<li><hr/>&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"fa fa-database\" aria-hidden=\"true\"></i>&nbsp;&nbsp;Playlist:</li>";
 	while ($row=mysql_fetch_array($result))
 	{
 		echo "<li><a style='color:blue;' href='/soundcloud/view/playlist.php?id=".$row['playlistID']."' title=''>".$row['name']."</a></li>";
@@ -43,7 +43,7 @@
 	$result = mysql_query($query,$db_connect)or die("Error in query $query");
 	$num_row= mysql_num_rows($result);
 	if ($num_row>0)
-	echo "<li>User:</li>";
+	echo "<li><hr/>&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>&nbsp;&nbsp;User:</li>";
 	while ($row=mysql_fetch_array($result))
 	{
 		echo "<li><a style='color:blue;' href='/soundcloud/view/Users/index.php?id=".$row['userID']."' title=''>".$row['name']."</a></li>";

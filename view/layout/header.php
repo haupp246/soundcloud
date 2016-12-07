@@ -60,7 +60,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
         top: 10px;
     }
     input[name='search']{
-        width: 600px;
+        width: 450px;
         height: 30px;
         padding-left: 10px;
         border-radius: 3px;
@@ -174,11 +174,13 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
     }
     #result {
         display: none;
-        width: 600px;
+        width: 450px;
         background-color: white;
         padding-left: 0px;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
+        max-height: 500px;
+        overflow: auto ;
     }
     #result>li:last-of-type{
         /*margin-left: 30px;*/
@@ -191,6 +193,18 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
         color: #333;
         font-size: 1.1em;
         margin: 0px;
+    }
+    .col4{
+        float: left;
+        width: 60px;
+        height: 40px;
+    }
+    .col8{
+        margin-left: 30px;
+        margin-top: 19px;
+        float: right;
+        width: 330px;
+        height: 40px;
     }
 </style>
 <ul id="navbar" class="navbar">
@@ -229,6 +243,60 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
         <li id="bellpar"><img onmouseout="shownoti();" id="bell" style="margin: auto; margin-left: 15px;" src="/soundcloud/assets/img/bell.png" height="33px" alt="">
             <ul class="dropdown-menu" id="noti"></ul>
         </li>
+        <script>
+            $.ajax({
+                url: '/soundcloud/controller/noti.php',
+                type: 'POST',
+                data: {id: <?php echo $u->userID; ?>, count: 'none'},
+                success:function(data){
+                    $('#noti').html(data);
+                    //sort ul li by ID
+                    var elems = $('#noti').children('li').remove();
+                    elems.sort(function(b,a){
+                        return parseInt(a.id) > parseInt(b.id);
+                    });
+                    $('#noti').append(elems);
+                    //
+
+                    if ($('#checkNew').val() == '1')
+                    {
+                        $('#bellpar').addClass('newNoti');
+                    }
+                    $('#bellpar').mouseout(function ()
+                    {
+                        $('#bellpar').removeClass('newNoti');
+                    })
+                }
+            });
+            setInterval(function ()
+            {
+                var count = $("#noti li").length;
+                $.ajax({
+                    url: '/soundcloud/controller/noti.php',
+                    type: 'POST',
+                    data: {id: <?php echo $u->userID; ?>, count: count},
+                    success:function(data){
+                        $('#noti').html(data);
+                        //sort ul li by ID
+                        var elems = $('#noti').children('li').remove();
+                        elems.sort(function(b,a){
+                            return parseInt(a.id) > parseInt(b.id);
+                        });
+                        $('#noti').append(elems);
+                        //
+
+                        if ($('#checkNew').val() == '1')
+                        {
+                            $('#bellpar').addClass('newNoti');
+                        }
+                        $('#bellpar').mouseout(function ()
+                        {
+                            $('#bellpar').removeClass('newNoti');
+                        })
+                    }
+                });
+            },2000);
+        </script>
 	<?php } ?>
 </ul>
 <script>
@@ -268,57 +336,6 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
         $('#result').hide();
     }
 //     shownoti
-    $.ajax({
-        url: '/soundcloud/controller/noti.php',
-        type: 'POST',
-        data: {id: <?php echo $u->userID; ?>, count: 'none'},
-        success:function(data){
-            $('#noti').html(data);
-            //sort ul li by ID
-            var elems = $('#noti').children('li').remove();
-            elems.sort(function(b,a){
-                return parseInt(a.id) > parseInt(b.id);
-            });
-            $('#noti').append(elems);
-            //
 
-            if ($('#checkNew').val() == '1')
-            {
-                $('#bellpar').addClass('newNoti');
-            }
-            $('#bellpar').mouseout(function ()
-            {
-                $('#bellpar').removeClass('newNoti');
-            })
-        }
-    });
-        setInterval(function ()
-        {
-            var count = $("#noti li").length;
-            $.ajax({
-                url: '/soundcloud/controller/noti.php',
-                type: 'POST',
-                data: {id: <?php echo $u->userID; ?>, count: count},
-                success:function(data){
-                    $('#noti').html(data);
-                    //sort ul li by ID
-                    var elems = $('#noti').children('li').remove();
-                    elems.sort(function(b,a){
-                        return parseInt(a.id) > parseInt(b.id);
-                    });
-                    $('#noti').append(elems);
-                    //
-
-                    if ($('#checkNew').val() == '1')
-                    {
-                        $('#bellpar').addClass('newNoti');
-                    }
-                    $('#bellpar').mouseout(function ()
-                    {
-                        $('#bellpar').removeClass('newNoti');
-                    })
-                }
-            });
-        },2000);
 </script>
 

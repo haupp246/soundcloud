@@ -13,7 +13,7 @@ body{
 }
 .cover-wrapper{
 	background-image: url(../img/background_index.jpg);
-	height: 100vh;
+	height: 70vh;
 	position: relative;
 	/*opacity: 0.65;*/
 	background-attachment: fixed;
@@ -49,10 +49,9 @@ body{
 }
 
 .chart .track-wrapper {
-	margin-bottom: 20px;
+	margin: 18px;
 }
-.chart > h2 {
-	font-size: 24px;
+.chart > h1 {
 	text-align: center;
 	padding-top: 22px;
 	margin-bottom: 30px;
@@ -99,7 +98,7 @@ a:hover {
 	left: 0;
 	top: 40%;
 	width: 100%;
-	text-align: center;
+	/*text-align: center;*/
 	color: #000;
 }
 .index h1{
@@ -163,5 +162,39 @@ a:hover {
 	font-size: 16px;
 	border-radius: 3px;
 	padding: 10px 15px;
+	height: 40px;
+}
+#result {
+	display: none;
+	width: 450px;
+	background-color: white;
+	padding-left: 0px;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.176) 0px 6px 12px 0px;
+	max-height: 300px;
+	overflow: auto ;
+}
+#result>li:last-of-type{
+	margin-left: 30px;
+	margin: 5px;
+	padding: 0px;
+}
+#result>li>a{
+	padding: 3px 30px;
+	line-height: 1.42857143;
+	color: #333;
+	font-size: 1.1em;
+	margin: 0px;
+}
+.col4{
+	float: left;
+	width: 60px;
+	height: 40px;
+}
+.col8{
+	margin-left: 30px;
+	margin-top: 19px;
+	float: left;
+	width: 300px;
 	height: 40px;
 }
