@@ -289,3 +289,14 @@
 	color: #f50;
 	border: 1px solid #f50;
 }
+.song-image{
+	width :260px;
+	height: 260px;
+	z-index: 50;
+	margin-top: 0px;
+	margin-right: 10px;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	position: relative;
+	float: right;
+}

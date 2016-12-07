@@ -5,16 +5,17 @@ function getTopTenTrack() {
     $gen_html = "";
     include_once("controller/db_connection.php");
     $db_connect = db_connect();
-    $query = "SELECT songID, avatar, title, user.name as username FROM song 
+    $query = "SELECT songID, image, title, user.name as username FROM song 
               JOIN user on user.userID = song.userID
               ORDER BY viewCount DESC,likeCount DESC LIMIT 12";
     $result = mysql_query($query, $db_connect) or die ("Error in $query");
     $num_row = mysql_num_rows($result);
     while ($row = mysql_fetch_array($result)) {
+        $image = isset($row['image'])? $row['image']: 'default.png';
         $gen_html .= '
             <div class="col-md-2 track-wrapper">
                 <a href="/soundcloud/view/playsong.php?id=' . $row['songID'] . '">
-                    <div class="trackCover" style="background-image:url(/soundcloud/assets/img/uploads/' . $row['avatar'] . ');"></div>
+                    <div class="trackCover" style="background-image:url(/soundcloud/assets/img/song/' . $image . ');"></div>
                     <div class="trackTitle trackInfo">' . $row['title'] . '</div>
                     <div class="trackUploader trackInfo">' . $row['username'] . '</div>
                 </a>
@@ -44,6 +45,9 @@ function getTopTenTrack() {
         }
     </style>
     <script src="assets/js/jquery-3.1.1.js" type="text/javascript"></script>
+      <script src="/soundcloud/lib/jquery/jquery-3.1.1.js"></script>
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+  <script src="/soundcloud/lib/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript">
         // code js
     </script>
@@ -67,7 +71,7 @@ function getTopTenTrack() {
         <form class="headerSearch form-group has-feedback" role="form" action="/soundcloud/view/search.php" method="GET"
               accept-charset="utf-8">
             <input id="search-box" class="form-control" type="text" name="search"
-                   placeholder="Search for tracks, playlists, people" onkeyup="autocomplet() " autocomplete="off">
+                   placeholder="Search for tracks, playlists, people" onkeyup="autocomplet()" autocomplete="off">
             <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true"></span>
             <div class="input_container">
                 <ul id="result"></ul>
@@ -95,7 +99,7 @@ function getTopTenTrack() {
 </div>
 <?php include_once 'view/layout/footer.php'; ?>
 <script>
-    $(document).ready(function () {
+   //(document).ready(function () {
         function autocomplet() {
             var min_length = 0; // min caracters to display the autocomplete
             var keyword = $('#search-box').val();
@@ -123,7 +127,7 @@ function getTopTenTrack() {
                 $('#result').show();
             });
         }
-    })
+  //})
 </script>
 
 </body>

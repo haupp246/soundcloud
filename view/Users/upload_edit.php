@@ -71,6 +71,11 @@ if (isset($_GET['id'])) {
 				<input type="text" name="genre" value="<?php echo $genre;  ?>"> 
 			</h3></div>
 			<br/>
+			<div class="col span1"><h3>Image:</h3></div>
+			<div class="col span2"><h3>
+			<input type="file"  name="fileToUpload" id="fileToUpload">
+			<br/>
+			<br/>
 			
 
 			<input type="submit" class="btn" value="Submit" name="submit">

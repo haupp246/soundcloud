@@ -46,7 +46,7 @@ from user as u,
     select count(songID) as totalsongs from song where userID in (select userID from song where songID = $song_id)
     ) as usersong,
     (
-    select title as songtitle, uploadTime from song where songID = $song_id
+    select title as songtitle, uploadTime, image from song where songID = $song_id
     ) as songinfo
 where userID in (select userID from song where songID = $song_id)";
 
@@ -66,7 +66,7 @@ $info['totalsongs']     = $row['totalsongs'];
 $info['address']        = $row['address'];
 $info['songtitle']      = $row['songtitle'];
 $info['uploadTime']     = $row['uploadTime'];
-
+$info['image'] = isset($row['image'])? $row['image'] :"default.png";
 if($user_id == $info['userID']){
     $action_btn_text = "Profile";
 } else
@@ -99,16 +99,34 @@ $gen_html['bottom'] = '
         </div>
     </div>
 ';
-$gen_html['cover'] = '
+// $gen_html['cover'] = '
+//     <div class="profile"
+//          style="background: transparent linear-gradient(315deg, rgb(230, 132, 110) 0%, rgb('.$info['userID'].', 132, 133) 100%) repeat scroll 0% 0%;">
+//         <div class="profile-info-wrapper">
+//             <div class="profile-song-title">'.$info['songtitle'].'</div>
+//             <div class="profile-song-uploaded-for">'. time_elapsed_string($info['uploadTime']) .'</div>
+//             <div class="clearfix"></div>
+//             <div class="profile-uploader-name">by '.$info['name'].'</div>
+//         </div>
+//     </div>
+// ';
+
+ $gen_html['cover'] =' 
     <div class="profile"
          style="background: transparent linear-gradient(315deg, rgb(230, 132, 110) 0%, rgb('.$info['userID'].', 132, 133) 100%) repeat scroll 0% 0%;">
         <div class="profile-info-wrapper">
-            <div class="profile-song-title">'.$info['songtitle'].'</div>
-            <div class="profile-song-uploaded-for">'. time_elapsed_string($info['uploadTime']) .'</div>
-            <div class="clearfix"></div>
-            <div class="profile-uploader-name">by '.$info['name'].'</div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="profile-song-title">'.$info['songtitle'].'</div>
+                <div class="profile-song-uploaded-for">'. time_elapsed_string($info['uploadTime']) .'</div>
+                <div class="clearfix"></div>
+                <div class="profile-uploader-name">uploaded by '.$info['name'].'</div>
+            </div>
+            <div class="col-md-4">
+                <img class="song-image" src="/soundcloud/assets/img/song/'.$info['image'].'" >
+            </div>
+        </div>
         </div>
     </div>
 ';
-
 echo json_encode($gen_html);
