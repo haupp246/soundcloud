@@ -46,6 +46,6 @@ else{
     echo "</form>";
 }
 echo "</br></br></br></br>";
-include_once ("../view/layout/footer.php");
+//include_once ("../view/layout///include_once("/soundcloud/view/layout/footer.php);");
 
 ?>

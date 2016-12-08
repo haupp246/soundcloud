@@ -86,4 +86,3 @@ if (isset($_GET['id'])) {
 </body>
 
 </html>
-<?php include_once '../layout/footer.php'; ?>

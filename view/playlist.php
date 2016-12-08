@@ -307,4 +307,3 @@ $num_row = mysql_num_rows($result);
     </body>
     </html>
 <?php }db_closeconnect($db_connect); ?>
-<?php include_once 'layout/footer.php'; ?>

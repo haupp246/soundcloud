@@ -50,4 +50,3 @@ include_once 'layout/header.php';
 	</div>
 </body>
 </html>
-<?php include_once 'layout/footer.php'; ?>

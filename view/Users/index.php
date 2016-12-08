@@ -348,4 +348,3 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
     </html>
 <?php
 db_closeconnect($db_connect); ?>
-<?php include_once '../layout/footer.php'; ?>

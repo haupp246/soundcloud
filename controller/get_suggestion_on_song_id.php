@@ -10,7 +10,7 @@ $song_id = json_decode($_POST['songID']);
 $uploader_id = json_decode($_POST['uploaderID']);
 $genre = json_decode($_POST['genre']);
 $db_connect = db_connect();
-$query_s = "SELECT * FROM song WHERE userID='$uploader_id' ORDER BY RAND() LIMIT 3";
+$query_s = "SELECT * FROM song WHERE userID='$uploader_id' and songID <> '$song_id' ORDER BY RAND() LIMIT 3";
 $result_s = mysql_query($query_s, $db_connect) or die ("Error in query: $query");
 $num_row_s = mysql_num_rows($result_s);
 $gen_html ='<div>
@@ -41,7 +41,7 @@ else
 		';
 	}
 }
-$query_s = "SELECT * FROM song WHERE genre like '%$genre%' ORDER BY RAND() LIMIT 3";
+$query_s = "SELECT * FROM song WHERE genre like '%$genre%' and songID <> '$song_id' ORDER BY RAND() LIMIT 3";
 $result_s = mysql_query($query_s, $db_connect) or die ("Error in query: $query");
 $num_row_s = mysql_num_rows($result_s);
 

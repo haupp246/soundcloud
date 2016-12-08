@@ -28,8 +28,7 @@ if (isset($_POST['submit']) ) {
                     alert(\"Success\");
                 </script>
                 <script> window.location = \"/soundcloud/view/Users/index.php\"; </script>";
-    include_once ("../view/layout/footer.php");
-//header("location: ../view/Users/myplaylist.php");
+ 
 }
 
 ?>

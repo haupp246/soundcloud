@@ -61,7 +61,7 @@ if ($row['ispro']==0)
 else echo "<h1>You have already a Pro!</h1>";
 
     echo "</br></br></br></br>";
-    include_once ("../layout/footer.php");
+  
 } db_closeconnect($db_connect); ?>
 <script>
      $(document).ready(function () {

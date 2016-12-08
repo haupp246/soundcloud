@@ -61,4 +61,3 @@ if (!isset($_SESSION['user'])) {
 	</div>
 </body>
 </html>
-<?php include_once '../layout/footer.php'; ?>

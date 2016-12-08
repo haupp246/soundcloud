@@ -45,4 +45,4 @@ if(isset($_SESSION['user']))
 
 </body>
 </html>
-<?php include_once 'layout/footer.php'; ?>
+

@@ -45,8 +45,25 @@
 	if ($num_row>0)
 	echo "<li><hr/>&nbsp;&nbsp;&nbsp;&nbsp;<i class=\"fa fa-user\" aria-hidden=\"true\"></i>&nbsp;&nbsp;User:</li>";
 	while ($row=mysql_fetch_array($result))
-	{
-		echo "<li><a style='color:blue;' href='/soundcloud/view/Users/index.php?id=".$row['userID']."' title=''>".$row['name']."</a></li>";
+	{	$image = isset($row['avatar'])? $row['avatar'] :"default.jpg";
+		echo '<li>
+		<div>
+			<a style="color:blue;" href ="/soundcloud/view/index.php?id='.$row['userID'].'">
+				<div class = "row" style="width:100%">
+					<div class = "col4">
+						<img style=margin-top:10px;margin-left:30px;" width="40px" height="40px" src="/soundcloud/assets/img/uploads/'.$image.'">
+					</div>
+					<div class = "col8">
+						'.$row['name'].'
+					</div>
+				</div>
+			</a>
+		
+		</div>
+		
+		</li>';
+
+		
 	}
 echo "<li><a style='background-color: #EAEAEA;padding-left: 0px;margin-left: 0px;border: 0px;' href='/soundcloud/view/search.php?search=".$search."' title=''><span style='margin:auto;'>See all the result</span></span></a></li>";
 ?>

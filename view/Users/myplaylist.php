@@ -70,5 +70,5 @@ echo "</form>";
 </html>
 <?php
     echo "</br></br></br></br>";
-    include_once ("../layout/footer.php");
+   
 } db_closeconnect($db_connect); ?>

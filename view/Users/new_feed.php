@@ -140,7 +140,7 @@ db_closeconnect($db_connect);
 </body>
 <body>
 <div>
-	<?php include_once '../layout/footer.php'; ?>
+
 </div>
 </body>
 </html>

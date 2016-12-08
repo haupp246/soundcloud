@@ -63,6 +63,6 @@ if(isset($_SESSION['user']))
     </html>
     <?php
     echo "</br></br></br></br>";
-    include_once ("../layout/footer.php");
+  
 } db_closeconnect($db_connect); ?>
 

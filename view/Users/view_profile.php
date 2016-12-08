@@ -206,4 +206,3 @@ a.unfollow:hover,a.unfollow:active {
 <?php 
 }
 } ?>
-<?php include_once '../layout/footer.php'; ?>

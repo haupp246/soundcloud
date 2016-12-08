@@ -398,12 +398,16 @@ if (isset($_SESSION['user'])) {
             //ev.preventDefault;
             //$("#myModal").load(location.href + " #myModal");
             $("#myModal").modal();
+            $("#btn1").hide();
+            $("#btn2").hide();
+           
 
         });
-
+       
         $("#select-playlist").on("change", function(){
             var optionSelected = $("option:selected", this);
             var valueSelected = this.value;
+             initiateAdd();
             $.ajax({
                 url: '../controller/check_song_in_playlist.php',
                 data: {pl_id: valueSelected, song_id:<?php echo $id;?>  },
@@ -411,52 +415,62 @@ if (isset($_SESSION['user'])) {
                 success: function (check) {
                     if (check==1) {
                         $("#btn1").show();
-                        $("#btn2").hide();
+                        //$("#btn2").hide();
                     } else{
                         $("#btn2").show();
-                        $("#btn1").hide();
+                        //$("#btn1").hide();
                     }
                 },
                 error: function () {
                     $('#info').html('<p>An error has occurred</p>');
                 },
             });
-            $("#btn1").on("click",function () {
-                console.log("cac");
-                $.ajax({
-                    url: '../controller/add_song_to_playlist.php',
-                    type: 'POST',
-                    data: {pl_id: valueSelected, song_id:<?php echo $id;?>},
-                    success: function (ok) {
-                        //   alert("Success");
-                        if ($(this).text()=="Add"){
-                            // $(this).text("Remove");
-                            // $(this).attr("id", "btn2");
-                            $(this).children("span").text("Remove");
-                        }
-                        //$("#myModal").modal('toggle');
-                        //$("#myModal").hide;
-                    }
-                });
+            function initiateAdd(){
+                $("#btn1").on("click",function () {
+                    
+                    $.ajax({
+                        url: '../controller/add_song_to_playlist.php',
+                        type: 'POST',
+                        data: {pl_id: valueSelected, song_id:<?php echo $id;?>},
+                        success: function (ok) {
+                            //   alert("Success");
+                              
+                            }
+                            //$("#myModal").modal('toggle');
+                            //$("#myModal").hide;
+                           
+                        });
+                    $(this).attr("id","btn2");
+                    $(this).text("Remove from playlist");
+                    $(this).unbind(); 
+                    initiateAdd();
+                    });
 
-            });
-            $("#btn2").on("click",function () {
-                $.ajax({
-                    url: '../controller/remove_song_from_playlist.php',
-                    type: 'POST',
-                    data: {pl_id: valueSelected, song_id:<?php echo $id;?>},
-                    success: function (ok) {
-                        // alert("Success");
-                        if ($(this).text()=="Remove"){
-                            $(this).children("span").text("Add");
-                            //$(this).attr("id", "btn1");
-                        }
-                        //$("#myModal").modal('toggle');
-                        //$("#myModal").hide;
-                    }
+               
+                $("#btn2").on("click",function () {
+                    $.ajax({
+                        url: '../controller/remove_song_from_playlist.php',
+                        type: 'POST',
+                        data: {pl_id: valueSelected, song_id:<?php echo $id;?>},
+                        success: function (ok) {
+                            // alert("Success");
+                            $(this).attr("id","btn1");
+                            $(this).text("Add");
+                                //$(this).attr("id", "btn1");
+                            }
+                            //$("#myModal").modal('toggle');
+                            //$("#myModal").hide;
+                            
+                    });
+                    $(this).attr("id","btn1");
+                    $(this).text("Add to playlist");
+                    $(this).unbind();
+                    initiateAdd();
                 });
-            });
+           };
         });
+    //initiateAdd();
+  
         $("#addpl").on("click",function () {
             // $.ajax({
             //     url: '../controller/create_playlist_from_song.php',
@@ -487,7 +501,7 @@ if (isset($_SESSION['user'])) {
     });
 
 </script>
-<?php include_once 'layout/footer.php';?>
+
 </html>
 
 
