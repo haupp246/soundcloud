@@ -19,5 +19,6 @@ foreach ($songID as $songs) {
     echo "Success";
 
 }
+db_closeconnect($db_connect);
 header("location: edit_playlist.php?id=$playlistID");
 ?>

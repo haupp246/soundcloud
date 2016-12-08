@@ -9,7 +9,8 @@ if (!isset($_SESSION['user'])) {
 if(isset($_SESSION['user'])) $u = unserialize($_SESSION['user']);
 include_once("db_connection.php");
 $db_connect = db_connect();
-$playlistID = $_SESSION['playlistID'];
+//$playlistID = $_SESSION['playlistID'];
+$playlistID = $_GET['id'];
 $query = "SELECT name FROM playlist WHERE playlistID='$playlistID'";
 $result =  mysql_query($query,$db_connect) or die ("Error $query");
 $row = mysql_fetch_assoc($result);
@@ -29,7 +30,9 @@ if (isset($_POST['submit']) ) {
                 </script>
                 <script> window.location = \"/soundcloud/view/Users/index.php\"; </script>";
     include_once ("../view/layout/footer.php");
-//header("location: ../view/Users/myplaylist.php");
+    //header("location: ../view/Users/myplaylist.php");
+    header("location: ../view/Users/index.php");
+    db_closeconnect($db_connect);
 }
 
 ?>

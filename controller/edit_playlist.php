@@ -47,5 +47,6 @@ else{
 }
 echo "</br></br></br></br>";
 include_once ("../view/layout/footer.php");
+db_closeconnect($db_connect);
 
 ?>

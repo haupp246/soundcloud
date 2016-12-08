@@ -17,6 +17,8 @@ if(!empty($email)&&!empty($pass))
     {
        $query = "SELECT email FROM admin WHERE email = '{$email}'"; 
        $result = mysql_query($query,$db_connect) or die ("Error in query: $query");
+       $object = mysql_fetch_object($result);
+       $_SESSION['admin'] = serialize($object);
        if (mysql_num_rows($result) == 1) {
            header("location:../view/Admin/index.php");
        }
