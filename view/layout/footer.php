@@ -1,7 +1,7 @@
 <!--<style type="text/css" media="screen">-->
 <!--	@import '/soundcloud/assets/css/footer.css';-->
 <!--</style>-->
-<link rel="stylesheet" href="/soundcloud/assets/css/demo.css">
+<!-- <link rel="stylesheet" href="/soundcloud/assets/css/demo.css">
 <link rel="stylesheet" href="/soundcloud/assets/css/footer-distributed-with-address-and-phones.css">
 
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
@@ -68,4 +68,4 @@
 
     </div>
 
-</footer>
+</footer> -->

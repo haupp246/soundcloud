@@ -1,16 +1,10 @@
 <?php
-if (session_status() === PHP_SESSION_NONE){session_start();}
-include_once("../../controller/db_connection.php");
-include_once ("../layout/header.php");
 echo "<br/><br/><br/><br/><br/>";
 if (!isset($_SESSION['user'])) {
     header("location: ../login.php");
 }
 if(isset($_SESSION['user']))
 {
-    $u = unserialize($_SESSION['user']);
-
-    $name = empty($u->name) ? $u->email : $u->name;
     ?>
     <!DOCTYPE html>
     <html>
@@ -24,45 +18,104 @@ if(isset($_SESSION['user']))
         <link rel="stylesheet" type="text/css" href="/soundcloud/assets/css/custom2.css">
         <link rel="stylesheet" type="text/css" href="/soundcloud/lib/tiny/tinyplayer.css">
         <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript">
+            function addmusic(){
+                $('#result').html('<img src="loading.gif"/>');
+                setTimeout(function(){
+                    $('#result').load('addmusic.php',$('#form_addmusic').serializeArray())
+                }, 1000);
+            }
+            function addsong(){
+                $('#result').html('<img src="loading.gif"/>');
+                setTimeout(function(){
+                    $('#result').load('addsong.php',$('#form_addsong').serializeArray())
+                }, 1000);
+            }
+            function play(){
+                $('#result').html('<img src="loading.gif"/>');
+                setTimeout(function(){
+                    $('#result').html('<div class="alert alert-success"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Đang Phát !</strong> Phía Sau Một Cô Gái - SooBin Hoàng Sơn.</div>')
+                }, 1000);
+            }
+            function edit(id){
+                $('#'+id).load('edit.php?id='+id,null);
+
+            }
+
+            function Update(id){
+                $('#result').html('<img src="loading.gif"/>');
+                setTimeout(function(){
+                    $('#result').load('update.php?id='+id,$('#form'+id).serializeArray())
+                }, 1000);
+            }
+        </script>
     </head>
 
     <body>
-
-
     <?php
     $db_connect = db_connect();
-    $userID = $_GET['id'];
-    $query = "SELECT * FROM playlist WHERE userID = '$userID'";
+    $query = "SELECT * FROM playlist WHERE userID = '$u->userID'";
     $result = mysql_query($query,$db_connect)or die("Error in query $query");
     $num_row = mysql_num_rows($result);
-    while($row = mysql_fetch_array($result)){
-        $id  = $row['playlistID'];
+    if ($num_row == 0) echo "You don't have any playlist :(";
+    else{
         ?>
-        <a href="/soundcloud/view/playlist.php?id=<?php echo $row['playlistID']; ?>" title=""><?php echo $row['playlistID'].$row["name"]; ?></a>
+        <div class="container-fluid" >
+            <div class="row">
+                <div class="col-md-9">
+                    <div id="main">
+                        <table class="table table-hover">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Playlist Name</th>
+                                <!--                        <th>Number of Songs</th>-->
+                                <th>Views</th>
+                                <th>Likes</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $db_connect = db_connect();
+                            $query = "SELECT * FROM playlist WHERE userID = '$u->userID'";
+                            $result = mysql_query($query,$db_connect)or die("Error in query $query");
+                            $num_row = mysql_num_rows($result);
+                            if ($num_row == 0) echo "You don't have any playlist :(";
+                            else while($row = mysql_fetch_array($result)){
+//                        $query2 = "SELECT COUNT(songID) AS total FROM songinplaylist WHERE playlistID = '$row[playlistID]' ";
+//                        $result2 = mysql_query($query,$db_connect)or die("Error in query $query");
+//                        $row2 = mysql_fetch_assoc($result2);
+                                echo "<tr id=".$row['playlistID'].">";
+                                echo '<td>'.$row['playlistID'].'</td>';
+                                echo '<td>'.$row['name'].'</td>';
+//                        echo '<td>'.$row2['total'].'</td>';
+                                echo '<td>'.$row['viewCount'].'</td>';
+                                echo '<td>'.$row['likeCount'].'</td>';
+                                echo '<td><a  href="../playlist.php?id='.$row['playlistID'].'" title="Show song lists"><span class="glyphicon glyphicon-list"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+								</td>';
+                                echo "</tr>";
 
-        <?php
-        echo"<a href=\"/soundcloud/controller/edit_playlist.php?id=".$id."\"></a>";
-        echo "</br>";
+                            }
+                            ?>
 
-        $query2 = "SELECT song.name, song.songID FROM song 
-              INNER JOIN songinplaylist ON song.songID = songinplaylist.songID 
-              WHERE playlistID = '$id'";
-        $result2 = mysql_query($query2,$db_connect)or die("Error in query $query2");
-        while ($row2 = mysql_fetch_assoc($result2)) {
-            ?>
-            <a style="color: #ff7430" href="/soundcloud/view/playsong.php?id=<?php echo $row2['songID'];?>" title=""><?php echo $row2["name"]; ?></a>
-            <?php
-            echo "</br>";
-        }
-        echo "</br></br>";
-    }
-    echo "</form>";
-    ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php }?>
 
+    <form align="center"  method="post" action="/soundcloud/view/Users/songlist.php">
+        <input type="text" required name="pname" placeholder="Playlist Name">
+        <input type="submit" name="add" value="Create Playlist"  >
+    </form>
     </body>
     </html>
     <?php
     echo "</br></br></br></br>";
-  
+    include_once ("../layout/footer.php");
 } db_closeconnect($db_connect); ?>
-

@@ -16,5 +16,6 @@ foreach ($choose as $songs) {
     $query = "INSERT INTO songinplaylist (songID, playlistID) VALUES ('$songs','$playlistID')";
     $result = mysql_query($query,$db_connect)or die("Error in query $query");
 }
+db_closeconnect($db_connect);
 header("location:../view/Users/myplaylist.php")
 ?>
