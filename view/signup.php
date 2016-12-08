@@ -28,7 +28,7 @@ include_once 'layout/header.php';
 			<form method="POST" action="../controller/checksignup.php">
 				<label><h3>Email: </h3></label>
 				<br/>
-				<input type="text" name="email" required="required" placeholder="abcd1234@zxy.abc">
+				<input type="email" name="email" required="required" placeholder="abcd1234@zxy.abc">
 				<br/>	<br/>
 				<label><h3>Name: </h3></label>
 				<br/>

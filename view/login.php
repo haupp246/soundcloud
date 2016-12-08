@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
 			<form method="POST" action="../controller/checklogin.php">
 				<label><h3>Email: </h3></label>
 				<br/>
-				<input type="text" name="email" required="required" placeholder="abcd1234@zxy.abc">
+				<input type="email" name="email" required="required" placeholder="abcd1234@zxy.abc">
 				<br/>	<br/>
 				<label><h3>Password</h3></label>
 				<br/>
