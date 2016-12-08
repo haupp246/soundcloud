@@ -79,11 +79,6 @@ function get_user_info_from_get_id($another_user_id, $db_connect) {
     </head>
     <body>
     <div class="container container3">
-        <!--		--><?php //
-        //		echo "<h1>Hello ",$name,"</h1></br>";
-        //
-        ?>
-
         <div class="profile"
              style="background: transparent linear-gradient(315deg, rgb(230, 132, 110) 0%, rgb(<?php echo $this_profile->userID ?>, 132, 133) 100%) repeat scroll 0% 0%;">
             <div class="profile-avatar"

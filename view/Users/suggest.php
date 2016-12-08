@@ -40,7 +40,7 @@ if(isset($_SESSION['user']))
 					WHERE userID not in 
 					( select userID2 from follow where userID1='{$u->userID}' and userID2<>'{$u->userID}') 
 					ORDER BY RAND()
-					LIMIT 5";
+					LIMIT 10";
 		$result = mysql_query($query,$db_connect)or die("Error in query $query");
 		$num_row = mysql_num_rows($result);
 		$count=0;

@@ -48,7 +48,7 @@
 	{	$image = isset($row['avatar'])? $row['avatar'] :"default.jpg";
 		echo '<li>
 		<div>
-			<a style="color:blue;" href ="/soundcloud/view/index.php?id='.$row['userID'].'">
+			<a style="color:blue;" href ="/soundcloud/view/Users/index.php?id='.$row['userID'].'">
 				<div class = "row" style="width:100%">
 					<div class = "col4">
 						<img style=margin-top:10px;margin-left:30px;" width="40px" height="40px" src="/soundcloud/assets/img/uploads/'.$image.'">

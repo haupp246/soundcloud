@@ -13,14 +13,14 @@ $db_connect = db_connect();
 $query_s = "SELECT * FROM song WHERE userID='$uploader_id' and songID <> '$song_id' ORDER BY RAND() LIMIT 3";
 $result_s = mysql_query($query_s, $db_connect) or die ("Error in query: $query");
 $num_row_s = mysql_num_rows($result_s);
-$gen_html ='<div>
+$gen_html ='<h2>
 Suggestion:
-<br/><br/>
-</div>';
+
+</h2>';
 if ($num_row_s==0) $gen_html .= "This user do not have any other song.";
 else
 {
-	$gen_html .= "This user have also uploaded:<br/><br/>";
+	$gen_html .= "This user have also uploaded:<br/><hr/>";
 	while($row_s = mysql_fetch_assoc($result_s)){
 		$image_s = isset($row_s['image'])? $row_s['image'] :"default.png";
 
@@ -48,7 +48,7 @@ $num_row_s = mysql_num_rows($result_s);
 if ($num_row_s==0) $gen_html .= "No song.";
 else
 {
-	$gen_html .= "Song you may like:<br/><br/>".$genre;
+	$gen_html .= "Song you may like:<br/><hr/>".$genre;
 	while($row_s = mysql_fetch_assoc($result_s)){
 		$image_s = isset($row_s['image'])? $row_s['image'] :"default.png";
 

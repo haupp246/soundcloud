@@ -5,6 +5,7 @@ $linkav = '/soundcloud/assets/img/uploads/'.$link;
 ?>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <link rel="stylesheet" type="text/css" href="/soundcloud/lib/bootstrap/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/soundcloud/lib/font-awesome-4.3.0/css/font-awesome.min.css">
   <script src="/soundcloud/lib/jquery/jquery-3.1.1.js"></script>
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
   <script src="/soundcloud/lib/bootstrap/js/bootstrap.min.js"></script>
