@@ -1,11 +1,11 @@
 <?php
 echo "<br/><br/><br/><br/><br/>";
-if (!isset($_SESSION['user'])) {
-    header("location: ../login.php");
-}
-if(isset($_SESSION['user']))
-{
-    ?>
+//if (!isset($_SESSION['user'])) {
+
+//}
+//if(isset($_SESSION['user']))
+//{
+ ?>
     <!DOCTYPE html>
     <html>
     <head>
@@ -57,10 +57,11 @@ if(isset($_SESSION['user']))
     <body>
     <?php
     $db_connect = db_connect();
-    $query = "SELECT * FROM playlist WHERE userID = '$u->userID'";
+    $id = $_GET['id'];
+    $query = "SELECT * FROM playlist WHERE userID = '$id'";
     $result = mysql_query($query,$db_connect)or die("Error in query $query");
     $num_row = mysql_num_rows($result);
-    if ($num_row == 0) echo "You don't have any playlist :(";
+    if ($num_row == 0) echo "This user don't have any playlist :(";
     else{
         ?>
         <div class="container-fluid" >
@@ -80,7 +81,7 @@ if(isset($_SESSION['user']))
                             <tbody>
                             <?php
                             $db_connect = db_connect();
-                            $query = "SELECT * FROM playlist WHERE userID = '$u->userID'";
+                            $query = "SELECT * FROM playlist WHERE userID = '$id'";
                             $result = mysql_query($query,$db_connect)or die("Error in query $query");
                             $num_row = mysql_num_rows($result);
                             if ($num_row == 0) echo "You don't have any playlist :(";
@@ -109,13 +110,13 @@ if(isset($_SESSION['user']))
         </div>
     <?php }?>
 
-    <form align="center"  method="post" action="/soundcloud/view/Users/songlist.php">
-        <input type="text" required name="pname" placeholder="Playlist Name">
-        <input type="submit" name="add" value="Create Playlist"  >
-    </form>
+<!--    <form align="center"  method="post" action="/soundcloud/view/Users/songlist.php">-->
+<!--        <input type="text" required name="pname" placeholder="Playlist Name">-->
+<!--        <input type="submit" name="add" value="Create Playlist"  >-->
+<!--    </form>-->
     </body>
     </html>
     <?php
     echo "</br></br></br></br>";
-    include_once ("../layout/footer.php");
-} db_closeconnect($db_connect); ?>
+//    include_once ("../layout/footer.php");
+ db_closeconnect($db_connect); ?>

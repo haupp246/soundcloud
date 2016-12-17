@@ -31,7 +31,7 @@ $num_row = mysql_num_rows($result);
         <div id="all_tracks"></div>
         <?php
         if($num_row == 0){
-        echo "Sorry this playlist does not contain any song!";
+        echo "<h1>Sorry this playlist does not contain any song!</h1>";
         //die();
         }
         else

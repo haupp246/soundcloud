@@ -113,10 +113,22 @@ if(isset($_SESSION['user']))
         </div>
     <?php }?>
 
-    <form align="center"  method="post" action="/soundcloud/view/Users/songlist.php">
+<!--    <form align="center"  method="post" action="/soundcloud/view/Users/songlist.php">-->
+<!--        <input type="text" required name="pname" placeholder="Playlist Name">-->
+<!--        <input type="submit" name="add" value="Create Playlist"  >-->
+<!--    </form>-->
+    <form align="center"  method="post" action="">
         <input type="text" required name="pname" placeholder="Playlist Name">
         <input type="submit" name="add" value="Create Playlist"  >
     </form>
+    <?php
+    if (isset($_POST['pname'])) {
+        $pname =  $_POST['pname'];
+        $query = "INSERT INTO playlist (name, userID, createTime) VALUES ('$pname','$u->userID', now())";
+        $result = mysql_query($query, $db_connect) or die("Error in query $query");
+
+        }
+    ?>
     </body>
     </html>
     <?php

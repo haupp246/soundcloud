@@ -32,7 +32,7 @@ if(isset($_SESSION['user']))
         if($imageFileType != "mp3"  && $imageFileType != "wav" ) {
             echo "
             <script language=\"javascript\">
-                alert(\"Sorry, only MP3, WAV files are allowed! Please try again! <?php echo $imageFileType ?> \");
+                alert(\"Sorry, only MP3, WAV files are allowed! Please try again! \");
             </script>
             <script> window.location = \"/soundcloud/view/Users/upload.php \"; </script>";
             $uploadOk = 0;

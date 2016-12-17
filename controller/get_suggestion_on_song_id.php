@@ -17,7 +17,7 @@ $gen_html ='<h2>
 Suggestion:
 
 </h2>';
-if ($num_row_s==0) $gen_html .= "This user do not have any other song.";
+if ($num_row_s==0) $gen_html .= "This user do not have any other song."."<br/><br/>";
 else
 {
 	$gen_html .= "This user have also uploaded:<br/><hr/>";

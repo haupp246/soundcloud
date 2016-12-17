@@ -27,11 +27,13 @@ $name = empty($u->name) ? $u->email : $u->name;
     <script src="/soundcloud/lib/tiny/tinyplayer.js"></script>
 </head>
 <body>
+<div class="container">
 <?php
 $query = "SELECT ispro FROM user WHERE userID = '$u->userID'";
 $result = mysql_query($query,$db_connect)or die("Error in query $query");
 //$num_row = mysql_num_rows($result);
 $row = mysql_fetch_array($result);
+
 if ($row['ispro']==0)
 {
 ?>
@@ -87,3 +89,6 @@ else echo "<h1>You have already a Pro!</h1>";
         });
         })
 </script>
+</div>
+</body>
+</html>

@@ -14,10 +14,12 @@ $playlistID = $_GET['id'];
 $query = "SELECT name FROM playlist WHERE playlistID='$playlistID'";
 $result =  mysql_query($query,$db_connect) or die ("Error $query");
 $row = mysql_fetch_assoc($result);
+echo "<div class='container'>";
 echo "<form method='post' action=''>";
-echo "<input type='text' name='newname' required value= $row[name]>";
-echo "<input type='submit' name='submit' value='Change'>";
+echo "<input type='text' name='newname' class='form-control'  style='width: 30%;' required value= $row[name]>";
+echo "<br/><input type='submit' class='btn btn-primary' name='submit' value='Change'>";
 echo "</form>";
+echo "</div>";
 if (isset($_POST['submit']) ) {
     $name = $_POST['newname'];
 //    echo $name;
