@@ -1,4 +1,8 @@
 # soundcloud
+Test server:
+http://52.221.242.111/soundcloud/
+user: manhtruonghedspi@gmail.com
+pass: 1
 
 hoangthai	[10:11 AM]  
 Github- download git ở đây 
