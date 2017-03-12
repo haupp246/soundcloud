@@ -6,7 +6,7 @@ Built by a team of 4 geeks. Using only PHP and Bootstrap.
 
 ## Test 
 
-52.221.242.111/soundcloud/
+http://52.221.242.111/soundcloud/
 
 user: manhtruonghedspi@gmail.com
 
