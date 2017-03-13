@@ -1,8 +1,8 @@
 # Sound in the Cloud
 
-A social network exclusively for music lover. You can upload music, create playlist, like, comment, follow just like an usual social network. Also we have a top chart of 50 most played songs.
+A social network exclusively for music lover. You can upload music, create playlist, like, comment, follow, get notification just like an usual social network. Also we have a top chart of 50 most played songs.
 
-Built by a team of 4 geeks. Using only PHP and Bootstrap.
+Built by a team of 4 geeks. Backend: only PHP, frontend: Bootstrap, jquery, ajax.
 
 ## Test 
 
